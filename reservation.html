@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booksphere</title>
+    <link rel="stylesheet" href="mystyle.css">
+
+    <style>
+        .book-table { width: 100%; border-collapse: separate; 
+                        border-spacing: 0 20px; border: none; }
+        .book-row td {border: none;}
+        .book-row td:first-child{  width: 220px; border: none; }                 
+
+    </style>
+
+</head>
+<body>
+    <div class="section1">
+        <h1>Book Reservation</h1>
+
+        <h2>Book Details :</h2>
+        <br/><br/>
+        <table class="book-table">
+            <tr class="book-row">
+            <td><img src="clean.jpg" alt="Clean Code Book" class="book-img"></td>
+                
+                <td><p>Title: Clean Code</p>
+                    <p>Author: Robert Martin</p>
+                    <p>Category: Programming</p>
+                    <p>Status: Available</p>
+                
+
+                <form action="https://httpbin.org/get" method="get">
+                <input type="hidden" name="book" value="Clean Code">
+                <button type="submit">Confirm Reserve</button>
+                </form>
+                <p>Once confirmed, this book will appear in your account under reserved books </p>
+            </td>
+            </tr>
+        </table>
+        
+    </div>
+    
+</body>
+</html>
