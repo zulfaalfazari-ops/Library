@@ -1,0 +1,100 @@
+body {
+  background-color:#d9e3e3;
+  margin: 0; 
+  font-family: Arial, sans-serif; 
+}
+
+h1{
+  text-align: center;
+  font-family: serif;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+h2,h3{
+    font-family: serif;
+}
+
+.section1 {
+  background-color: #d9e3e3;
+  padding: 20px;
+}
+
+.section2 {
+  background-color: #bfcaca;
+  padding: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  align-items: stretch; 
+}
+
+label {
+  margin-top: 10px;
+  font-weight: bold;
+
+}
+
+input, textarea {
+  margin-top: 5px;
+  padding: 8px;
+  font-size: 14px;
+}
+
+button {
+  font-weight: bold;
+  margin-top: 15px;
+  color: white;
+  background-color: black;
+  border-radius: 5px;
+}
+.container {
+  width: 40%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+
+}
+
+
+.book-table {
+  width: 80%;     
+  margin: auto;  
+  border-collapse: separate;
+  border-spacing: 5px;
+}
+
+.book-row {
+  background: #cfd8d6;
+}
+
+.book-row td {
+  padding: 10px;
+  vertical-align:top;
+  border: 1px solid black;
+}
+.book-row td:first-child {
+  width: 220px;  
+}
+
+.book-img {
+  width: 200px;
+  height: 250px;
+}
+
+.available {
+  color: green;
+  font-weight: bold;
+}
+
+.not-available {
+  color: red;
+  font-weight: bold;
+}
+
+
+
