@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookshpere</title>
+    <link rel="stylesheet" href="mystyle.css">
+    <style>
+        .account-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        
+        .profile-header {
+            background: #667eea;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .profile-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .profile-avatar {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            color: #667eea;
+        }
+        
+        .profile-details h2 {
+            margin: 0 0 5px 0;
+            font-size: 22px;
+        }
+        
+        .profile-details p {
+            margin: 3px 0;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: #666;
+        }
+        
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+        
+        th {
+            background: #2c3e50;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .status-borrowed {
+            background: #ff9800;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        
+        .status-overdue {
+            background: #f44336;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        
+        .status-returned {
+            background: #4caf50;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        
+        .status-pending {
+            background: #2196f3;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background: #5a67d8;
+        }
+        
+        .form-box {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+        
+        .form-box select {
+            padding: 6px;
+            margin-right: 10px;
+        }
+        
+        .fine-box {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .summary-table {
+            margin-top: 30px;
+        }
+        
+        .summary-table tfoot td {
+            background: #f5f5f5;
+            font-weight: bold;
+            border-top: 2px solid #667eea;
+        }
+        
+        hr {
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 600px) {
+            .profile-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            table {
+                font-size: 12px;
+            }
+            th, td {
+                padding: 6px;
+            }
+        }
+    </style>
+        <script>
+        function showTab(tabName, btnElement) {
+            // Hide all tabs
+            document.getElementById('borrowed').classList.remove('active');
+            document.getElementById('reservations').classList.remove('active');
+            document.getElementById('history').classList.remove('active');
+            
+            // Remove active class from all buttons
+            var buttons = document.querySelectorAll('.tab-btn');
+            for(var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('active');
+            }
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            btnElement.classList.add('active');
+        }
+        
+        function renewBook() {
+            alert('Renewal request submitted!');
+        }
+        
+        function returnBook() {
+            alert('Return request submitted!');
+        }
+        
+        function payFines() {
+            alert('Redirecting to payment gateway...');
+        }
+    </script>
+</head>
+<body>
+     <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="BookSphere Logo" class="logo">
+            <h1>BookSphere Library</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="catalog.html">Catalog</a></li>
+                <li><a href="reservation.html">Reservation</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="myaccount.html" class="active">My Account</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="account-container">
+            
+            <div class="profile-header">
+                <div class="profile-info">
+                    <div class="profile-avatar">📚</div>
+                    <div class="profile-details">
+                        <h2>Ahmed Mohammed Al-Busaidi</h2>
+                        <p>📧 ahmed@university.edu.om</p>
+                        <p>🆔 Student ID: 202312345</p>
+                        <p>📅 Member since: September 2025</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('borrowed', this)">Currently Borrowed</button>
+                <button class="tab-btn" onclick="showTab('reservations', this)">My Reservations</button>
+                <button class="tab-btn" onclick="showTab('history', this)">Borrowing History</button>
+            </div>
+            
+            <div id="borrowed" class="tab-content active">
+                <h3>Books Currently Borrowed</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Book Title</th>
+                            <th>Author</th>
+                            <th>Borrow Date</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Clean Code</td>
+                            <td>Robert C. Martin</td>
+                            <td>2026-02-20</td>
+                            <td>2026-03-06</td>
+                            <td><span class="status-borrowed">Borrowed</span></td>
+                            <td><button onclick="renewBook()">Renew</button></td>
+                        </tr>
+                        <tr>
+                            <td>Introduction to Algorithms</td>
+                            <td>Thomas H. Cormen</td>
+                            <td>2026-02-15</td>
+                            <td>2026-03-01</td>
+                            <td><span class="status-overdue">Overdue</span></td>
+                            <td><button onclick="returnBook()">Return</button></td>
+                        </tr>
+                        <tr>
+                            <td>The Pragmatic Programmer</td>
+                            <td>Andrew Hunt</td>
+                            <td>2026-02-25</td>
+                            <td>2026-03-11</td>
+                            <td><span class="status-borrowed">Borrowed</span></td>
+                            <td><button onclick="renewBook()">Renew</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="form-box">
+                    <h4>Renew a Book</h4>
+                    <form action="https://httpbin.org/post" method="POST">
+                        <select name="book_to_renew">
+                            <option value="101">Clean Code</option>
+                            <option value="103">The Pragmatic Programmer</option>
+                        </select>
+                        <button type="submit">Submit Renewal</button>
+                    </form>
+                </div>
+                
+                <div class="fine-box">
+                    <h4>⚠️ Overdue Notice</h4>
+                    <p>Overdue book: Introduction to Algorithms (5 days late)</p>
+                    <p>Total fines: <strong>2.500 OMR</strong></p>
+                    <button onclick="payFines()">Pay Fines</button>
+                </div>
+            </div>
+            
+            <div id="reservations" class="tab-content">
+                <h3>My Reservations</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Book Title</th>
+                            <th>Author</th>
+                            <th>Reservation Date</th>
+                            <th>Status</th>
+                            <th>Queue Position</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Database Systems</td>
+                            <td>Carlos Coronel</td>
+                            <td>2026-02-28</td>
+                            <td><span class="status-pending">Pending</span></td>
+                            <td>#3</td>
+                        </tr>
+                        <tr>
+                            <td>Harry Potter</td>
+                            <td>J.K. Rowling</td>
+                            <td>2026-03-01</td>
+                            <td><span class="status-pending">Pending</span></td>
+                            <td>#1</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="form-box">
+                    <h4>Cancel Reservation</h4>
+                    <form action="https://httpbin.org/post" method="POST">
+                        <select name="reservation_to_cancel">
+                            <option value="301">Database Systems</option>
+                            <option value="302">Harry Potter</option>
+                        </select>
+                        <button type="submit">Cancel Reservation</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div id="history" class="tab-content">
+                <h3>Borrowing History</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Book Title</th>
+                            <th>Author</th>
+                            <th>Borrow Date</th>
+                            <th>Return Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>You Don't Know JS</td>
+                            <td>Kyle Simpson</td>
+                            <td>2026-01-10</td>
+                            <td>2026-01-25</td>
+                            <td><span class="status-returned">Returned</span></td>
+                        </tr>
+                        <tr>
+                            <td>Design Patterns</td>
+                            <td>Erich Gamma</td>
+                            <td>2025-12-15</td>
+                            <td>2025-12-30</td>
+                            <td><span class="status-returned">Returned</span></td>
+                        </tr>
+                        <tr>
+                            <td>The Art of Computer Programming</td>
+                            <td>Donald Knuth</td>
+                            <td>2025-11-20</td>
+                            <td>2025-12-05</td>
+                            <td><span class="status-returned">Returned</span></td>
+                        </tr>
+                    </tbody>
+                </table>  <!-- ✅ Fixed: Added closing tag -->
+            </div>
+            
+            <hr/>
+            
+            <h3>Account Summary</h3>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Details</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Current Borrowings</td>
+                        <td>Total books borrowed</td>
+                        <td>3 books</td>
+                    </tr>
+                    <tr>
+                        <td>Active Reservations</td>
+                        <td>Books reserved</td>
+                        <td>2 books</td>
+                    </tr>
+                    <tr>
+                        <td>Unpaid Fines</td>
+                        <td>Total fines</td>
+                        <td>2.500 OMR</td>
+                    </tr>
+                    <tr>
+                        <td>Membership</td>
+                        <td>Member since</td>
+                        <td>September 2025</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Status: Active Member | Account Type: Student</td>
+                    </tr>
+                </tfoot>
+            </table>
+            
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>BookSphere Library</h4>
+                <p>Your gateway to knowledge</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: info@booksphere.edu.om</p>
+                <p>Phone: +968 1234 5678</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 BookSphere Library. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

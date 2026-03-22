@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookshpere </title>
+    <link rel="stylesheet" href="mystyle.css">
+
+    <style>
+        .login-container {
+            max-width: 450px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        
+        .login-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .login-box h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #2c3e50;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .checkbox-group {
+            margin: 15px 0;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .login-btn:hover {
+            background: #5a67d8;
+        }
+        
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .register-link a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .stats-table {
+            margin-top: 40px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        
+        th {
+            background: #2c3e50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        tfoot td {
+            background: #f5f5f5;
+            font-weight: bold;
+            border-top: 2px solid #667eea;
+        }
+        
+        h3 {
+            text-align: center;
+            margin: 30px 0 15px 0;
+        }
+        
+        hr {
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <div class="logo-container">
+        <img src="logo.png" alt="BookSphere Logo" class="logo">
+        <h1>BookSphere Library</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="catalog.html">Catalog</a></li>
+            <li><a href="reservation.html">Reservation</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="myaccount.html">My Account</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <div class="login-container">
+        
+        <div class="login-box">
+            <h2>Welcome Back!</h2>
+            
+            <form action="https://httpbin.org/post" method="POST">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="remember" value="yes"> Remember me
+                    </label>
+                </div>
+                
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+            
+            <div class="register-link">
+                <p>Don't have an account? <a href="register.html">Register here</a></p>
+                <p><a href="#">Forgot Password?</a></p>
+            </div>
+        </div>
+        
+        <hr/>
+        
+        <h3>Library Access Statistics</h3>
+        <table class="stats-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Total Logins</th>
+                    <th>New Users</th>
+                    <th>Active Sessions</th>
+                 </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>March 20, 2026</td>
+                    <td>156</td>
+                    <td>23</td>
+                    <td>89</td>
+                </tr>
+                <tr>
+                    <td>March 19, 2026</td>
+                    <td>142</td>
+                    <td>18</td>
+                    <td>76</td>
+                </tr>
+                <tr>
+                    <td>March 18, 2026</td>
+                    <td>134</td>
+                    <td>15</td>
+                    <td>72</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">Total Users This Week: 1,245</td>
+                </tr>
+            </tfoot>
+        </table>
+        
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>BookSphere Library</h4>
+                <p>Your gateway to knowledge</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: info@booksphere.edu.om</p>
+                <p>Phone: +968 1234 5678</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 BookSphere Library. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
