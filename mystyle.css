@@ -1,100 +1,307 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  background-color:#d9e3e3;
-  margin: 0; 
-  font-family: Arial, sans-serif; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #2c3e50;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-h1{  
-  text-align: center;
-  font-family: serif;
-  margin-top: 20px;
-  margin-bottom: 50px;
-}
-h2,h3{
-    font-family: serif;
-}
-
-.section1 {
-  background-color: #d9e3e3;
-  padding: 20px;
+/* -------------------------------
+   Header and Navigation Styles
+   ------------------------------- */
+header {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
 }
 
-.section2 {
-  background-color: #bfcaca;
-  padding: 20px;
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 0 20px;
+    margin-bottom: 1rem;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  align-items: stretch; 
+.logo {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: white;
+    padding: 8px;
+    transition: transform 0.3s ease;
 }
 
-label {
-  margin-top: 10px;
-  font-weight: bold;
-
+.logo:hover {
+    transform: scale(1.05);
 }
 
-input, textarea {
-  margin-top: 5px;
-  padding: 8px;
-  font-size: 14px;
+.logo-container h1 {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-button {
-  font-weight: bold;
-  margin-top: 15px;
-  color: white;
-  background-color: black;
-  border-radius: 5px;
-}
-.container {
-  width: 40%;
-  margin: 0 auto;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-
+/* Navigation Menu - Using Descendant Selector */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem;
 }
 
-
-.book-table {
-  width: 80%;     
-  margin: auto;  
-  border-collapse: separate;
-  border-spacing: 5px;
+nav ul li {
+    display: inline-block;
 }
 
-.book-row {
-  background: #cfd8d6;
+/* Pseudo-class Selector for Navigation Links */
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    display: inline-block;
 }
 
-.book-row td {
-  padding: 10px;
-  vertical-align:top;
-  border: 1px solid black;
-}
-.book-row td:first-child {
-  width: 220px;  
+/* Hover Pseudo-class */
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
 }
 
-.book-img {
-  width: 200px;
-  height: 250px;
+/* Active Link Styling */
+nav ul li a.active {
+    background-color: #f39c12;
+    color: #2c3e50;
 }
 
-.available {
-  color: green;
-  font-weight: bold;
+/* -------------------------------
+   Main Content Area
+   ------------------------------- */
+main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
 }
 
-.not-available {
-  color: red;
-  font-weight: bold;
+/* -------------------------------
+   Footer Styles - Uniform Across All Pages
+   ------------------------------- */
+footer {
+    background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
+    color: #ecf0f1;
+    margin-top: auto;
 }
 
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem 2rem 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
+.footer-section h4 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
 
+/* Pseudo-element Selector */
+.footer-section h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background-color: #f39c12;
+}
+
+.footer-section p {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+/* Attribute Selector for Footer Links */
+.footer-section ul li a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #f39c12;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.85rem;
+    color: #95a5a6;
+}
+
+/* -------------------------------
+   Common Table Styles
+   ------------------------------- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.data-table caption {
+    padding: 0.8rem;
+    font-weight: bold;
+    background-color: #ecf0f1;
+    caption-side: top;
+    font-size: 1.1rem;
+}
+
+.data-table th {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.data-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.data-table tfoot td {
+    background-color: #ecf0f1;
+    font-weight: bold;
+    border-top: 2px solid #3498db;
+}
+
+/* -------------------------------
+   Button Styles
+   ------------------------------- */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: #3498db;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+/* -------------------------------
+   Utility Classes
+   ------------------------------- */
+.text-center {
+    text-align: center;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .logo-container h1 {
+        font-size: 1.2rem;
+    }
+    
+    .logo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    nav ul li a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    main {
+        padding: 1rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer-section h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .data-table {
+        font-size: 12px;
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav ul {
+        gap: 0.25rem;
+    }
+    
+    nav ul li a {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+}
