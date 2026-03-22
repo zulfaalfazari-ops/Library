@@ -3,42 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BookSphere - About Us</title>
+    <title>BookSphere </title>
     <link rel="stylesheet" href="mystyle.css">
+     <style>
+        .about-content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .about-content h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #2980b9;
+            display: inline-block;
+            width: auto;
+        }
+        
+        .about-content h3 {
+            color: #2980b9;
+            margin: 25px 0 10px 0;
+        }
+        
+        .about-content p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .email-link {
+            display: inline-block;
+            background: #2980b9;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        
+        .email-link:hover {
+            background: #1a5276;
+        }
+        
+        .values-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .values-list li {
+            padding: 10px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-left: 4px solid #2980b9;
+        }
+        
+        hr {
+            margin: 30px 0;
+        }
+    </style>
 </head>
 <body>
-    <div class="header">
-        <img src="logo.PNG" alt="BookSphere Logo" class="logo">
-        <h1>Welcome to BookSphere</h1>
-    </div>
-    
-    <div class="navbar">
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="contact.html">Contact</a>
-        <a href="catalog.html">Catalog</a>
-        <a href="login.html">Login</a>
-        <a href="register.html">Register</a>
-    </div>
-    
-    <div class="main-content">
-        <h2>About BookSphere</h2>
-        
-        <h3>Our Mission</h3>
-        <p>To provide students with easy access to books and educational resources.</p>
-        
-        <h3>Our Vision</h3>
-        <p>To become the leading digital library platform in the university.</p>
-        
-        <h3>Contact Information</h3>
-        <p>For any inquiries, please email us at: 
-            <a href="mailto:support@booksphere.com">support@booksphere.com</a>
-        </p>
-    </div>
+     <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="BookSphere Logo" class="logo">
+            <h1>BookSphere Library</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="bookcatalog.html">Catalog</a></li>
+                <li><a href="reservation.html">Reservation</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="contactUs.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="myaccount.html">My Account</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div class="footer">
-        <p>&copy; 2026 BookSphere. All rights reserved.</p>
-        <p>Email: support@booksphere.com</p>
-    </div>
+    <main>
+        <div class="account-container">
+            <div class="profile-header" style="background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);">
+                <div class="profile-info">
+                    <div class="profile-details">
+                        <h2>About BookSphere Library</h2>
+                        <p>Your gateway to knowledge and learning</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="login-box" style="margin-top: 30px;">
+                <h2>Our Mission</h2>
+                <p>To provide students with easy access to books and educational resources, making learning more accessible and efficient for everyone at the university.</p>
+                
+                <h2>Our Vision</h2>
+                <p>To become the leading digital library platform in the university, transforming how students discover, borrow, and engage with educational materials.</p>
+                
+                <h2>Our Values</h2>
+                <table style="margin: 20px 0;">
+                    <tr>
+                        <td style="border: none; padding: 10px;"><strong>📚 Accessibility</strong></td>
+                        <td style="border: none; padding: 10px;">Making knowledge available to all students</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none; padding: 10px;"><strong>🔍 Innovation</strong></td>
+                        <td style="border: none; padding: 10px;">Using technology to improve library services</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none; padding: 10px;"><strong>🤝 Community</strong></td>
+                        <td style="border: none; padding: 10px;">Building a strong reading community</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none; padding: 10px;"><strong>⭐ Excellence</strong></td>
+                        <td style="border: none; padding: 10px;">Providing high-quality service and resources</td>
+                    </tr>
+                </table>
+                
+                <hr>
+                
+                <h2>Contact Information</h2>
+                <p>For any inquiries, feedback, or support, please feel free to reach out to us:</p>
+                
+                <div class="form-box" style="margin-top: 20px;">
+                    <p>📧 <strong>Email:</strong> <a href="mailto:support@booksphere.edu.om" style="color: #2980b9;">info@booksphere.edu.om</a></p>
+                    <p>📞 <strong>Phone:</strong> +968 1234 5678</p>
+                    <p>📍 <strong>Location:</strong> Sultan Qaboos University, Oman</p>
+                    <p>🕒 <strong>Hours:</strong> Sunday - Thursday, 8:00 AM - 8:00 PM</p>
+                </div>
+            </div>
+
+            <div class="stats-table-container" style="margin-top: 30px;">
+                <h3>Library Statistics</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Information</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Total Books</td><td>5,000+</td></tr>
+                        <tr><td>Active Members</td><td>4,454</td></tr>
+                        <tr><td>Books Borrowed Monthly</td><td>1,200+</td></tr>
+                        <tr><td>Staff Members</td><td>15</td></tr>
+                    </tbody>
+                    <tfoot>
+                        <tr><td colspan="2">Established: 2025</td></tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>BookSphere Library</h4>
+                <p>Your gateway to knowledge</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contactUs.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: info@booksphere.edu.om</p>
+                <p>Phone: +968 1234 5678</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 BookSphere Library. All rights reserved.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
