@@ -16,50 +16,140 @@
 
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <img src="images/logo.png" alt="BookSphere Logo" class="logo">
-            <h1>BookSphere Library</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="catalog.html" class="active">Catalog</a></li>
-                <li><a href="reservation.html">Reservation</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="myaccount.html">My Account</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="section1">
-        <h1>Book Reservation</h1>
-
-        <h2>Book Details :</h2>
-        <br/><br/>
-        <table class="book-table">
-            <tr class="book-row">
-            <td><img src="clean.jpg" alt="Clean Code Book" class="book-img"></td>
-                
-                <td><p>Title: Clean Code</p>
-                    <p>Author: Robert Martin</p>
-                    <p>Category: Programming</p>
-                    <p>Status: Available</p>
-                
-
-                <form action="https://httpbin.org/get" method="get">
-                <input type="hidden" name="book" value="Clean Code">
-                <button type="submit">Confirm Reserve</button>
-                </form>
-                <p>Once confirmed, this book will appear in your account under reserved books </p>
-            </td>
-            </tr>
-        </table>
-        
+        <header>
+    <div class="logo-container">
+        <img src="logo.png" alt="BookSphere Logo" class="logo">
+        <h1>BookSphere Library</h1>
     </div>
-        <footer>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="bookcatalog.html">Catalog</a></li>
+            <li><a href="reservation.html">Reservation</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contactUs.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="myaccount.html">My Account</a></li>
+        </ul>
+    </nav>
+</header>
+     <main>
+        <div class="reservation-container">
+            
+            <div class="reservation-header">
+                <h1>📖 Book Reservation</h1>
+                <p>Reserve your favorite books and pick them up from the library</p>
+            </div>
+            
+            <div class="book-details-card">
+                <div class="book-details-header">
+                    <h2>Book Details</h2>
+                </div>
+                <div class="book-details-content">
+                    <div class="book-image-section">
+                        <img src="clean.jpg" alt="Clean Code Book" class="book-image">
+                    </div>
+                    <div class="book-info-section">
+                        <h1 class="book-title">Clean Code</h1>
+                        <div class="book-detail">
+                            <strong>Author:</strong> Robert C. Martin
+                        </div>
+                        <div class="book-detail">
+                            <strong>Category:</strong> Programming
+                        </div>
+                        <div class="book-detail">
+                            <strong>ISBN:</strong> 978-0132350884
+                        </div>
+                        <div class="book-detail">
+                            <strong>Publisher:</strong> Prentice Hall
+                        </div>
+                        <div class="book-detail">
+                            <strong>Status:</strong> <span class="status-available">✓ Available</span>
+                        </div>
+                        <div class="book-detail">
+                            <strong>Copies Available:</strong> 2 copies
+                        </div>
+                        
+                        <form action="https://httpbin.org/post" method="POST">
+                            <input type="hidden" name="book" value="Clean Code">
+                            <input type="hidden" name="book_id" value="103">
+                            
+                            <div class="reservation-form">
+                                <h3>Confirm Reservation</h3>
+                                <div class="form-group">
+                                    <label for="student_id">Student ID</label>
+                                    <input type="text" id="student_id" name="student_id" placeholder="Enter your University ID" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pickup_date">Preferred Pickup Date</label>
+                                    <input type="date" id="pickup_date" name="pickup_date">
+                                </div>
+                                <button type="submit" class="reserve-btn">Confirm Reserve</button>
+                                <div class="info-note">
+                                    ℹ️ Once confirmed, this book will appear in your account under "My Reservations". 
+                                    You will receive an email when the book is ready for pickup.
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="more-books">
+                <h3>📚 You Might Also Like</h3>
+                <div class="books-grid">
+                    <div class="book-mini">
+                        <img src="hp.jpg" alt="Harry Potter" class="book-mini-img">
+                        <h4>Harry Potter</h4>
+                        <p>J.K. Rowling</p>
+                        <span class="mini-status mini-available">✓ Available</span>
+                    </div>
+                    <div class="book-mini">
+                        <img src="db.jpg" alt="Database Systems" class="book-mini-img">
+                        <h4>Database Systems</h4>
+                        <p>Elmasri</p>
+                        <span class="mini-status mini-not-available">✗ Not Available</span>
+                    </div>
+                    <div class="book-mini">
+                        <img src="time.jpg" alt="A Brief History of Time" class="book-mini-img">
+                        <h4>A Brief History of Time</h4>
+                        <p>Stephen Hawking</p>
+                        <span class="mini-status mini-available">✓ Available</span>
+                    </div>
+                    <div class="book-mini">
+                        <img src="clean.jpg" alt="The Pragmatic Programmer" class="book-mini-img">
+                        <h4>The Pragmatic Programmer</h4>
+                        <p>Andrew Hunt</p>
+                        <span class="mini-status mini-available">✓ Available</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-table-container" style="margin-top: 30px;">
+                <h3>Reservation Policy</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Policy</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Reservation Duration</td><td>Books are held for 3 days after notification</td></tr>
+                         <tr><td>Maximum Reservations</td><td>5 books per student</td></tr>
+                         <tr><td>Pickup Location</td><td>Main Library Circulation Desk</td></tr>
+                         <tr><td>Cancellation Policy</td><td>Cancel anytime before pickup</td></tr>
+                    </tbody>
+                    <tfoot>
+                         <tr><td colspan="2">Questions? Contact us at reservations@booksphere.edu.om</td></tr>
+                    </tfoot>
+                 </table>
+            </div>
+        </div>
+    </main>
+
+    <footer>
         <div class="footer-content">
             <div class="footer-section">
                 <h4>BookSphere Library</h4>
