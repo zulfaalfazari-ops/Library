@@ -8,96 +8,136 @@
     
 </head>
 <body>
-    <div class="section1">
-
-        <h1>Library Book Catalog</h1>
-
-        <h2 style="text-align: center;">Search for Books</h2>
-        <div class="container">
-            <input type="text" placeholder="-Search by title, author, or category-">
-            <button type="submit">Search</button>
+    <header>
+        <div class="logo-container">
+            <img src="images/logo.png" alt="BookSphere Logo" class="logo">
+            <h1>BookSphere Library</h1>
         </div>
-        <div class="filters">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="catalog.html" class="active">Catalog</a></li>
+                <li><a href="reservation.html">Reservation</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="myaccount.html">My Account</a></li>
+            </ul>
+        </nav>
+    </header>
 
-            <br><br>
+    <main>
+        <div class="section1">
 
-            <!-- Category -->
-            <p>Filter by Category:</p>
-            <input type="radio" name="category" id="allcat" checked>
-            <label for="allcat">All</label>
+            <h1>Library Book Catalog</h1>
 
-            <input type="radio" name="category" id="programming">
-            <label for="programming">Programming</label>
+            <h2 style="text-align: center;">Search for Books</h2>
+            <div class="container">
+                <input type="text" placeholder="-Search by title, author, or category-">
+                <button type="submit">Search</button>
+            </div>
+            <div class="filters">
 
-            <input type="radio" name="category" id="literature">
-            <label for="literature">Literature</label>
+                <br><br>
 
-            <input type="radio" name="category" id="History">
-            <label for="History">History</label>
+                <p>Filter by Category:</p>
+                <input type="radio" name="category" id="allcat" checked>
+                <label for="allcat">All</label>
 
-            <input type="radio" name="category" id="science">
-            <label for="science">Science</label>
+                <input type="radio" name="category" id="programming">
+                <label for="programming">Programming</label>
 
+                <input type="radio" name="category" id="literature">
+                <label for="literature">Literature</label>
+
+                <input type="radio" name="category" id="History">
+                <label for="History">History</label>
+
+                <input type="radio" name="category" id="science">
+                <label for="science">Science</label>
+
+            </div>
+
+            <hr/>
         </div>
 
-        <hr/>
-    </div>
+        <div class="section2">
+            <h2>List of Books</h2>
 
+            <table class="book-table">
 
-    <div class="section2">
-        <h2>List of Books</h2>
+                <tr class="book-row">
+                    <td><img src="db.jpg" alt="Database Book" class="book-img"></td>
+                    <td>
+                        <h2>Database System</h2>
+                        <p>Author: Elmasri</p>
+                        <p>Category: Programming</p>
+                        <p class="not-available">Status: Not Available</p>
+                        <button>Reserve Book</button>
+                    </td>
+                </tr>
 
-        <table class="book-table">
+                <tr class="book-row">
+                    <td><img src="hp.jpg" alt="Harry Potter Book" class="book-img"></td>
+                    <td>
+                        <h2>Harry Potter</h2>
+                        <p>Author: J.K. Rowling</p>
+                        <p>Category: Literature</p>
+                        <p class="available">Status: 3 Available</p>
+                        <button>Reserve Book</button>
+                    </td>
+                </tr>
 
-        <!-- Book 1 -->
-        <tr class="book-row">
-            <td><img src="db.jpg" alt="Database Book" class="book-img"></td>
-            <td>
-                <h2>Database System</h2>
-                <p>Author: Elmasri</p>
-                <p>Category: Programming</p>
-                <p class="not-available">Status: Not Available</p>
-                <button>Reserve Book</button>
-            </td>
-        </tr>
+                <tr class="book-row">
+                    <td><img src="clean.jpg" alt="Clean Code Book" class="book-img"></td>
+                    <td>
+                        <h2>Clean Code</h2>
+                        <p>Author: Robert Martin</p>
+                        <p>Category: Programming</p>
+                        <p class="available">Status: 2 Available</p>
+                        <button>Reserve Book</button>
+                    </td>
+                </tr>
 
-        <!-- Book 2 -->
-        <tr class="book-row">
-            <td><img src="hp.jpg" alt="Harry Potter Book" class="book-img"></td>
-            <td>
-                <h2>Harry Potter</h2>
-                <p>Author: J.K. Rowling</p>
-                <p>Category: Literature</p>
-                <p class="available">Status: 3 Available</p>
-                <button>Reserve Book</button>
-            </td>
-        </tr>
+                <tr class="book-row">
+                    <td><img src="time.jpg" alt="A Brief History of Time Book" class="book-img"></td>
+                    <td>
+                        <h2>A Brief History of Time</h2>
+                        <p>Author: Stephen Hawking</p>
+                        <p>Category: Science</p>
+                        <p class="available">Status: 1 Available</p>
+                        <button>Reserve Book</button>
+                    </td>
+                </tr>
 
-        <!-- Book 3 -->
-        <tr class="book-row">
-            <td><img src="clean.jpg" alt="Clean Code Book" class="book-img"></td>
-            <td>
-                <h2>Clean Code</h2>
-                <p>Author: Robert Martin</p>
-                <p>Category: Programming</p>
-                <p class="available">Status: 2 Available</p>
-                <button>Reserve Book</button>
-            </td>
-        </tr>
+            </table>
+        </div>
+    </main>
 
-        <!-- Book 4 -->
-        <tr class="book-row">
-            <td><img src="time.jpg" alt="A Brief History of Time Book" class="book-img"></td>
-            <td>
-                <h2>A Brief History of Time</h2>
-                <p>Author: Stephen Hawking</p>
-                <p>Category: Science</p>
-                <p class="available">Status: 1 Available</p>
-                <button>Reserve Book</button>
-            </td>
-        </tr>
-        </table>
-    </div>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>BookSphere Library</h4>
+                <p>Your gateway to knowledge</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: info@booksphere.edu.om</p>
+                <p>Phone: +968 1234 5678</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 BookSphere Library. All rights reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
