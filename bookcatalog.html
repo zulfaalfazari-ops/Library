@@ -6,112 +6,313 @@
     <title>Booksphere</title>
     <link rel="stylesheet" href="mystyle.css">
     
+    <style>
+        .catalog-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
+        .search-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .search-section h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .search-section h2 {
+            color: #555;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .search-box input {
+            width: 60%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: #2980b9;
+        }
+        
+        .search-box button {
+            padding: 12px 25px;
+            background: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 0;
+        }
+        
+        .search-box button:hover {
+            background: #1a5276;
+        }
+        
+        .filters {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .filters p {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .filters input[type="radio"] {
+            margin: 0 5px 0 15px;
+        }
+        
+        .filters label {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        
+        .books-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .books-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #2980b9;
+            display: inline-block;
+        }
+        
+        .book-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .book-row {
+            background: white;
+            transition: transform 0.2s;
+        }
+        
+        .book-row:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .book-row td {
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            vertical-align: top;
+        }
+        
+        .book-row td:first-child {
+            width: 180px;
+            text-align: center;
+        }
+        
+        .book-img {
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .book-row h2 {
+            margin: 0 0 10px 0;
+            font-size: 20px;
+            color: #2c3e50;
+        }
+        
+        .book-row p {
+            margin: 8px 0;
+            color: #555;
+        }
+        
+        .available {
+            color: #27ae60;
+            font-weight: bold;
+            display: inline-block;
+            padding: 4px 12px;
+            background: #e8f5e9;
+            border-radius: 20px;
+        }
+        
+        .not-available {
+            color: #e74c3c;
+            font-weight: bold;
+            display: inline-block;
+            padding: 4px 12px;
+            background: #ffebee;
+            border-radius: 20px;
+        }
+        
+        .reserve-btn {
+            background: #2980b9;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
+        .reserve-btn:hover {
+            background: #1a5276;
+        }
+        
+        hr {
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .search-box {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .search-box input {
+                width: 100%;
+            }
+            
+            .book-row td {
+                display: block;
+                text-align: center;
+            }
+            
+            .book-row td:first-child {
+                width: 100%;
+            }
+            
+            .book-img {
+                width: 120px;
+                height: 160px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <img src="images/logo.png" alt="BookSphere Logo" class="logo">
-            <h1>BookSphere Library</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="catalog.html" class="active">Catalog</a></li>
-                <li><a href="reservation.html">Reservation</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="myaccount.html">My Account</a></li>
-            </ul>
-        </nav>
-    </header>
+      <header>
+    <div class="logo-container">
+        <img src="logo.png" alt="BookSphere Logo" class="logo">
+        <h1>BookSphere Library</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="bookcatalog.html">Catalog</a></li>
+            <li><a href="reservation.html">Reservation</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contactUs.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="myaccount.html">My Account</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <main>
-        <div class="section1">
-
-            <h1>Library Book Catalog</h1>
-
-            <h2 style="text-align: center;">Search for Books</h2>
-            <div class="container">
-                <input type="text" placeholder="-Search by title, author, or category-">
-                <button type="submit">Search</button>
+     <main>
+        <div class="catalog-container">
+            
+            <div class="search-section">
+                <h1>Library Book Catalog</h1>
+                <h2>Find your next great read</h2>
+                
+                <div class="search-box">
+                    <input type="text" placeholder="Search by title, author, or category...">
+                    <button type="submit">🔍 Search</button>
+                </div>
+                
+                <div class="filters">
+                    <p>Filter by Category:</p>
+                    <input type="radio" name="category" id="allcat" checked>
+                    <label for="allcat">All</label>
+                    
+                    <input type="radio" name="category" id="programming">
+                    <label for="programming">Programming</label>
+                    
+                    <input type="radio" name="category" id="literature">
+                    <label for="literature">Literature</label>
+                    
+                    <input type="radio" name="category" id="history">
+                    <label for="history">History</label>
+                    
+                    <input type="radio" name="category" id="science">
+                    <label for="science">Science</label>
+                </div>
             </div>
-            <div class="filters">
-
-                <br><br>
-
-                <p>Filter by Category:</p>
-                <input type="radio" name="category" id="allcat" checked>
-                <label for="allcat">All</label>
-
-                <input type="radio" name="category" id="programming">
-                <label for="programming">Programming</label>
-
-                <input type="radio" name="category" id="literature">
-                <label for="literature">Literature</label>
-
-                <input type="radio" name="category" id="History">
-                <label for="History">History</label>
-
-                <input type="radio" name="category" id="science">
-                <label for="science">Science</label>
-
+            
+            <div class="books-section">
+                <h2>📚 List of Books</h2>
+                
+                <table class="book-table">
+                    <tr class="book-row">
+                        <td><img src="db.jpg" alt="Database Book" class="book-img"></td>
+                        <td>
+                            <h2>Database System</h2>
+                            <p><strong>Author:</strong> Elmasri</p>
+                            <p><strong>Category:</strong> Programming</p>
+                            <p><span class="not-available">Not Available</span></p>
+                            <button class="reserve-btn" onclick="alert('Book is currently not available. You have been added to waiting list.')">Reserve Book</button>
+                        </td>
+                    </tr>
+                    
+                    <tr class="book-row">
+                        <td><img src="hp.jpg" alt="Harry Potter Book" class="book-img"></td>
+                        <td>
+                            <h2>Harry Potter</h2>
+                            <p><strong>Author:</strong> J.K. Rowling</p>
+                            <p><strong>Category:</strong> Literature</p>
+                            <p><span class="available">3 Available</span></p>
+                            <button class="reserve-btn" onclick="alert('Reservation request submitted for Harry Potter!')">Reserve Book</button>
+                        </td>
+                    </tr>
+                    
+                    <tr class="book-row">
+                        <td><img src="clean.jpg" alt="Clean Code Book" class="book-img"></td>
+                        <td>
+                            <h2>Clean Code</h2>
+                            <p><strong>Author:</strong> Robert Martin</p>
+                            <p><strong>Category:</strong> Programming</p>
+                            <p><span class="available">2 Available</span></p>
+                            <button class="reserve-btn" onclick="alert('Reservation request submitted for Clean Code!')">Reserve Book</button>
+                        </td>
+                    </tr>
+                    
+                    <tr class="book-row">
+                        <td><img src="time.jpg" alt="A Brief History of Time Book" class="book-img"></td>
+                        <td>
+                            <h2>A Brief History of Time</h2>
+                            <p><strong>Author:</strong> Stephen Hawking</p>
+                            <p><strong>Category:</strong> Science</p>
+                            <p><span class="available">1 Available</span></p>
+                            <button class="reserve-btn" onclick="alert('Reservation request submitted for A Brief History of Time!')">Reserve Book</button>
+                        </td>
+                    </tr>
+                </table>
             </div>
-
-            <hr/>
-        </div>
-
-        <div class="section2">
-            <h2>List of Books</h2>
-
-            <table class="book-table">
-
-                <tr class="book-row">
-                    <td><img src="db.jpg" alt="Database Book" class="book-img"></td>
-                    <td>
-                        <h2>Database System</h2>
-                        <p>Author: Elmasri</p>
-                        <p>Category: Programming</p>
-                        <p class="not-available">Status: Not Available</p>
-                        <button>Reserve Book</button>
-                    </td>
-                </tr>
-
-                <tr class="book-row">
-                    <td><img src="hp.jpg" alt="Harry Potter Book" class="book-img"></td>
-                    <td>
-                        <h2>Harry Potter</h2>
-                        <p>Author: J.K. Rowling</p>
-                        <p>Category: Literature</p>
-                        <p class="available">Status: 3 Available</p>
-                        <button>Reserve Book</button>
-                    </td>
-                </tr>
-
-                <tr class="book-row">
-                    <td><img src="clean.jpg" alt="Clean Code Book" class="book-img"></td>
-                    <td>
-                        <h2>Clean Code</h2>
-                        <p>Author: Robert Martin</p>
-                        <p>Category: Programming</p>
-                        <p class="available">Status: 2 Available</p>
-                        <button>Reserve Book</button>
-                    </td>
-                </tr>
-
-                <tr class="book-row">
-                    <td><img src="time.jpg" alt="A Brief History of Time Book" class="book-img"></td>
-                    <td>
-                        <h2>A Brief History of Time</h2>
-                        <p>Author: Stephen Hawking</p>
-                        <p>Category: Science</p>
-                        <p class="available">Status: 1 Available</p>
-                        <button>Reserve Book</button>
-                    </td>
-                </tr>
-
-            </table>
         </div>
     </main>
 
@@ -125,7 +326,7 @@
                 <h4>Quick Links</h4>
                 <ul>
                     <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="contactUs.html">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-section">
