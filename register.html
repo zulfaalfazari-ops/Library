@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookshpere </title>
+    <link rel="stylesheet" href="mystyle.css">
+    <style>
+        .register-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
+        .register-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .register-box h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #2c3e50;
+        }
+        
+        .form-group {
+            margin-bottom: 18px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .radio-group label,
+        .checkbox-group label {
+            display: inline-block;
+            margin-right: 15px;
+            font-weight: normal;
+        }
+        
+        .radio-group input,
+        .checkbox-group input {
+            width: auto;
+            margin-right: 5px;
+        }
+        
+        textarea {
+            resize: vertical;
+        }
+        
+        .required {
+            color: red;
+        }
+        
+        .register-btn {
+            width: 100%;
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .register-btn:hover {
+            background: #5a67d8;
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+        
+        th {
+            background: #2c3e50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        tfoot td {
+            background: #f5f5f5;
+            font-weight: bold;
+            border-top: 2px solid #667eea;
+        }
+        
+        h3 {
+            text-align: center;
+            margin: 30px 0 15px 0;
+        }
+        
+        hr {
+            margin: 30px 0;
+        }
+        
+        @media (max-width: 600px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            .register-container {
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <div class="logo-container">
+        <img src="logo.png" alt="BookSphere Logo" class="logo">
+        <h1>BookSphere Library</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="catalog.html">Catalog</a></li>
+            <li><a href="reservation.html">Reservation</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="myaccount.html">My Account</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <div class="register-container">
+        
+        <div class="register-box">
+            <h2>Create Your Account</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 25px;">Join BookSphere Library today!</p>
+            
+            <form action="https://httpbin.org/post" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name <span class="required">*</span></label>
+                        <input type="text" name="firstname" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name <span class="required">*</span></label>
+                        <input type="text" name="lastname" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>University ID <span class="required">*</span></label>
+                    <input type="text" name="university_id" placeholder="e.g., 134948" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Email Address <span class="required">*</span></label>
+                    <input type="email" name="email" placeholder="yourname@university.edu.om" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Password <span class="required">*</span></label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password <span class="required">*</span></label>
+                        <input type="password" name="confirm_password" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Faculty/Department</label>
+                    <select name="faculty">
+                        <option value="">Select your faculty</option>
+                        <option value="engineering">College of Engineering</option>
+                        <option value="science">College of Science</option>
+                        <option value="arts">College of Arts</option>
+                        <option value="business">College of Business</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Year of Study</label>
+                    <select name="year_of_study">
+                        <option value="1">Year 1</option>
+                        <option value="2">Year 2</option>
+                        <option value="3">Year 3</option>
+                        <option value="4">Year 4</option>
+                        <option value="graduate">Graduate Student</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Notification Method</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="notification" value="email" checked> Email</label>
+                        <label><input type="radio" name="notification" value="sms"> SMS</label>
+                        <label><input type="radio" name="notification" value="both"> Both</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Interested Categories</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="interests" value="programming"> Programming</label>
+                        <label><input type="checkbox" name="interests" value="literature"> Literature</label>
+                        <label><input type="checkbox" name="interests" value="science"> Science</label>
+                        <label><input type="checkbox" name="interests" value="history"> History</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Additional Information</label>
+                    <textarea name="additional_info" rows="3" placeholder="Any special requirements..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="terms" value="accepted" required>
+                        I agree to the Terms and Conditions
+                    </label>
+                </div>
+                
+                <button type="submit" class="register-btn">Create Account</button>
+            </form>
+            
+            <div class="login-link">
+                <p>Already have an account? <a href="login.html">Login here</a></p>
+            </div>
+        </div>
+        
+        <hr/>
+        
+        <h3>Current Library Members</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Faculty</th>
+                    <th>Number of Members</th>
+                    <th>Percentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>College of Engineering</td>
+                    <td>1,245</td>
+                    <td>28%</td>
+                </tr>
+                <tr>
+                    <td>College of Science</td>
+                    <td>987</td>
+                    <td>22%</td>
+                </tr>
+                <tr>
+                    <td>College of Arts</td>
+                    <td>654</td>
+                    <td>15%</td>
+                </tr>
+                <tr>
+                    <td>College of Business</td>
+                    <td>890</td>
+                    <td>20%</td>
+                </tr>
+                <tr>
+                    <td>College of Medicine</td>
+                    <td>678</td>
+                    <td>15%</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">Total Active Members: 4,454</td>
+                </tr>
+            </tfoot>
+        </table>
+        
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>BookSphere Library</h4>
+                <p>Your gateway to knowledge</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: info@booksphere.edu.om</p>
+                <p>Phone: +968 1234 5678</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 BookSphere Library. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
