@@ -14,9 +14,6 @@ body {
     flex-direction: column;
 }
 
-/* -------------------------------
-   Header and Navigation Styles
-   ------------------------------- */
 header {
     background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
     color: white;
@@ -56,7 +53,6 @@ header {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Navigation Menu - Using Descendant Selector */
 nav ul {
     list-style: none;
     display: flex;
@@ -70,7 +66,6 @@ nav ul li {
     display: inline-block;
 }
 
-/* Pseudo-class Selector for Navigation Links */
 nav ul li a {
     color: white;
     text-decoration: none;
@@ -81,21 +76,16 @@ nav ul li a {
     display: inline-block;
 }
 
-/* Hover Pseudo-class */
 nav ul li a:hover {
     background-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
 }
 
-/* Active Link Styling */
 nav ul li a.active {
     background-color: #f39c12;
     color: #2c3e50;
 }
 
-/* -------------------------------
-   Main Content Area
-   ------------------------------- */
 main {
     flex: 1;
     padding: 2rem;
@@ -104,9 +94,6 @@ main {
     width: 100%;
 }
 
-/* -------------------------------
-   Footer Styles - Uniform Across All Pages
-   ------------------------------- */
 footer {
     background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
     color: #ecf0f1;
@@ -129,7 +116,6 @@ footer {
     padding-bottom: 0.5rem;
 }
 
-/* Pseudo-element Selector */
 .footer-section h4::after {
     content: '';
     position: absolute;
@@ -153,7 +139,6 @@ footer {
     margin-bottom: 0.5rem;
 }
 
-/* Attribute Selector for Footer Links */
 .footer-section ul li a {
     color: #bdc3c7;
     text-decoration: none;
@@ -172,9 +157,6 @@ footer {
     color: #95a5a6;
 }
 
-/* -------------------------------
-   Common Table Styles
-   ------------------------------- */
 .data-table {
     width: 100%;
     border-collapse: collapse;
@@ -216,9 +198,6 @@ footer {
     border-top: 2px solid #3498db;
 }
 
-/* -------------------------------
-   Button Styles
-   ------------------------------- */
 .btn {
     display: inline-block;
     padding: 10px 20px;
@@ -241,9 +220,6 @@ footer {
     transform: translateY(-2px);
 }
 
-/* -------------------------------
-   Utility Classes
-   ------------------------------- */
 .text-center {
     text-align: center;
 }
