@@ -215,23 +215,23 @@
 </head>
 <body>
       <header>
-    <div class="logo-container">
-        <img src="logo.png" alt="BookSphere Logo" class="logo">
-        <h1>BookSphere Library</h1>
-    </div>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="bookcatalog.html">Catalog</a></li>
-            <li><a href="reservation.html">Reservation</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contactUs.html">Contact</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="register.html">Register</a></li>
-            <li><a href="myaccount.html">My Account</a></li>
-        </ul>
-    </nav>
-</header>
+        <div class="logo-container">
+            <img src="logo.png" alt="BookSphere Logo" class="logo">
+            <h1>BookSphere Library</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="bookcatalog.html">Catalog</a></li>
+                <li><a href="reservation.html">Reservation</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contactUs.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="myaccount.html">My Account</a></li>
+            </ul>
+        </nav>
+    </header>
 
      <main>
         <div class="catalog-container">
@@ -267,6 +267,19 @@
             <div class="books-section">
                 <h2>📚 List of Books</h2>
                 
+                <div>
+                    <input type="text" id="title" placeholder="Book Title">
+                    <input type="text" id="author" placeholder="Author">
+                    <input type="text" id="category" placeholder="Category">
+                    <input type="number" id="available" placeholder="Available Copies">
+
+                    <button onclick="addBook()">Add Book</button>
+                </div>
+
+                <div>
+                    <input type="text" id="search" placeholder="Search by title">
+                    <button onclick="searchBook()">Search</button>
+                </div>
                 <table class="book-table"  id="bookTable">
                     <tr>
                         <th>Image</th>
@@ -300,6 +313,28 @@
             <p>&copy; 2026 BookSphere Library. All rights reserved.</p>
         </div>
     </footer>
+
+
+    <script>
+        //Book object constructor
+        function Book(title, author, category, available, image) {
+            this.title = title;
+            this.author = author;
+            this.category = category;
+            this.available = available;
+            this.image = image;
+        }
+        //Array of books
+        let books = [
+            new Book("Database System", "Elmasri", "Programming", 0, "db.jpg"),
+            new Book("Harry Potter", "J.K. Rowling", "Literature", 3, "hp.jpg"),
+            new Book("Clean Code", "Robert Martin", "Programming", 2, "clean.jpg"),
+            new Book("A Brief History of Time", "Stephen Hawking", "Science", 1, "time.jpg")
+        ];
+        
+
+
+    </script>
 
 </body>
 </html>
