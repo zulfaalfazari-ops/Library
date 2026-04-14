@@ -267,49 +267,10 @@
             <div class="books-section">
                 <h2>📚 List of Books</h2>
                 
-                <table class="book-table">
-                    <tr class="book-row">
-                        <td><img src="db.jpg" alt="Database Book" class="book-img"></td>
-                        <td>
-                            <h2>Database System</h2>
-                            <p><strong>Author:</strong> Elmasri</p>
-                            <p><strong>Category:</strong> Programming</p>
-                            <p><span class="not-available">Not Available</span></p>
-                            <button class="reserve-btn" onclick="alert('Book is currently not available. You have been added to waiting list.')">Reserve Book</button>
-                        </td>
-                    </tr>
-                    
-                    <tr class="book-row">
-                        <td><img src="hp.jpg" alt="Harry Potter Book" class="book-img"></td>
-                        <td>
-                            <h2>Harry Potter</h2>
-                            <p><strong>Author:</strong> J.K. Rowling</p>
-                            <p><strong>Category:</strong> Literature</p>
-                            <p><span class="available">3 Available</span></p>
-                            <button class="reserve-btn" onclick="alert('Reservation request submitted for Harry Potter!')">Reserve Book</button>
-                        </td>
-                    </tr>
-                    
-                    <tr class="book-row">
-                        <td><img src="clean.jpg" alt="Clean Code Book" class="book-img"></td>
-                        <td>
-                            <h2>Clean Code</h2>
-                            <p><strong>Author:</strong> Robert Martin</p>
-                            <p><strong>Category:</strong> Programming</p>
-                            <p><span class="available">2 Available</span></p>
-                            <button class="reserve-btn" onclick="alert('Reservation request submitted for Clean Code!')">Reserve Book</button>
-                        </td>
-                    </tr>
-                    
-                    <tr class="book-row">
-                        <td><img src="time.jpg" alt="A Brief History of Time Book" class="book-img"></td>
-                        <td>
-                            <h2>A Brief History of Time</h2>
-                            <p><strong>Author:</strong> Stephen Hawking</p>
-                            <p><strong>Category:</strong> Science</p>
-                            <p><span class="available">1 Available</span></p>
-                            <button class="reserve-btn" onclick="alert('Reservation request submitted for A Brief History of Time!')">Reserve Book</button>
-                        </td>
+                <table class="book-table"  id="bookTable">
+                    <tr>
+                        <th>Image</th>
+                        <th>Details</th>
                     </tr>
                 </table>
             </div>
