@@ -331,7 +331,51 @@
             new Book("Clean Code", "Robert Martin", "Programming", 2, "clean.jpg"),
             new Book("A Brief History of Time", "Stephen Hawking", "Science", 1, "time.jpg")
         ];
-        
+
+        //Function to display books in the table
+        function displayBooks() {
+            let table = document.getElementById("bookTable");
+            //clear table except header
+            table.innerHTML = `
+                <tr>
+                    <th>Image</th>
+                    <th>Details</th>
+                </tr>`;
+
+            //loop through books
+            for (let i = 0; i < books.length; i++) {
+                let row = table.insertRow();
+                row.innerHTML = `
+                    <td>
+                        <img src="${books[i].image}" class="book-img">
+                    </td>
+                    <td>
+                        <h2>${books[i].title}</h2>
+                        <p><strong>Author:</strong> ${books[i].author}</p>
+                        <p><strong>Category:</strong> ${books[i].category}</p>
+                        <p>
+                            ${books[i].available > 0 
+                                ? '<span class="available">' + books[i].available + ' Available</span>' 
+                                : '<span class="not-available">Not Available</span>'}
+                        </p>
+                    </td> `;
+            }
+        }
+        window.onload = displayBooks; //Running the function
+
+        //Function to add a new book
+        function addBook() {
+            //get values from inputs
+            let title = document.getElementById("title").value;
+            let author = document.getElementById("author").value;
+            let category = document.getElementById("category").value;
+            let available = document.getElementById("available").value;
+
+            //create new book object
+            let newBook = new Book(title, author, category, available, "default.jpg");
+            books.push(newBook); //add to array
+            displayBooks();  //refresh table
+        }
 
 
     </script>
