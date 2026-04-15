@@ -404,6 +404,22 @@
                     <h3>📊 Account Summary</h3>
                 </div>
                 <div class="section-content">
+                    <div class="search-box mb-3">
+                        <input type="text" id="searchBorrow" placeholder="Search my borrowed books..." onkeyup="searchBorrowed()">
+                    </div>
+
+                    <div class="form-box mt-3">
+                        <h4>➕ Record New Borrowing</h4>
+                        <input type="text" id="btitle" placeholder="Book Title">
+                        <input type="text" id="bauthor" placeholder="Author">
+                        <input type="date" id="bdate">
+                        <select id="bstatus">
+                            <option value="Borrowed">Borrowed</option>
+                            <option value="Overdue">Overdue</option>
+                            <option value="Returned">Returned</option>
+                        </select>
+                        <button type="button" onclick="addBorrowed()" class="action-btn">Add to History</button>
+                    </div>
                     <table class="summary-table">
                         <thead>
                             <tr>
@@ -523,16 +539,18 @@
             displayBorrowed();
         }
 
-        // Search borrowed books
+        //Search borrowed books
         function searchBorrowed() {
             let keyword = document.getElementById("searchBorrow").value.toLowerCase();
             let table = document.getElementById("borrowTable");
-
+            //Clear the current table rows to prepare for filtered results
             table.innerHTML = "";
+            //Loop through the borrowedBooks array to find matches
             for (let i = 0; i < borrowedBooks.length; i++) {
+                //If a match is found, dynamically create and insert a new row
                 if (borrowedBooks[i].title.toLowerCase().includes(keyword)) {
                     let row = table.insertRow();
-
+                    
                     row.innerHTML = `
                         <td>${borrowedBooks[i].title}</td>
                         <td>${borrowedBooks[i].author}</td>
