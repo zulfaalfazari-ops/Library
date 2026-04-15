@@ -4,220 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fine Calculator - BookSphere Library</title>
-    <link rel="stylesheet" href="mystyle.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
-        .calculator-container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-        
-        .calculator-header {
-            background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .calculator-header h1 {
-            margin-bottom: 10px;
-            color: white;
-        }
-        
-        .calculator-header p {
-            font-size: 16px;
-            opacity: 0.9;
-        }
-        
-        .calculator-card {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 5px;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-        
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: #2980b9;
-        }
-        
         .book-item {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border-left: 4px solid #2980b9;
+            background-color: #f8f9fa;
+            border-left: 4px solid #0d6efd;
+            transition: transform 0.2s ease;
         }
-        
-        .book-item h4 {
-            margin: 0 0 10px 0;
-            color: #2c3e50;
+        .book-item:hover {
+            transform: translateX(5px);
         }
-        
-        .book-row {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .book-row .form-group {
-            flex: 1;
-            margin-bottom: 0;
-        }
-        
-        .add-book-btn {
-            background: #27ae60;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        
-        .add-book-btn:hover {
-            background: #219a52;
-        }
-        
-        .remove-book-btn {
-            background: #e74c3c;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-        
         .result-box {
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-            color: white;
-            padding: 25px;
-            border-radius: 10px;
-            margin-top: 30px;
+            background: linear-gradient(135deg, #1a2a3a 0%, #0d6efd 100%);
         }
-        
-        .result-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .result-item:last-child {
-            border-bottom: none;
-        }
-        
-        .total-amount {
-            font-size: 24px;
-            font-weight: bold;
-            color: #f39c12;
-        }
-        
-        .calculate-btn {
-            width: 100%;
-            padding: 14px;
-            background: #2980b9;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background 0.3s;
-        }
-        
-        .calculate-btn:hover {
-            background: #1a5276;
-        }
-        
-        .discount-badge {
-            background: #f39c12;
-            color: #2c3e50;
-            padding: 5px 10px;
-            border-radius: 20px;
+        .remove-book-btn {
             font-size: 12px;
-            display: inline-block;
-        }
-        
-        hr {
-            margin: 20px 0;
-        }
-        
-        @media (max-width: 768px) {
-            .calculator-container {
-                margin: 20px;
-            }
-            
-            .calculator-card {
-                padding: 20px;
-            }
-            
-            .book-row {
-                flex-direction: column;
-                gap: 10px;
-            }
+            padding: 2px 8px;
         }
     </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-    <header>
-        <div class="logo-container">
-            <img src="images/logo.png" alt="BookSphere Logo" class="logo">
-            <h1>BookSphere Library</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="catalog.html">Catalog</a></li>
-                <li><a href="reservation.html">Reservation</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="myaccount.html">My Account</a></li>
-                <li><a href="questionnaire.html">Feedback</a></li>
-                <li><a href="calculate.html" class="active">Fine Calculator</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <div class="calculator-container">
-            
-            <div class="calculator-header">
-                <h1>💰 Library Fine Calculator</h1>
-                <p>Calculate late return fines and lost book fees based on library policies</p>
+    <!-- ============================================== -->
+    <!-- RESPONSIVE NAVIGATION BAR (BOOTSTRAP NAVBAR)   -->
+    <!-- ============================================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img src="images/logo.png" alt="BookSphere Logo" width="45" height="45" class="rounded-circle me-2">
+                BookSphere Library
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="catalog.html">Catalog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reservation.html">Reservation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="myaccount.html">My Account</a></li>
+                    <li class="nav-item"><a class="nav-link" href="questionnaire.html">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="calculate.html">Fine Calculator</a></li>
+                </ul>
             </div>
-            
-            <div class="calculator-card">
-                <div class="form-group">
-                    <label for="memberType">Member Type</label>
-                    <select id="memberType">
+        </div>
+    </nav>
+
+    <main class="container my-5 flex-grow-1">
+        <!-- Calculator Header -->
+        <div class="bg-primary bg-gradient text-white p-5 rounded-4 shadow mb-5 text-center">
+            <h1 class="display-5 fw-bold">💰 Library Fine Calculator</h1>
+            <p class="lead">Calculate late return fines and lost book fees based on library policies</p>
+        </div>
+
+        <!-- Calculator Card -->
+        <div class="card shadow-lg border-0 mb-5">
+            <div class="card-body p-4 p-md-5">
+                <!-- Member Type -->
+                <div class="mb-4">
+                    <label for="memberType" class="form-label fw-bold">Member Type</label>
+                    <select id="memberType" class="form-select">
                         <option value="student">Student</option>
                         <option value="faculty">Faculty Member</option>
                         <option value="staff">University Staff</option>
@@ -225,154 +78,160 @@
                     </select>
                 </div>
                 
-                <div class="form-group">
-                    <label for="age">Age (Years)</label>
-                    <input type="number" id="age" placeholder="Enter your age" min="0" max="120">
+                <!-- Age -->
+                <div class="mb-4">
+                    <label for="age" class="form-label fw-bold">Age (Years)</label>
+                    <input type="number" id="age" class="form-control" placeholder="Enter your age" min="0" max="120">
                 </div>
                 
-                <div class="form-group">
-                    <label for="memberDuration">Membership Duration (Years)</label>
-                    <input type="number" id="memberDuration" placeholder="How many years have you been a member?" min="0" step="0.5">
+                <!-- Membership Duration -->
+                <div class="mb-4">
+                    <label for="memberDuration" class="form-label fw-bold">Membership Duration (Years)</label>
+                    <input type="number" id="memberDuration" class="form-control" placeholder="How many years have you been a member?" min="0" step="0.5">
                 </div>
                 
-                <div class="form-group">
-                    <label>Overdue Books</label>
+                <!-- Overdue Books Section -->
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Overdue Books</label>
                     <div id="booksContainer">
-                        <div class="book-item" id="book1">
-                            <h4>Book 1</h4>
-                            <div class="book-row">
-                                <div class="form-group">
-                                    <label>Book Title</label>
-                                    <input type="text" class="book-title" placeholder="Book title">
+                        <div class="book-item p-3 rounded-3 mb-3" id="book1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="mb-0">Book 1</h5>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small">Book Title</label>
+                                    <input type="text" class="form-control book-title" placeholder="Book title">
                                 </div>
-                                <div class="form-group">
-                                    <label>Days Overdue</label>
-                                    <input type="number" class="book-days" placeholder="Days overdue" min="0" value="0">
+                                <div class="col-md-6">
+                                    <label class="form-label small">Days Overdue</label>
+                                    <input type="number" class="form-control book-days" placeholder="Days overdue" min="0" value="0">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="add-book-btn" onclick="addBook()">+ Add Another Book</button>
+                    <button type="button" class="btn btn-success" onclick="addBook()">+ Add Another Book</button>
                 </div>
                 
-                <div class="form-group">
-                    <label>Lost or Damaged Books</label>
+                <!-- Lost/Damaged Books Section -->
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Lost or Damaged Books</label>
                     <div id="lostBooksContainer">
-                        <div class="book-item" id="lostBook1">
-                            <h4>Lost Book 1</h4>
-                            <div class="book-row">
-                                <div class="form-group">
-                                    <label>Book Title</label>
-                                    <input type="text" class="lost-book-title" placeholder="Book title">
+                        <div class="book-item p-3 rounded-3 mb-3" id="lostBook1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="mb-0">Lost Book 1</h5>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small">Book Title</label>
+                                    <input type="text" class="form-control lost-book-title" placeholder="Book title">
                                 </div>
-                                <div class="form-group">
-                                    <label>Book Price (OMR)</label>
-                                    <input type="number" class="lost-book-price" placeholder="Price in OMR" min="0" step="0.5" value="0">
+                                <div class="col-md-6">
+                                    <label class="form-label small">Book Price (OMR)</label>
+                                    <input type="number" class="form-control lost-book-price" placeholder="Price in OMR" min="0" step="0.5" value="0">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="add-book-btn" onclick="addLostBook()" style="background: #e67e22;">+ Add Lost/Damaged Book</button>
+                    <button type="button" class="btn btn-warning" onclick="addLostBook()">+ Add Lost/Damaged Book</button>
                 </div>
                 
-                <div class="form-group">
-                    <label>Apply for Fine Reduction (Hardship Case)</label>
-                    <select id="hardship">
+                <!-- Hardship Case -->
+                <div class="mb-4">
+                    <label for="hardship" class="form-label fw-bold">Apply for Fine Reduction (Hardship Case)</label>
+                    <select id="hardship" class="form-select">
                         <option value="no">No</option>
                         <option value="yes">Yes - I have a valid hardship reason</option>
                     </select>
                 </div>
                 
-                <button type="button" class="calculate-btn" onclick="calculateFine()">Calculate Total Fine</button>
+                <!-- Calculate Button -->
+                <button type="button" class="btn btn-primary btn-lg w-100 py-3 fw-bold" onclick="calculateFine()">Calculate Total Fine</button>
                 
-                <div class="result-box" id="resultBox" style="display: none;">
-                    <h3>Fine Calculation Summary</h3>
-                    <div class="result-item">
+                <!-- Results Box -->
+                <div id="resultBox" class="result-box text-white p-4 rounded-4 mt-4" style="display: none;">
+                    <h3 class="mb-3">Fine Calculation Summary</h3>
+                    <div class="d-flex justify-content-between py-2 border-bottom border-white border-opacity-25">
                         <span>Overdue Fine:</span>
-                        <span id="overdueFine">0.000 OMR</span>
+                        <span id="overdueFine" class="fw-bold">0.000 OMR</span>
                     </div>
-                    <div class="result-item">
+                    <div class="d-flex justify-content-between py-2 border-bottom border-white border-opacity-25">
                         <span>Lost Book Fee:</span>
-                        <span id="lostFine">0.000 OMR</span>
+                        <span id="lostFine" class="fw-bold">0.000 OMR</span>
                     </div>
-                    <div class="result-item">
+                    <div class="d-flex justify-content-between py-2 border-bottom border-white border-opacity-25">
                         <span>Subtotal:</span>
-                        <span id="subtotal">0.000 OMR</span>
+                        <span id="subtotal" class="fw-bold">0.000 OMR</span>
                     </div>
-                    <div class="result-item">
+                    <div class="d-flex justify-content-between py-2 border-bottom border-white border-opacity-25">
                         <span>Discount Applied:</span>
-                        <span id="discountAmount">0.000 OMR</span>
+                        <span id="discountAmount" class="fw-bold">0.000 OMR</span>
                     </div>
-                    <div class="result-item" style="border-bottom: 2px solid rgba(255,255,255,0.3);">
-                        <span><strong>Total Fine:</strong></span>
-                        <span class="total-amount" id="totalFine">0.000 OMR</span>
+                    <div class="d-flex justify-content-between py-2 border-bottom border-white border-opacity-50 mb-2">
+                        <span class="fs-5 fw-bold">Total Fine:</span>
+                        <span id="totalFine" class="fs-4 fw-bold text-warning">0.000 OMR</span>
                     </div>
-                    <div id="discountReason" style="margin-top: 10px; font-size: 12px; opacity: 0.8;"></div>
+                    <div id="discountReason" class="small mt-2 text-white-50"></div>
                 </div>
             </div>
-            
-            <div class="stats-table-container" style="margin-top: 30px;">
-                <h3>Library Fine Policy</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Fine Type</th>
-                            <th>Rate</th>
-                            <th>Maximum Fine</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Overdue Fine (Student)</td>
-                            <td>0.100 OMR/day</td>
-                            <td>5.000 OMR</td>
-                        </tr>
-                        <tr>
-                            <td>Overdue Fine (Faculty)</td>
-                            <td>0.050 OMR/day</td>
-                            <td>3.000 OMR</td>
-                        </tr>
-                        <tr>
-                            <td>Lost Book Fee</td>
-                            <td>Book Price + 2.000 OMR processing</td>
-                            <td>No maximum</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="3">Senior Discount (60+ years): 25% off | Long-term Member (5+ years): 15% off | Hardship Case: Additional 20% off</td>
-                        </tr>
-                    </tfoot>
-                </table>
+        </div>
+
+        <!-- Fine Policy Table -->
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-dark text-white">
+                <h3 class="mb-0">📋 Library Fine Policy</h3>
+            </div>
+            <div class="card-body p-4">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-primary">
+                            <tr><th>Fine Type</th><th>Rate</th><th>Maximum Fine</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Overdue Fine (Student)</td><td>0.100 OMR/day</td><td>5.000 OMR</td></tr>
+                            <tr><td>Overdue Fine (Faculty)</td><td>0.050 OMR/day</td><td>3.000 OMR</td></tr>
+                            <tr><td>Lost Book Fee</td><td>Book Price + 2.000 OMR processing</td><td>No maximum</td></tr>
+                        </tbody>
+                        <tfoot class="table-secondary">
+                            <tr><td colspan="3">Senior Discount (60+ years): 25% off | Long-term Member (5+ years): 15% off | Hardship Case: Additional 20% off</td></tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>BookSphere Library</h4>
-                <p>Your gateway to knowledge</p>
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-3 mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">BookSphere Library</h4>
+                    <p class="text-secondary">Your gateway to knowledge</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-secondary text-decoration-none">About Us</a></li>
+                        <li><a href="contact.html" class="text-secondary text-decoration-none">Contact</a></li>
+                        <li><a href="questionnaire.html" class="text-secondary text-decoration-none">Give Feedback</a></li>
+                        <li><a href="calculate.html" class="text-secondary text-decoration-none">Fine Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">Contact</h4>
+                    <p class="text-secondary">Email: info@booksphere.edu.om</p>
+                    <p class="text-secondary">Phone: +968 1234 5678</p>
+                </div>
             </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="questionnaire.html">Give Feedback</a></li>
-                    <li><a href="calculate.html">Fine Calculator</a></li>
-                </ul>
+            <div class="text-center pt-3 border-top border-secondary">
+                <p class="text-secondary">&copy; 2026 BookSphere Library. All rights reserved.</p>
             </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p>Email: info@booksphere.edu.om</p>
-                <p>Phone: +968 1234 5678</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 BookSphere Library. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         /**
@@ -426,18 +285,21 @@
             bookCounter++;
             const booksContainer = document.getElementById('booksContainer');
             const newBook = document.createElement('div');
-            newBook.className = 'book-item';
+            newBook.className = 'book-item p-3 rounded-3 mb-3';
             newBook.id = 'book' + bookCounter;
             newBook.innerHTML = `
-                <h4>Book ${bookCounter} <button type="button" class="remove-book-btn" onclick="removeBook('${newBook.id}')">Remove</button></h4>
-                <div class="book-row">
-                    <div class="form-group">
-                        <label>Book Title</label>
-                        <input type="text" class="book-title" placeholder="Book title">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="mb-0">Book ${bookCounter}</h5>
+                    <button type="button" class="btn btn-sm btn-danger remove-book-btn" onclick="removeBook('${newBook.id}')">Remove</button>
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label small">Book Title</label>
+                        <input type="text" class="form-control book-title" placeholder="Book title">
                     </div>
-                    <div class="form-group">
-                        <label>Days Overdue</label>
-                        <input type="number" class="book-days" placeholder="Days overdue" min="0" value="0">
+                    <div class="col-md-6">
+                        <label class="form-label small">Days Overdue</label>
+                        <input type="number" class="form-control book-days" placeholder="Days overdue" min="0" value="0">
                     </div>
                 </div>
             `;
@@ -457,18 +319,21 @@
             lostBookCounter++;
             const lostBooksContainer = document.getElementById('lostBooksContainer');
             const newLostBook = document.createElement('div');
-            newLostBook.className = 'book-item';
+            newLostBook.className = 'book-item p-3 rounded-3 mb-3';
             newLostBook.id = 'lostBook' + lostBookCounter;
             newLostBook.innerHTML = `
-                <h4>Lost Book ${lostBookCounter} <button type="button" class="remove-book-btn" onclick="removeLostBook('${newLostBook.id}')">Remove</button></h4>
-                <div class="book-row">
-                    <div class="form-group">
-                        <label>Book Title</label>
-                        <input type="text" class="lost-book-title" placeholder="Book title">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="mb-0">Lost Book ${lostBookCounter}</h5>
+                    <button type="button" class="btn btn-sm btn-danger remove-book-btn" onclick="removeLostBook('${newLostBook.id}')">Remove</button>
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label small">Book Title</label>
+                        <input type="text" class="form-control lost-book-title" placeholder="Book title">
                     </div>
-                    <div class="form-group">
-                        <label>Book Price (OMR)</label>
-                        <input type="number" class="lost-book-price" placeholder="Price in OMR" min="0" step="0.5" value="0">
+                    <div class="col-md-6">
+                        <label class="form-label small">Book Price (OMR)</label>
+                        <input type="number" class="form-control lost-book-price" placeholder="Price in OMR" min="0" step="0.5" value="0">
                     </div>
                 </div>
             `;
