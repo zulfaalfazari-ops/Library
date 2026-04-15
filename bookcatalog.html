@@ -267,13 +267,29 @@
             <div class="books-section">
                 <h2>📚 List of Books</h2>
                 
-                <div>
-                    <input type="text" id="title" placeholder="Book Title">
-                    <input type="text" id="author" placeholder="Author">
-                    <input type="text" id="category" placeholder="Category">
-                    <input type="number" id="available" placeholder="Available Copies">
+                <div class="add-book-form">
+                    <h3>Add a New Book to Catalog</h3>
+                    
+                    <div class="input-group">
+                        <label for="title">Book Title:</label>
+                        <input type="text" id="title" placeholder="e.g. Database System" required>
+                        </div>
 
-                    <button onclick="addBook()">Add Book</button>
+                    <div class="input-group">
+                        <label for="author">Author:</label>
+                        <input type="text" id="author" placeholder="e.g. Elmasri" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="category">Category:</label>
+                        <input type="text" id="category" placeholder="e.g. Programming">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="available">Copies Available:</label>
+                        <input type="number" id="available" placeholder="0">
+                    </div>
+                    <button type="button" onclick="addBook()">Add Book</button>
                 </div>
 
                 <div>
@@ -363,7 +379,7 @@
         }
         window.onload = displayBooks; //Running the function
 
-        //Function to add a new book
+        //Function to add a new book and update the table
         function addBook() {
             //get values from inputs
             let title = document.getElementById("title").value;
@@ -371,19 +387,29 @@
             let category = document.getElementById("category").value;
             let available = document.getElementById("available").value;
 
+            //Basic validation logic to ensure no empty data enters the array
+            if (title.trim() === "" || author.trim() === "") {
+                alert("Please enter at least the Title and Author.");
+                return; 
+            }
+
             //create new book object
             let newBook = new Book(title, author, category, available, "default.jpg");
-            books.push(newBook); //add to array
+            books.push(newBook); //add the new book to array
             displayBooks();  //refresh table
+
+            //Clear inputs after adding
+            document.getElementById("title").value = "";
+            document.getElementById("author").value = "";
         }
 
-        // Function to search books
+        //Function to search books
         function searchBook() {
 
             let keyword = document.getElementById("search").value.toLowerCase();
             let table = document.getElementById("bookTable");
 
-            // clear table
+            //clear table
             table.innerHTML = `
                 <tr>
                     <th>Image</th>
@@ -391,7 +417,7 @@
                 </tr>
             `;
 
-            // loop and filter
+            //loop and filter
             for (let i = 0; i < books.length; i++) {
 
                 if (books[i].title.toLowerCase().includes(keyword)) {

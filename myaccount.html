@@ -509,6 +509,45 @@
         }
         window.onload = displayBorrowed;  //Calling the function
 
+        //Add borrowed book
+        function addBorrowed() {
+
+            let title = document.getElementById("btitle").value;
+            let author = document.getElementById("bauthor").value;
+            let date = document.getElementById("bdate").value;
+            let status = document.getElementById("bstatus").value;
+            //create new book object
+            let newBook = new BorrowedBook(title, author, date, status);
+
+            borrowedBooks.push(newBook);  //Add the book to the list
+            displayBorrowed();
+        }
+
+        // Search borrowed books
+        function searchBorrowed() {
+            let keyword = document.getElementById("searchBorrow").value.toLowerCase();
+            let table = document.getElementById("borrowTable");
+
+            table.innerHTML = "";
+            for (let i = 0; i < borrowedBooks.length; i++) {
+                if (borrowedBooks[i].title.toLowerCase().includes(keyword)) {
+                    let row = table.insertRow();
+
+                    row.innerHTML = `
+                        <td>${borrowedBooks[i].title}</td>
+                        <td>${borrowedBooks[i].author}</td>
+                        <td>${borrowedBooks[i].date}</td>
+                        <td>${borrowedBooks[i].status}</td>
+                    `;
+                }
+            }
+
+            // if empty show all again
+            if (keyword === "") {
+                displayBorrowed();
+            }
+        }
+
     </script>
 </body>
 </html>
