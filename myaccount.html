@@ -283,25 +283,7 @@
                                     <th>Status</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Clean Code</td>
-                                    <td>Robert C. Martin</td>
-                                    <td>2026-03-06</td>
-                                    <td><span class="status-borrowed">Borrowed</span></td>
-                                </tr>
-                                <tr style="background-color: #fff5f5;">
-                                    <td>Introduction to Algorithms</td>
-                                    <td>Thomas H. Cormen</td>
-                                    <td><strong style="color:#f44336;">2026-03-01</strong></td>
-                                    <td><span class="status-overdue">Overdue</span></td>
-                                </tr>
-                                <tr>
-                                    <td>The Pragmatic Programmer</td>
-                                    <td>Andrew Hunt</td>
-                                    <td>2026-03-11</td>
-                                    <td><span class="status-borrowed">Borrowed</span></td>
-                                </tr>
+                            <tbody  id="borrowTable">
                             </tbody>
                         </table>
                         
@@ -491,5 +473,42 @@
             <p>&copy; 2026 BookSphere Library. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        //Object for borrowed books
+        function BorrowedBook(title, author, date, status) {
+            this.title = title;
+            this.author = author;
+            this.date = date;
+            this.status = status;
+        }
+
+        //Array
+        let borrowedBooks = [
+            new BorrowedBook("Clean Code", "Robert Martin", "2026-03-06", "Borrowed"),
+            new BorrowedBook("Introduction to Algorithms", "Cormen", "2026-03-01", "Overdue"),
+            new BorrowedBook("The Pragmatic Programmer", "Andrew Hunt", "2026-03-11", "Borrowed")
+        ];
+        //Display borrowed books
+        function displayBorrowed() {
+
+            let table = document.getElementById("borrowTable");
+            table.innerHTML = "";
+
+            for (let i = 0; i < borrowedBooks.length; i++) {
+
+                let row = table.insertRow();
+
+                row.innerHTML = `
+                    <td>${borrowedBooks[i].title}</td>
+                    <td>${borrowedBooks[i].author}</td>
+                    <td>${borrowedBooks[i].date}</td>
+                    <td>${borrowedBooks[i].status}</td>
+                `;
+            }
+        }
+        window.onload = displayBorrowed;  //Calling the function
+
+    </script>
 </body>
 </html>
