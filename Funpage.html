@@ -4,133 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Cover Puzzle - BookSphere Library</title>
-    <link rel="stylesheet" href="mystyle.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
-        .fun-container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-        
-        .fun-header {
-            background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .fun-header h1 {
-            margin-bottom: 10px;
-            color: white;
-        }
-        
-        .fun-header p {
-            font-size: 16px;
-            opacity: 0.9;
-        }
-        
-        .game-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-        
-        .puzzle-section {
-            background: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .puzzle-section h3 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #2980b9;
-            display: inline-block;
-        }
-        
-        .puzzle-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            background: #f0f0f0;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        
         .puzzle-piece {
             aspect-ratio: 1 / 1;
-            background: #3498db;
             border-radius: 8px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 14px;
-            color: white;
             font-weight: bold;
             transition: all 0.3s ease;
             background-size: cover;
             background-position: center;
-            position: relative;
         }
-        
         .puzzle-piece.empty {
-            background: #2c3e50;
+            background-color: #2c3e50;
             cursor: pointer;
             border: 2px dashed #f39c12;
         }
-        
         .puzzle-piece:not(.empty):hover {
             transform: scale(1.02);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
-        
-        .word-game-section {
-            background: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .word-game-section h3 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #e67e22;
-            display: inline-block;
-        }
-        
-        .sentence-area {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            text-align: center;
-            min-height: 80px;
-            border: 2px dashed #2980b9;
-        }
-        
-        .sentence-text {
-            font-size: 18px;
-            color: #2c3e50;
-            font-weight: bold;
-        }
-        
-        .words-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        
         .word-card {
-            background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
             color: white;
             padding: 12px 20px;
             border-radius: 8px;
@@ -139,242 +41,162 @@
             transition: all 0.3s ease;
             user-select: none;
         }
-        
         .word-card:hover {
             transform: translateY(-3px);
-            background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+            background: linear-gradient(135deg, #fd7e14 0%, #e67e22 100%);
         }
-        
         .word-card.used {
             background: #95a5a6;
             cursor: not-allowed;
             opacity: 0.5;
             transform: none;
         }
-        
-        .reset-btn {
-            background: #e67e22;
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-right: 10px;
+        .sentence-area {
+            min-height: 80px;
+            border: 2px dashed #0d6efd;
         }
-        
-        .reset-btn:hover {
-            background: #d35400;
-        }
-        
-        .check-btn {
-            background: #27ae60;
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        
-        .check-btn:hover {
-            background: #219a52;
-        }
-        
-        .message-area {
-            margin-top: 20px;
-            padding: 12px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: bold;
-        }
-        
-        .message-success {
-            background: #d4edda;
-            color: #155724;
-            border-left: 4px solid #27ae60;
-        }
-        
-        .message-error {
-            background: #f8d7da;
-            color: #721c24;
-            border-left: 4px solid #e74c3c;
-        }
-        
-        .message-info {
-            background: #d1ecf1;
-            color: #0c5460;
-            border-left: 4px solid #17a2b8;
-        }
-        
-        .score-area {
-            margin-top: 15px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        
-        .new-puzzle-btn {
-            background: #2980b9;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
-        
-        .new-puzzle-btn:hover {
-            background: #1a5276;
-        }
-        
-        @media (max-width: 768px) {
-            .game-container {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .puzzle-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .fun-container {
-                margin: 20px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .word-card {
-                padding: 8px 15px;
-                font-size: 12px;
-            }
-            
-            .sentence-text {
-                font-size: 14px;
-            }
-        }
+        .message-success { background: #d4edda; color: #155724; border-left: 4px solid #28a745; }
+        .message-error { background: #f8d7da; color: #721c24; border-left: 4px solid #dc3545; }
+        .message-info { background: #d1ecf1; color: #0c5460; border-left: 4px solid #17a2b8; }
     </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-    <header>
-        <div class="logo-container">
-            <img src="images/logo.png" alt="BookSphere Logo" class="logo">
-            <h1>BookSphere Library</h1>
+    <!-- ============================================== -->
+    <!-- RESPONSIVE NAVIGATION BAR (BOOTSTRAP NAVBAR)   -->
+    <!-- ============================================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img src="images/logo.png" alt="BookSphere Logo" width="45" height="45" class="rounded-circle me-2">
+                BookSphere Library
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="catalog.html">Catalog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reservation.html">Reservation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="myaccount.html">My Account</a></li>
+                    <li class="nav-item"><a class="nav-link" href="questionnaire.html">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link" href="calculate.html">Calculator</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="funpage.html">Puzzle Game</a></li>
+                </ul>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="catalog.html">Catalog</a></li>
-                <li><a href="reservation.html">Reservation</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="myaccount.html">My Account</a></li>
-                <li><a href="questionnaire.html">Feedback</a></li>
-                <li><a href="calculate.html">Calculator</a></li>
-                <li><a href="funpage.html" class="active">Puzzle Game</a></li>
-            </ul>
-        </nav>
-    </header>
+    </nav>
 
-    <main>
-        <div class="fun-container">
-            
-            <div class="fun-header">
-                <h1>🎮 Library Puzzle & Word Game</h1>
-                <p>Have fun while learning about books! Solve the puzzle and arrange words to make a sentence about reading.</p>
-            </div>
-            
-            <div class="game-container">
-                
-                <!-- Left Side: Photo Puzzle Game -->
-                <div class="puzzle-section">
-                    <h3>📸 Book Cover Puzzle</h3>
-                    <p style="margin-bottom: 15px; color: #666;">Click on a piece to move it into the empty space. Rearrange the pieces to reveal the book cover!</p>
-                    <div class="puzzle-grid" id="puzzleGrid"></div>
-                    <button class="new-puzzle-btn" onclick="shufflePuzzle()">🔀 Shuffle Puzzle</button>
-                    <div id="puzzleMessage" class="message-area" style="display: none;"></div>
-                </div>
-                
-                <!-- Right Side: Word Sentence Game -->
-                <div class="word-game-section">
-                    <h3>📖 Build a Sentence</h3>
-                    <p style="margin-bottom: 15px; color: #666;">Click on words in order to form a complete sentence about libraries!</p>
-                    
-                    <div class="sentence-area">
-                        <div class="sentence-text" id="sentenceDisplay">________</div>
+    <main class="container my-5 flex-grow-1">
+        <!-- Fun Header -->
+        <div class="bg-primary bg-gradient text-white p-5 rounded-4 shadow mb-5 text-center">
+            <h1 class="display-5 fw-bold">🎮 Library Puzzle & Word Game</h1>
+            <p class="lead">Have fun while learning about books! Solve the puzzle and arrange words to make a sentence about reading.</p>
+        </div>
+
+        <!-- Game Container (Two Columns) -->
+        <div class="row g-4 mb-5">
+            <!-- Left Side: Photo Puzzle Game -->
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-dark text-white">
+                        <h3 class="mb-0">📸 Book Cover Puzzle</h3>
                     </div>
-                    
-                    <div class="words-container" id="wordsContainer"></div>
-                    
-                    <div>
-                        <button class="reset-btn" onclick="resetSentence()">🔄 Reset Sentence</button>
-                        <button class="check-btn" onclick="checkSentence()">✅ Check Sentence</button>
+                    <div class="card-body p-4">
+                        <p class="text-secondary mb-3">Click on a piece to move it into the empty space. Rearrange the pieces to reveal the book cover!</p>
+                        <div class="puzzle-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; background: #f0f0f0; padding: 15px; border-radius: 10px;" id="puzzleGrid"></div>
+                        <button class="btn btn-primary w-100 mt-3" onclick="shufflePuzzle()">🔀 Shuffle Puzzle</button>
+                        <div id="puzzleMessage" class="p-3 rounded-3 mt-3" style="display: none;"></div>
                     </div>
-                    
-                    <div id="wordMessage" class="message-area" style="display: none;"></div>
-                    <div class="score-area" id="scoreDisplay">⭐ Score: 0</div>
                 </div>
             </div>
-            
-            <div class="stats-table-container" style="margin-top: 30px;">
-                <h3>📚 Did You Know?</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Book Fact</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>📖 Reading Reduces Stress</td>
-                            <td>Reading just 6 minutes can reduce stress by up to 68%!</td>
-                        </tr>
-                        <tr>
-                            <td>🌍 World's Largest Library</td>
-                            <td>The Library of Congress has over 170 million items!</td>
-                        </tr>
-                        <tr>
-                            <td>📚 Benefits of Reading</td>
-                            <td>Reading improves memory, focus, and empathy.</td>
-                        </tr>
-                    </tbody>
-                </table>
+
+            <!-- Right Side: Word Sentence Game -->
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-dark text-white">
+                        <h3 class="mb-0">📖 Build a Sentence</h3>
+                    </div>
+                    <div class="card-body p-4">
+                        <p class="text-secondary mb-3">Click on words in order to form a complete sentence about libraries!</p>
+                        
+                        <div class="sentence-area bg-light p-4 rounded-3 text-center mb-4">
+                            <div class="sentence-text fs-5 fw-bold text-primary" id="sentenceDisplay">________</div>
+                        </div>
+                        
+                        <div class="words-container d-flex flex-wrap gap-3 justify-content-center mb-4" id="wordsContainer"></div>
+                        
+                        <div class="d-flex gap-2 justify-content-center">
+                            <button class="btn btn-warning" onclick="resetSentence()">🔄 Reset Sentence</button>
+                            <button class="btn btn-success" onclick="checkSentence()">✅ Check Sentence</button>
+                        </div>
+                        
+                        <div id="wordMessage" class="p-3 rounded-3 mt-3" style="display: none;"></div>
+                        <div class="score-area text-center mt-3 fw-bold fs-5" id="scoreDisplay">⭐ Score: 0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Did You Know Table -->
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-dark text-white">
+                <h3 class="mb-0">📚 Did You Know?</h3>
+            </div>
+            <div class="card-body p-4">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-primary">
+                            <tr><th>Book Fact</th><th>Description</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="fw-bold">📖 Reading Reduces Stress</td><td>Reading just 6 minutes can reduce stress by up to 68%!</td></tr>
+                            <tr><td class="fw-bold">🌍 World's Largest Library</td><td>The Library of Congress has over 170 million items!</td></tr>
+                            <tr><td class="fw-bold">📚 Benefits of Reading</td><td>Reading improves memory, focus, and empathy.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>BookSphere Library</h4>
-                <p>Your gateway to knowledge</p>
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-3 mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">BookSphere Library</h4>
+                    <p class="text-secondary">Your gateway to knowledge</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-secondary text-decoration-none">About Us</a></li>
+                        <li><a href="contact.html" class="text-secondary text-decoration-none">Contact</a></li>
+                        <li><a href="questionnaire.html" class="text-secondary text-decoration-none">Give Feedback</a></li>
+                        <li><a href="calculate.html" class="text-secondary text-decoration-none">Fine Calculator</a></li>
+                        <li><a href="funpage.html" class="text-secondary text-decoration-none">Puzzle Game</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">Contact</h4>
+                    <p class="text-secondary">Email: info@booksphere.edu.om</p>
+                    <p class="text-secondary">Phone: +968 1234 5678</p>
+                </div>
             </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="questionnaire.html">Give Feedback</a></li>
-                    <li><a href="calculate.html">Fine Calculator</a></li>
-                    <li><a href="funpage.html">Puzzle Game</a></li>
-                </ul>
+            <div class="text-center pt-3 border-top border-secondary">
+                <p class="text-secondary">&copy; 2026 BookSphere Library. All rights reserved.</p>
             </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p>Email: info@booksphere.edu.om</p>
-                <p>Phone: +968 1234 5678</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 BookSphere Library. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         /**
@@ -583,7 +405,7 @@
         function showPuzzleMessage(msg, type) {
             const msgDiv = document.getElementById('puzzleMessage');
             msgDiv.textContent = msg;
-            msgDiv.className = `message-area message-${type}`;
+            msgDiv.className = `p-3 rounded-3 mt-3 message-${type}`;
             msgDiv.style.display = 'block';
         }
         
@@ -661,7 +483,7 @@
             
             const msgDiv = document.getElementById('wordMessage');
             msgDiv.textContent = '🔄 Sentence reset! Try again!';
-            msgDiv.className = 'message-area message-info';
+            msgDiv.className = 'p-3 rounded-3 mt-3 message-info';
             msgDiv.style.display = 'block';
             setTimeout(() => { msgDiv.style.display = 'none'; }, 2000);
         }
@@ -680,7 +502,7 @@
                 document.getElementById('scoreDisplay').innerHTML = `⭐ Score: ${score}`;
                 
                 msgDiv.textContent = '🎉 CORRECT! Excellent sentence! +1 point! 🎉';
-                msgDiv.className = 'message-area message-success';
+                msgDiv.className = 'p-3 rounded-3 mt-3 message-success';
                 msgDiv.style.display = 'block';
                 
                 // Reset for next round after 2 seconds
@@ -690,7 +512,7 @@
                 }, 2000);
             } else {
                 msgDiv.textContent = '❌ Not quite right! Remember: "Reading books makes you smarter and happier"';
-                msgDiv.className = 'message-area message-error';
+                msgDiv.className = 'p-3 rounded-3 mt-3 message-error';
                 msgDiv.style.display = 'block';
                 setTimeout(() => { msgDiv.style.display = 'none'; }, 3000);
             }
