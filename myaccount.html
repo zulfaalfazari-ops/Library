@@ -360,6 +360,11 @@
                     <h3>📜 Borrowing History (Last 6 Months)</h3>
                 </div>
                 <div class="section-content">
+                    <div class="search-box mb-3">
+                        <input type="text" id="searchBorrow" placeholder="Search my borrowed books..." onkeyup="searchBorrowed()">
+                        <button class="btn btn-primary" onclick="addBorrowed()">Search</button>
+                    </div>
+                <div class="section-content">
                     <table>
                         <thead>
                             <tr>
@@ -394,21 +399,6 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
-            </div>
-            
-            <hr/>
-            
-            <div class="section-container">
-                <div class="section-header">
-                    <h3>📊 Account Summary</h3>
-                </div>
-                <div class="section-content">
-                    <div class="search-box mb-3">
-                        <input type="text" id="searchBorrow" placeholder="Search my borrowed books..." onkeyup="searchBorrowed()">
-                        <button class="btn btn-primary" onclick="addBorrowed()">Search</button>
-                    </div>
-
                     <div class="form-box mt-3">
                         <h4>➕ Record New Borrowing</h4>
                         <input type="text" id="btitle" placeholder="Book Title">
@@ -421,6 +411,15 @@
                         </select>
                         <button type="button" onclick="addBorrowed()" class="action-btn">Add to History</button>
                     </div>
+                </div></div>
+            </div>
+            
+            <hr/>
+            
+            <div class="section-container">
+                <div class="section-header">
+                    <h3>📊 Account Summary</h3>
+                </div>
                     <table class="summary-table">
                         <thead>
                             <tr>
