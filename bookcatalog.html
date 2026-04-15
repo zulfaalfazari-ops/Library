@@ -377,6 +377,44 @@
             displayBooks();  //refresh table
         }
 
+        // Function to search books
+        function searchBook() {
+
+            let keyword = document.getElementById("search").value.toLowerCase();
+            let table = document.getElementById("bookTable");
+
+            // clear table
+            table.innerHTML = `
+                <tr>
+                    <th>Image</th>
+                    <th>Details</th>
+                </tr>
+            `;
+
+            // loop and filter
+            for (let i = 0; i < books.length; i++) {
+
+                if (books[i].title.toLowerCase().includes(keyword)) {
+                    let row = table.insertRow();
+                    row.innerHTML = `
+                        <td>
+                            <img src="${books[i].image}" class="book-img">
+                        </td>
+                        <td>
+                            <h2>${books[i].title}</h2>
+                            <p><strong>Author:</strong> ${books[i].author}</p>
+                            <p><strong>Category:</strong> ${books[i].category}</p>
+                            <p>
+                                ${books[i].available > 0 
+                                    ? '<span class="available">' + books[i].available + ' Available</span>' 
+                                    : '<span class="not-available">Not Available</span>'}
+                            </p>
+                        </td>
+                    `;
+                }
+            }
+        }
+
 
     </script>
 
