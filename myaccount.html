@@ -507,7 +507,9 @@
             new BorrowedBook("The Pragmatic Programmer", "Andrew Hunt", "2026-03-11", "Borrowed")
         ];
       
-        //Display borrowed books
+        //This function dynamically updates the XHTML table by reading the borrowedBooks array.
+        // It first clears the existing table body to prevent duplicate entries, then loops 
+        // through the array to insert a new row for every object found
         function displayBorrowed() {
 
             let table = document.getElementById("borrowTable");
@@ -541,7 +543,9 @@
             displayBorrowed();
         }
 
-        //Search borrowed books
+        //Implement a search/filter feature to update the table view in real-time.
+        // It captures the user's input, converts it to lowercase for case-insensitivity, 
+        // and re-renders the table only with objects whose titles match the keyword.
         function searchBorrowed() {
             let keyword = document.getElementById("searchBorrow").value.toLowerCase();
             let table = document.getElementById("borrowTable");
