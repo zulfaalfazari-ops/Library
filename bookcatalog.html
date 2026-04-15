@@ -332,7 +332,9 @@
 
 
     <script>
-        //Book object constructor
+        /*Define the Book object type using a constructor function as required .
+         This template allows us to create multiple book instances with properties 
+         like title, author, category, availability, and an image path.*/
         function Book(title, author, category, available, image) {
             this.title = title;
             this.author = author;
@@ -379,7 +381,9 @@
         }
         window.onload = displayBooks; //Running the function
 
-        //Function to add a new book and update the table
+        //This function enables users to add a new element to the array and update the table.
+        // It captures values from the form, creates a new Book object, and pushes it to the 
+        // 'books' array, ensuring the catalog updates in real-time.
         function addBook() {
             //get values from inputs
             let title = document.getElementById("title").value;
@@ -403,7 +407,9 @@
             document.getElementById("author").value = "";
         }
 
-        //Function to search books
+        // This function implements the search/filter feature to update the table view.
+        // It loops through the 'books' array and compares the title of each book to the 
+        // user's search keyword, displaying only the matching results.
         function searchBook() {
 
             let keyword = document.getElementById("search").value.toLowerCase();
@@ -417,7 +423,7 @@
                 </tr>
             `;
 
-            //loop and filter
+            //loop and filter 
             for (let i = 0; i < books.length; i++) {
 
                 if (books[i].title.toLowerCase().includes(keyword)) {
