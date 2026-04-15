@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Cover Puzzle - BookSphere Library</title>
+    <link rel="stylesheet" href="mystyle.css">
+    <style>
+        .fun-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
+        .fun-header {
+            background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .fun-header h1 {
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .fun-header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .game-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .puzzle-section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .puzzle-section h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #2980b9;
+            display: inline-block;
+        }
+        
+        .puzzle-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .puzzle-piece {
+            aspect-ratio: 1 / 1;
+            background: #3498db;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .puzzle-piece.empty {
+            background: #2c3e50;
+            cursor: pointer;
+            border: 2px dashed #f39c12;
+        }
+        
+        .puzzle-piece:not(.empty):hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .word-game-section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .word-game-section h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #e67e22;
+            display: inline-block;
+        }
+        
+        .sentence-area {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            min-height: 80px;
+            border: 2px dashed #2980b9;
+        }
+        
+        .sentence-text {
+            font-size: 18px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        
+        .words-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .word-card {
+            background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        
+        .word-card:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+        }
+        
+        .word-card.used {
+            background: #95a5a6;
+            cursor: not-allowed;
+            opacity: 0.5;
+            transform: none;
+        }
+        
+        .reset-btn {
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .reset-btn:hover {
+            background: #d35400;
+        }
+        
+        .check-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .check-btn:hover {
+            background: #219a52;
+        }
+        
+        .message-area {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .message-success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #27ae60;
+        }
+        
+        .message-error {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .message-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .score-area {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .new-puzzle-btn {
+            background: #2980b9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .new-puzzle-btn:hover {
+            background: #1a5276;
+        }
+        
+        @media (max-width: 768px) {
+            .game-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .puzzle-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .fun-container {
+                margin: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .word-card {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+            
+            .sentence-text {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="images/logo.png" alt="BookSphere Logo" class="logo">
+            <h1>BookSphere Library</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="catalog.html">Catalog</a></li>
+                <li><a href="reservation.html">Reservation</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="myaccount.html">My Account</a></li>
+                <li><a href="questionnaire.html">Feedback</a></li>
+                <li><a href="calculate.html">Calculator</a></li>
+                <li><a href="funpage.html" class="active">Puzzle Game</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="fun-container">
+            
+            <div class="fun-header">
+                <h1>🎮 Library Puzzle & Word Game</h1>
+                <p>Have fun while learning about books! Solve the puzzle and arrange words to make a sentence about reading.</p>
+            </div>
+            
+            <div class="game-container">
+                
+                <!-- Left Side: Photo Puzzle Game -->
+                <div class="puzzle-section">
+                    <h3>📸 Book Cover Puzzle</h3>
+                    <p style="margin-bottom: 15px; color: #666;">Click on a piece to move it into the empty space. Rearrange the pieces to reveal the book cover!</p>
+                    <div class="puzzle-grid" id="puzzleGrid"></div>
+                    <button class="new-puzzle-btn" onclick="shufflePuzzle()">🔀 Shuffle Puzzle</button>
+                    <div id="puzzleMessage" class="message-area" style="display: none;"></div>
+                </div>
+                
+                <!-- Right Side: Word Sentence Game -->
+                <div class="word-game-section">
+                    <h3>📖 Build a Sentence</h3>
+                    <p style="margin-bottom: 15px; color: #666;">Click on words in order to form a complete sentence about libraries!</p>
+                    
+                    <div class="sentence-area">
+                        <div class="sentence-text" id="sentenceDisplay">________</div>
+                    </div>
+                    
+                    <div class="words-container" id="wordsContainer"></div>
+                    
+                    <div>
+                        <button class="reset-btn" onclick="resetSentence()">🔄 Reset Sentence</button>
+                        <button class="check-btn" onclick="checkSentence()">✅ Check Sentence</button>
+                    </div>
+                    
+                    <div id="wordMessage" class="message-area" style="display: none;"></div>
+                    <div class="score-area" id="scoreDisplay">⭐ Score: 0</div>
+                </div>
+            </div>
+            
+            <div class="stats-table-container" style="margin-top: 30px;">
+                <h3>📚 Did You Know?</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Book Fact</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>📖 Reading Reduces Stress</td>
+                            <td>Reading just 6 minutes can reduce stress by up to 68%!</td>
+                        </tr>
+                        <tr>
+                            <td>🌍 World's Largest Library</td>
+                            <td>The Library of Congress has over 170 million items!</td>
+                        </tr>
+                        <tr>
+                            <td>📚 Benefits of Reading</td>
+                            <td>Reading improves memory, focus, and empathy.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>BookSphere Library</h4>
+                <p>Your gateway to knowledge</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="questionnaire.html">Give Feedback</a></li>
+                    <li><a href="calculate.html">Fine Calculator</a></li>
+                    <li><a href="funpage.html">Puzzle Game</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: info@booksphere.edu.om</p>
+                <p>Phone: +968 1234 5678</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 BookSphere Library. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        /**
+         * ============================================================
+         * BOOKSPHERE LIBRARY - PUZZLE & WORD GAME
+         * ============================================================
+         * 
+         * GAME 1: SLIDING PUZZLE (Photo Re-assembly)
+         * -------------------------------------------
+         * This is a 3x3 sliding puzzle game where users rearrange pieces
+         * to reveal a book cover image. The puzzle starts shuffled.
+         * 
+         * HOW IT WORKS:
+         * 1. The puzzle is represented as a 3x3 grid (9 pieces)
+         * 2. One piece is empty (the blank space)
+         * 3. Clicking a piece adjacent to the empty space swaps positions
+         * 4. When all pieces are in correct order, the puzzle is solved
+         * 5. The book cover image becomes fully visible
+         * 
+         * GAME 2: WORD SENTENCE BUILDER
+         * ---------------------------------
+         * Users click on words in order to build a correct sentence.
+         * The sentence is about the importance of reading.
+         * 
+         * HOW IT WORKS:
+         * 1. Words are displayed as clickable cards
+         * 2. Clicking a word adds it to the sentence
+         * 3. Words can only be used once
+         * 4. Users can reset or check their sentence
+         * 5. Score increases with correct attempts
+         * ============================================================
+         */
+        
+        // ============================================================
+        // PART 1: SLIDING PUZZLE GAME
+        // ============================================================
+        
+        // Puzzle configuration: 3x3 grid (9 pieces, index 8 is empty)
+        let puzzlePieces = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+        let emptyIndex = 8;
+        let puzzleSolved = false;
+        
+        // Book cover image mapping (each number corresponds to a piece of the book cover)
+        // In a real implementation, these would be image slices. Here we use colors with emojis.
+        const pieceImages = {
+            0: { emoji: "📘", bg: "#3498db", label: "Top-Left" },
+            1: { emoji: "📖", bg: "#2980b9", label: "Top-Mid" },
+            2: { emoji: "📚", bg: "#1a5276", label: "Top-Right" },
+            3: { emoji: "🔖", bg: "#e67e22", label: "Mid-Left" },
+            4: { emoji: "⭐", bg: "#f39c12", label: "Center" },
+            5: { emoji: "📕", bg: "#c0392b", label: "Mid-Right" },
+            6: { emoji: "📗", bg: "#27ae60", label: "Bottom-Left" },
+            7: { emoji: "📙", bg: "#8e44ad", label: "Bottom-Mid" },
+            8: { emoji: "🔓", bg: "#2c3e50", label: "Empty" }
+        };
+        
+        // Function to render the puzzle grid
+        function renderPuzzle() {
+            const grid = document.getElementById('puzzleGrid');
+            grid.innerHTML = '';
+            
+            for (let i = 0; i < puzzlePieces.length; i++) {
+                const pieceValue = puzzlePieces[i];
+                const piece = document.createElement('div');
+                piece.className = 'puzzle-piece';
+                
+                if (pieceValue === 8) {
+                    // Empty piece
+                    piece.classList.add('empty');
+                    piece.innerHTML = '⬜';
+                    piece.style.backgroundColor = '#2c3e50';
+                } else {
+                    // Normal piece with book-related emoji
+                    const pieceInfo = pieceImages[pieceValue];
+                    piece.innerHTML = `<div style="text-align: center;">${pieceInfo.emoji}<br><small style="font-size:10px;">${pieceInfo.label}</small></div>`;
+                    piece.style.backgroundColor = pieceInfo.bg;
+                }
+                
+                piece.onclick = (function(index) {
+                    return function() { movePiece(index); };
+                })(i);
+                
+                grid.appendChild(piece);
+            }
+            
+            // Check if puzzle is solved
+            checkPuzzleSolved();
+        }
+        
+        // Function to check if a piece can move (adjacent to empty space)
+        function isAdjacent(index) {
+            // Get row and column of clicked piece
+            const row = Math.floor(index / 3);
+            const col = index % 3;
+            
+            // Get row and column of empty piece
+            const emptyRow = Math.floor(emptyIndex / 3);
+            const emptyCol = emptyIndex % 3;
+            
+            // Check if adjacent horizontally or vertically (not diagonally)
+            // Using logical OR operator (||) to check multiple conditions
+            const isSameRow = (row === emptyRow);
+            const isAdjacentCol = (Math.abs(col - emptyCol) === 1);
+            const isSameCol = (col === emptyCol);
+            const isAdjacentRow = (Math.abs(row - emptyRow) === 1);
+            
+            // Using logical AND (&&) and OR (||) operators
+            return (isSameRow && isAdjacentCol) || (isSameCol && isAdjacentRow);
+        }
+        
+        // Function to move a piece
+        function movePiece(index) {
+            if (puzzleSolved) {
+                showPuzzleMessage('🎉 Puzzle already solved! Click "Shuffle" to play again.', 'info');
+                return;
+            }
+            
+            // Check if clicked piece is adjacent to empty space
+            if (isAdjacent(index)) {
+                // Swap the clicked piece with the empty piece
+                // Using temporary variable for swap operation
+                const temp = puzzlePieces[index];
+                puzzlePieces[index] = puzzlePieces[emptyIndex];
+                puzzlePieces[emptyIndex] = temp;
+                
+                // Update empty index
+                emptyIndex = index;
+                
+                // Re-render the grid
+                renderPuzzle();
+            } else {
+                showPuzzleMessage('❌ This piece cannot move! Click a piece next to the empty space.', 'error');
+                setTimeout(() => hidePuzzleMessage(), 1500);
+            }
+        }
+        
+        // Function to check if puzzle is solved
+        function checkPuzzleSolved() {
+            let solved = true;
+            for (let i = 0; i < puzzlePieces.length; i++) {
+                if (puzzlePieces[i] !== i) {
+                    solved = false;
+                    break;
+                }
+            }
+            
+            if (solved && !puzzleSolved) {
+                puzzleSolved = true;
+                showPuzzleMessage('🎉 CONGRATULATIONS! You solved the book cover puzzle! 🎉', 'success');
+                
+                // Change all pieces to show the complete book cover message
+                const grid = document.getElementById('puzzleGrid');
+                for (let i = 0; i < grid.children.length; i++) {
+                    if (i !== 8) {
+                        grid.children[i].innerHTML = '📚';
+                        grid.children[i].style.backgroundColor = '#27ae60';
+                    }
+                }
+            } else if (!solved) {
+                puzzleSolved = false;
+            }
+        }
+        
+        // Function to shuffle the puzzle
+        function shufflePuzzle() {
+            // Create a copy of solved puzzle [0,1,2,3,4,5,6,7,8]
+            let shuffled = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+            let currentEmpty = 8;
+            
+            // Perform 100 random valid moves to shuffle
+            for (let move = 0; move < 100; move++) {
+                // Find all pieces adjacent to empty space
+                const emptyRow = Math.floor(currentEmpty / 3);
+                const emptyCol = currentEmpty % 3;
+                const adjacentIndices = [];
+                
+                // Check up, down, left, right
+                if (emptyRow > 0) adjacentIndices.push(currentEmpty - 3);
+                if (emptyRow < 2) adjacentIndices.push(currentEmpty + 3);
+                if (emptyCol > 0) adjacentIndices.push(currentEmpty - 1);
+                if (emptyCol < 2) adjacentIndices.push(currentEmpty + 1);
+                
+                // Pick random adjacent piece
+                const randomIndex = adjacentIndices[Math.floor(Math.random() * adjacentIndices.length)];
+                
+                // Swap
+                const temp = shuffled[randomIndex];
+                shuffled[randomIndex] = shuffled[currentEmpty];
+                shuffled[currentEmpty] = temp;
+                currentEmpty = randomIndex;
+            }
+            
+            // Update puzzle state
+            puzzlePieces = shuffled;
+            emptyIndex = currentEmpty;
+            puzzleSolved = false;
+            
+            // Re-render
+            renderPuzzle();
+            
+            showPuzzleMessage('🔄 Puzzle shuffled! Try to solve it!', 'info');
+            setTimeout(() => hidePuzzleMessage(), 2000);
+        }
+        
+        // Puzzle message functions
+        function showPuzzleMessage(msg, type) {
+            const msgDiv = document.getElementById('puzzleMessage');
+            msgDiv.textContent = msg;
+            msgDiv.className = `message-area message-${type}`;
+            msgDiv.style.display = 'block';
+        }
+        
+        function hidePuzzleMessage() {
+            const msgDiv = document.getElementById('puzzleMessage');
+            msgDiv.style.display = 'none';
+        }
+        
+        // ============================================================
+        // PART 2: WORD SENTENCE BUILDER GAME
+        // ============================================================
+        
+        // The correct sentence: "Reading books makes you smarter and happier"
+        const correctWords = ["Reading", "books", "makes", "you", "smarter", "and", "happier"];
+        let selectedWords = [];
+        let availableWords = [...correctWords];
+        let score = 0;
+        
+        // Function to render available words
+        function renderWords() {
+            const container = document.getElementById('wordsContainer');
+            container.innerHTML = '';
+            
+            // Shuffle available words for display (using Fisher-Yates shuffle)
+            const shuffled = [...availableWords];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            
+            for (let i = 0; i < shuffled.length; i++) {
+                const word = shuffled[i];
+                const wordCard = document.createElement('div');
+                wordCard.className = 'word-card';
+                wordCard.textContent = word;
+                wordCard.onclick = (function(w) {
+                    return function() { selectWord(w); };
+                })(word);
+                container.appendChild(wordCard);
+            }
+        }
+        
+        // Function to select a word and add to sentence
+        function selectWord(word) {
+            // Find the word in available words
+            const index = availableWords.indexOf(word);
+            if (index !== -1) {
+                // Remove from available words
+                availableWords.splice(index, 1);
+                // Add to selected words
+                selectedWords.push(word);
+                // Update displays
+                updateSentenceDisplay();
+                renderWords();
+            }
+        }
+        
+        // Function to update the sentence display
+        function updateSentenceDisplay() {
+            const sentenceDisplay = document.getElementById('sentenceDisplay');
+            if (selectedWords.length === 0) {
+                sentenceDisplay.innerHTML = '________';
+            } else {
+                sentenceDisplay.innerHTML = selectedWords.join(' ') + ' ';
+            }
+        }
+        
+        // Function to reset the sentence
+        function resetSentence() {
+            // Return all selected words back to available
+            availableWords = [...availableWords, ...selectedWords];
+            selectedWords = [];
+            updateSentenceDisplay();
+            renderWords();
+            
+            const msgDiv = document.getElementById('wordMessage');
+            msgDiv.textContent = '🔄 Sentence reset! Try again!';
+            msgDiv.className = 'message-area message-info';
+            msgDiv.style.display = 'block';
+            setTimeout(() => { msgDiv.style.display = 'none'; }, 2000);
+        }
+        
+        // Function to check if the sentence is correct
+        function checkSentence() {
+            const msgDiv = document.getElementById('wordMessage');
+            
+            // Using logical operator (===) to compare arrays
+            const isCorrect = selectedWords.length === correctWords.length && 
+                              selectedWords.every((word, index) => word === correctWords[index]);
+            
+            if (isCorrect) {
+                // Increase score
+                score++;
+                document.getElementById('scoreDisplay').innerHTML = `⭐ Score: ${score}`;
+                
+                msgDiv.textContent = '🎉 CORRECT! Excellent sentence! +1 point! 🎉';
+                msgDiv.className = 'message-area message-success';
+                msgDiv.style.display = 'block';
+                
+                // Reset for next round after 2 seconds
+                setTimeout(() => {
+                    resetSentence();
+                    msgDiv.style.display = 'none';
+                }, 2000);
+            } else {
+                msgDiv.textContent = '❌ Not quite right! Remember: "Reading books makes you smarter and happier"';
+                msgDiv.className = 'message-area message-error';
+                msgDiv.style.display = 'block';
+                setTimeout(() => { msgDiv.style.display = 'none'; }, 3000);
+            }
+        }
+        
+        // Initialize both games when page loads
+        function initGames() {
+            renderPuzzle();
+            renderWords();
+        }
+        
+        // Start the games when page loads
+        initGames();
+    </script>
+</body>
+</html>
