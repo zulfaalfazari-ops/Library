@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire - BookSphere Library</title>
+    <link rel="stylesheet" href="mystyle.css">
+    <style>
+        .questionnaire-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
+        .questionnaire-header {
+            background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .questionnaire-header h1 {
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .questionnaire-header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .form-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="number"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2980b9;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        .input-error {
+            border-color: #e74c3c !important;
+        }
+        
+        .input-success {
+            border-color: #27ae60 !important;
+        }
+        
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        
+        .radio-group label, .checkbox-group label {
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        
+        .radio-group input, .checkbox-group input {
+            width: auto;
+            margin: 0;
+        }
+        
+        .rating-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .rating-group label {
+            font-weight: normal;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        
+        .rating-group label:hover {
+            background: #f0f0f0;
+        }
+        
+        .rating-group input {
+            margin-bottom: 5px;
+        }
+        
+        .star-rating {
+            font-size: 24px;
+            color: #f39c12;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: #1a5276;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        hr {
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .questionnaire-container {
+                margin: 20px;
+            }
+            
+            .form-card {
+                padding: 20px;
+            }
+            
+            .radio-group, .checkbox-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="images/logo.png" alt="BookSphere Logo" class="logo">
+            <h1>BookSphere Library</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="catalog.html">Catalog</a></li>
+                <li><a href="reservation.html">Reservation</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="myaccount.html">My Account</a></li>
+                <li><a href="questionnaire.html" class="active">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="questionnaire-container">
+            
+            <div class="questionnaire-header">
+                <h1>📝 Library Feedback Questionnaire</h1>
+                <p>Your feedback helps us improve our services. Please take a moment to share your experience.</p>
+            </div>
+            
+            <div class="form-card">
+                <form id="feedbackForm" action="https://httpbin.org/post" method="POST">
+                    
+                    <!-- Control 1: Text Input - Full Name -->
+                    <div class="form-group">
+                        <label for="fullname">Full Name *</label>
+                        <input type="text" id="fullname" name="fullname" placeholder="Enter your full name">
+                        <div class="error-message" id="nameError">Please enter a valid name (letters and spaces only, minimum 3 characters)</div>
+                    </div>
+                    
+                    <!-- Control 2: Email Input -->
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="yourname@university.edu.om">
+                        <div class="error-message" id="emailError">Please enter a valid university email address (must contain @university.edu.om)</div>
+                    </div>
+                    
+                    <!-- Control 3: Number Input - Age -->
+                    <div class="form-group">
+                        <label for="age">Age *</label>
+                        <input type="number" id="age" name="age" placeholder="Enter your age" min="16" max="100">
+                        <div class="error-message" id="ageError">Age must be between 16 and 100 years</div>
+                    </div>
+                    
+                    <!-- Control 4: Select Dropdown - Member Type -->
+                    <div class="form-group">
+                        <label for="memberType">Member Type *</label>
+                        <select id="memberType" name="memberType">
+                            <option value="">Select your member type</option>
+                            <option value="student">Student</option>
+                            <option value="faculty">Faculty Member</option>
+                            <option value="staff">University Staff</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div class="error-message" id="memberError">Please select your member type</div>
+                    </div>
+                    
+                    <!-- Control 5: Radio Buttons - Satisfaction Level -->
+                    <div class="form-group">
+                        <label>How satisfied are you with our library services? *</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="satisfaction" value="very_satisfied"> Very Satisfied</label>
+                            <label><input type="radio" name="satisfaction" value="satisfied"> Satisfied</label>
+                            <label><input type="radio" name="satisfaction" value="neutral"> Neutral</label>
+                            <label><input type="radio" name="satisfaction" value="dissatisfied"> Dissatisfied</label>
+                            <label><input type="radio" name="satisfaction" value="very_dissatisfied"> Very Dissatisfied</label>
+                        </div>
+                        <div class="error-message" id="satisfactionError">Please select your satisfaction level</div>
+                    </div>
+                    
+                    <!-- Control 6: Checkboxes - Services Used -->
+                    <div class="form-group">
+                        <label>Which library services have you used? (Select all that apply)</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="services" value="book_borrowing"> Book Borrowing</label>
+                            <label><input type="checkbox" name="services" value="online_reservation"> Online Reservation</label>
+                            <label><input type="checkbox" name="services" value="search_catalog"> Search Catalog</label>
+                            <label><input type="checkbox" name="services" value="reference_desk"> Reference Desk</label>
+                            <label><input type="checkbox" name="services" value="study_room"> Study Room</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Control 7: Rating Stars (Radio with custom styling) -->
+                    <div class="form-group">
+                        <label>Rate the library website experience *</label>
+                        <div class="rating-group">
+                            <label><input type="radio" name="website_rating" value="1"> <span class="star-rating">★</span> 1 - Poor</label>
+                            <label><input type="radio" name="website_rating" value="2"> <span class="star-rating">★★</span> 2 - Fair</label>
+                            <label><input type="radio" name="website_rating" value="3"> <span class="star-rating">★★★</span> 3 - Good</label>
+                            <label><input type="radio" name="website_rating" value="4"> <span class="star-rating">★★★★</span> 4 - Very Good</label>
+                            <label><input type="radio" name="website_rating" value="5"> <span class="star-rating">★★★★★</span> 5 - Excellent</label>
+                        </div>
+                        <div class="error-message" id="ratingError">Please rate your website experience</div>
+                    </div>
+                    
+                    <!-- Control 8: Textarea - Suggestions -->
+                    <div class="form-group">
+                        <label for="suggestions">Suggestions for Improvement</label>
+                        <textarea id="suggestions" name="suggestions" rows="4" placeholder="Please share your suggestions to help us improve..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Submit Feedback</button>
+                    
+                    <div class="success-message" id="successMessage">
+                        ✓ Thank you for your feedback! Your response has been submitted successfully.
+                    </div>
+                    
+                </form>
+            </div>
+            
+            <div class="stats-table-container" style="margin-top: 30px;">
+                <h3>Recent Feedback Statistics</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Responses</th>
+                            <th>Average Rating</th>
+                            <th>Satisfaction Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>February 2026</td>
+                            <td>156</td>
+                            <td>4.2/5</td>
+                            <td>84%</td>
+                        </tr>
+                        <tr>
+                            <td>January 2026</td>
+                            <td>142</td>
+                            <td>4.0/5</td>
+                            <td>78%</td>
+                        </tr>
+                        <tr>
+                            <td>December 2025</td>
+                            <td>128</td>
+                            <td>4.1/5</td>
+                            <td>81%</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">Total Responses Received: 426</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>BookSphere Library</h4>
+                <p>Your gateway to knowledge</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="questionnaire.html">Give Feedback</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: info@booksphere.edu.om</p>
+                <p>Phone: +968 1234 5678</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 BookSphere Library. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        /**
+         * QUESTIONNAIRE PAGE VALIDATION - EXPLANATION
+         * 
+         * This script validates user input before form submission using three different validation patterns:
+         * 
+         * VALIDATION 1 - NAME VALIDATION (Pattern Matching):
+         * Uses regular expression /^[A-Za-z\s]{3,}$/ to ensure:
+         * - Only letters (A-Z, a-z) and spaces are allowed
+         * - Minimum 3 characters
+         * - No numbers or special characters
+         * 
+         * VALIDATION 2 - EMAIL VALIDATION (Pattern + Domain Check):
+         * Uses regular expression /^[^\s@]+@([^\s@.,]+\.)*university\.edu\.om$/ to ensure:
+         * - Valid email format with @ symbol
+         * - Must end with @university.edu.om domain
+         * - No spaces or invalid characters
+         * 
+         * VALIDATION 3 - AGE VALIDATION (Range Check):
+         * Checks numeric value to ensure:
+         * - Age is between 16 and 100 years
+         * - Value is not empty
+         * - Value is a valid number
+         * 
+         * ADDITIONAL VALIDATIONS:
+         * - Member type must be selected from dropdown
+         * - Satisfaction level must be selected
+         * - Website rating must be selected
+         * 
+         * Each validation provides real-time feedback and prevents form submission if errors exist.
+         */
+        
+        // Get form and input elements
+        const form = document.getElementById('feedbackForm');
+        const fullnameInput = document.getElementById('fullname');
+        const emailInput = document.getElementById('email');
+        const ageInput = document.getElementById('age');
+        const memberSelect = document.getElementById('memberType');
+        const satisfactionRadios = document.querySelectorAll('input[name="satisfaction"]');
+        const ratingRadios = document.querySelectorAll('input[name="website_rating"]');
+        
+        // Get error message elements
+        const nameError = document.getElementById('nameError');
+        const emailError = document.getElementById('emailError');
+        const ageError = document.getElementById('ageError');
+        const memberError = document.getElementById('memberError');
+        const satisfactionError = document.getElementById('satisfactionError');
+        const ratingError = document.getElementById('ratingError');
+        
+        const successMessage = document.getElementById('successMessage');
+        
+        // VALIDATION 1: Name validation - Letters and spaces only, minimum 3 characters
+        function validateName() {
+            const name = fullnameInput.value.trim();
+            // Regular expression: Only letters (A-Z, a-z) and spaces, minimum 3 characters
+            const namePattern = /^[A-Za-z\s]{3,}$/;
+            
+            if (name === '') {
+                nameError.textContent = 'Please enter your full name';
+                nameError.classList.add('show');
+                fullnameInput.classList.add('input-error');
+                fullnameInput.classList.remove('input-success');
+                return false;
+            } else if (!namePattern.test(name)) {
+                nameError.textContent = 'Name must contain only letters and spaces (minimum 3 characters)';
+                nameError.classList.add('show');
+                fullnameInput.classList.add('input-error');
+                fullnameInput.classList.remove('input-success');
+                return false;
+            } else {
+                nameError.classList.remove('show');
+                fullnameInput.classList.remove('input-error');
+                fullnameInput.classList.add('input-success');
+                return true;
+            }
+        }
+        
+        // VALIDATION 2: Email validation - Must be university email (@university.edu.om)
+        function validateEmail() {
+            const email = emailInput.value.trim();
+            // Regular expression: Valid email format ending with @university.edu.om
+            const emailPattern = /^[^\s@]+@([^\s@.,]+\.)*university\.edu\.om$/;
+            
+            if (email === '') {
+                emailError.textContent = 'Please enter your email address';
+                emailError.classList.add('show');
+                emailInput.classList.add('input-error');
+                emailInput.classList.remove('input-success');
+                return false;
+            } else if (!emailPattern.test(email)) {
+                emailError.textContent = 'Email must be a valid university email (e.g., name@university.edu.om)';
+                emailError.classList.add('show');
+                emailInput.classList.add('input-error');
+                emailInput.classList.remove('input-success');
+                return false;
+            } else {
+                emailError.classList.remove('show');
+                emailInput.classList.remove('input-error');
+                emailInput.classList.add('input-success');
+                return true;
+            }
+        }
+        
+        // VALIDATION 3: Age validation - Must be between 16 and 100
+        function validateAge() {
+            const age = parseInt(ageInput.value);
+            
+            if (ageInput.value === '') {
+                ageError.textContent = 'Please enter your age';
+                ageError.classList.add('show');
+                ageInput.classList.add('input-error');
+                ageInput.classList.remove('input-success');
+                return false;
+            } else if (isNaN(age) || age < 16 || age > 100) {
+                ageError.textContent = 'Age must be between 16 and 100 years';
+                ageError.classList.add('show');
+                ageInput.classList.add('input-error');
+                ageInput.classList.remove('input-success');
+                return false;
+            } else {
+                ageError.classList.remove('show');
+                ageInput.classList.remove('input-error');
+                ageInput.classList.add('input-success');
+                return true;
+            }
+        }
+        
+        // Validation 4: Member type selection
+        function validateMemberType() {
+            const memberType = memberSelect.value;
+            
+            if (memberType === '') {
+                memberError.classList.add('show');
+                memberSelect.classList.add('input-error');
+                memberSelect.classList.remove('input-success');
+                return false;
+            } else {
+                memberError.classList.remove('show');
+                memberSelect.classList.remove('input-error');
+                memberSelect.classList.add('input-success');
+                return true;
+            }
+        }
+        
+        // Validation 5: Satisfaction level selection
+        function validateSatisfaction() {
+            let selected = false;
+            for (let radio of satisfactionRadios) {
+                if (radio.checked) {
+                    selected = true;
+                    break;
+                }
+            }
+            
+            if (!selected) {
+                satisfactionError.classList.add('show');
+                return false;
+            } else {
+                satisfactionError.classList.remove('show');
+                return true;
+            }
+        }
+        
+        // Validation 6: Website rating selection
+        function validateRating() {
+            let selected = false;
+            for (let radio of ratingRadios) {
+                if (radio.checked) {
+                    selected = true;
+                    break;
+                }
+            }
+            
+            if (!selected) {
+                ratingError.classList.add('show');
+                return false;
+            } else {
+                ratingError.classList.remove('show');
+                return true;
+            }
+        }
+        
+        // Real-time validation events (user gets feedback as they type)
+        fullnameInput.addEventListener('input', validateName);
+        fullnameInput.addEventListener('blur', validateName);
+        
+        emailInput.addEventListener('input', validateEmail);
+        emailInput.addEventListener('blur', validateEmail);
+        
+        ageInput.addEventListener('input', validateAge);
+        ageInput.addEventListener('blur', validateAge);
+        
+        memberSelect.addEventListener('change', validateMemberType);
+        
+        for (let radio of satisfactionRadios) {
+            radio.addEventListener('change', validateSatisfaction);
+        }
+        
+        for (let radio of ratingRadios) {
+            radio.addEventListener('change', validateRating);
+        }
+        
+        // Form submission validation - prevents submission if any validation fails
+        form.addEventListener('submit', function(event) {
+            // Run all validations
+            const isNameValid = validateName();
+            const isEmailValid = validateEmail();
+            const isAgeValid = validateAge();
+            const isMemberValid = validateMemberType();
+            const isSatisfactionValid = validateSatisfaction();
+            const isRatingValid = validateRating();
+            
+            // Check if all validations passed
+            if (!isNameValid || !isEmailValid || !isAgeValid || !isMemberValid || !isSatisfactionValid || !isRatingValid) {
+                event.preventDefault(); // Stop form submission
+                
+                // Scroll to first error
+                const firstError = document.querySelector('.input-error');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            } else {
+                // All validations passed - show success message
+                event.preventDefault(); // Prevent actual submission for demo
+                successMessage.classList.add('show');
+                
+                // Optional: Submit form after 2 seconds
+                setTimeout(function() {
+                    form.submit();
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>
