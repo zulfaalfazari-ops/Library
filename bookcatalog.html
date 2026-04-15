@@ -4,337 +4,187 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booksphere</title>
-    <link rel="stylesheet" href="mystyle.css">
+     <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     
+<!-- Custom CSS for book image sizing (only visual, no layout) -->
     <style>
-        .catalog-container {
-            max-width: 1200px;
-            margin: 40px auto;
-           
-        }
-        
-        .search-section {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .search-section h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        
-        .search-section h2 {
-            color: #555;
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 18px;
-        }
-        
-        .search-box {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-        
-        .search-box input {
-            width: 60%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        
-        .search-box input:focus {
-            outline: none;
-            border-color: #2980b9;
-        }
-        
-        .search-box button {
-            padding: 12px 25px;
-            background: #2980b9;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 0;
-        }
-        
-        .search-box button:hover {
-            background: #1a5276;
-        }
-        
-        .filters {
-            text-align: center;
-            padding: 15px;
-            background: #f8f9fa;
+        .book-img {
+            width: 100px;
+            height: 140px;
+            object-fit: cover;
             border-radius: 8px;
         }
-        
-        .filters p {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #2c3e50;
+        .book-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
         }
-        
-        .filters input[type="radio"] {
-            margin: 0 5px 0 15px;
-        }
-        
-        .filters label {
-            margin-right: 10px;
-            cursor: pointer;
-        }
-        
-        .books-section {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .books-section h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #2980b9;
-            display: inline-block;
-        }
-        
-        .book-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .book-row {
-            background: white;
-            transition: transform 0.2s;
-        }
-        
-        .book-row:hover {
-            transform: scale(1.02);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .book-row td {
-            padding: 20px;
-            border: 1px solid #e0e0e0;
-            vertical-align: top;
-        }
-        
-        .book-row td:first-child {
-            width: 180px;
-            text-align: center;
-        }
-        
-        .book-img {
-            width: 150px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .book-row h2 {
-            margin: 0 0 10px 0;
-            font-size: 20px;
-            color: #2c3e50;
-        }
-        
-        .book-row p {
-            margin: 8px 0;
-            color: #555;
-        }
-        
-        .available {
-            color: #27ae60;
-            font-weight: bold;
-            display: inline-block;
-            padding: 4px 12px;
-            background: #e8f5e9;
-            border-radius: 20px;
-        }
-        
-        .not-available {
-            color: #e74c3c;
-            font-weight: bold;
-            display: inline-block;
-            padding: 4px 12px;
-            background: #ffebee;
-            border-radius: 20px;
-        }
-        
-        .reserve-btn {
-            background: #2980b9;
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        
-        .reserve-btn:hover {
-            background: #1a5276;
-        }
-        
-        hr {
-            margin: 20px 0;
-        }
-        
         @media (max-width: 768px) {
-            .search-box {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .search-box input {
-                width: 100%;
-            }
-            
-            .book-row td {
-                display: block;
-                text-align: center;
-            }
-            
-            .book-row td:first-child {
-                width: 100%;
-            }
-            
             .book-img {
-                width: 120px;
-                height: 160px;
+                width: 80px;
+                height: 120px;
             }
         }
     </style>
 </head>
-<body>
-      <header>
-        <div class="logo-container">
-            <img src="logo.png" alt="BookSphere Logo" class="logo">
-            <h1>BookSphere Library</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="bookcatalog.html">Catalog</a></li>
-                <li><a href="reservation.html">Reservation</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contactUs.html">Contact</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="myaccount.html">My Account</a></li>
-            </ul>
-        </nav>
-    </header>
+<body class="d-flex flex-column min-vh-100">
 
-     <main>
-        <div class="catalog-container">
-            
-            <div class="search-section">
-                <h1>Library Book Catalog</h1>
-                <h2>Find your next great read</h2>
+    <!-- ============================================== -->
+    <!-- RESPONSIVE NAVIGATION BAR (BOOTSTRAP NAVBAR)   -->
+    <!-- ============================================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img src="logo.png" alt="BookSphere Logo" width="45" height="45" class="rounded-circle me-2">
+                BookSphere Library
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="bookcatalog.html">Catalog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reservation.html">Reservation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contactUs.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="myaccount.html">My Account</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5 flex-grow-1">
+        <!-- Search Section -->
+        <div class="card shadow-sm border-0 mb-5">
+            <div class="card-body p-4">
+                <h1 class="text-center text-primary mb-2">Library Book Catalog</h1>
+                <h2 class="text-center text-secondary mb-4 fs-5">Find your next great read</h2>
                 
-                <div class="search-box">
-                    <input type="text" placeholder="Search by title, author, or category...">
-                    <button type="submit">🔍 Search</button>
+                <div class="row justify-content-center mb-4">
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search by title, author, or category...">
+                            <button class="btn btn-primary">🔍 Search</button>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="filters">
-                    <p>Filter by Category:</p>
-                    <input type="radio" name="category" id="allcat" checked>
-                    <label for="allcat">All</label>
-                    
-                    <input type="radio" name="category" id="programming">
-                    <label for="programming">Programming</label>
-                    
-                    <input type="radio" name="category" id="literature">
-                    <label for="literature">Literature</label>
-                    
-                    <input type="radio" name="category" id="history">
-                    <label for="history">History</label>
-                    
-                    <input type="radio" name="category" id="science">
-                    <label for="science">Science</label>
+                <!-- Filter by Category (Radio Buttons) -->
+                <div class="bg-light p-3 rounded-4 text-center">
+                    <p class="fw-bold text-dark mb-2">Filter by Category:</p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="category" id="allcat" checked>
+                            <label class="form-check-label" for="allcat">All</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="category" id="programming">
+                            <label class="form-check-label" for="programming">Programming</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="category" id="literature">
+                            <label class="form-check-label" for="literature">Literature</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="category" id="history">
+                            <label class="form-check-label" for="history">History</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="category" id="science">
+                            <label class="form-check-label" for="science">Science</label>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <div class="books-section">
-                <h2>📚 List of Books</h2>
+        </div>
+
+        <!-- Books Section -->
+        <div class="card shadow-sm border-0 mb-5">
+            <div class="card-body p-4">
+                <h3 class="border-start border-primary border-5 ps-3 text-primary mb-4">📚 List of Books</h3>
                 
-                <div class="add-book-form">
-                    <h3>Add a New Book to Catalog</h3>
-                    
-                    <div class="input-group">
-                        <label for="title">Book Title:</label>
-                        <input type="text" id="title" placeholder="e.g. Database System" required>
+                <!-- Add Book Form -->
+                <div class="bg-light p-4 rounded-4 mb-4">
+                    <h4 class="mb-3">Add a New Book to Catalog</h4>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Book Title:</label>
+                            <input type="text" id="title" class="form-control" placeholder="e.g. Database System" required>
                         </div>
-
-                    <div class="input-group">
-                        <label for="author">Author:</label>
-                        <input type="text" id="author" placeholder="e.g. Elmasri" required>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Author:</label>
+                            <input type="text" id="author" class="form-control" placeholder="e.g. Elmasri" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Category:</label>
+                            <input type="text" id="category" class="form-control" placeholder="e.g. Programming">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Copies Available:</label>
+                            <input type="number" id="available" class="form-control" placeholder="0">
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" onclick="addBook()">➕ Add Book</button>
+                        </div>
                     </div>
-
-                    <div class="input-group">
-                        <label for="category">Category:</label>
-                        <input type="text" id="category" placeholder="e.g. Programming">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="available">Copies Available:</label>
-                        <input type="number" id="available" placeholder="0">
-                    </div>
-                    <button type="button" onclick="addBook()">Add Book</button>
                 </div>
 
-                <div>
-                    <input type="text" id="search" placeholder="Search by title">
-                    <button onclick="searchBook()">Search</button>
+                <!-- Search Box -->
+                <div class="input-group mb-4">
+                    <input type="text" id="search" class="form-control" placeholder="Search by title">
+                    <button class="btn btn-outline-primary" onclick="searchBook()">🔍 Search</button>
                 </div>
-                <table class="book-table"  id="bookTable">
-                    <tr>
-                        <th>Image</th>
-                        <th>Details</th>
-                    </tr>
-                </table>
+
+                <!-- Books Table (Dynamic from JavaScript) -->
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle" id="bookTable">
+                        <thead class="table-primary">
+                            <tr><th>Image</th><th>Details</th></tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>BookSphere Library</h4>
-                <p>Your gateway to knowledge</p>
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">BookSphere Library</h4>
+                    <p class="text-secondary">Your gateway to knowledge</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-secondary text-decoration-none">About Us</a></li>
+                        <li><a href="contactUs.html" class="text-secondary text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">Contact</h4>
+                    <p class="text-secondary">Email: info@booksphere.edu.om</p>
+                    <p class="text-secondary">Phone: +968 1234 5678</p>
+                </div>
             </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contactUs.html">Contact</a></li>
-                </ul>
+            <div class="text-center pt-3 border-top border-secondary">
+                <p class="text-secondary">&copy; 2026 BookSphere Library. All rights reserved.</p>
             </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p>Email: info@booksphere.edu.om</p>
-                <p>Phone: +968 1234 5678</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 BookSphere Library. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        /*Define the Book object type using a constructor function as required .
-         This template allows us to create multiple book instances with properties 
-         like title, author, category, availability, and an image path.*/
+        /* Define the Book object type using a constructor function as required.
+         This template allows us to create multiple book instances with properties
+         like title, author, category, availability, and an image path. */
         function Book(title, author, category, available, image) {
             this.title = title;
             this.author = author;
@@ -342,7 +192,8 @@
             this.available = available;
             this.image = image;
         }
-        //Array of books
+
+        // Array of books
         let books = [
             new Book("Database System", "Elmasri", "Programming", 0, "db.jpg"),
             new Book("Harry Potter", "J.K. Rowling", "Literature", 3, "hp.jpg"),
@@ -350,105 +201,96 @@
             new Book("A Brief History of Time", "Stephen Hawking", "Science", 1, "time.jpg")
         ];
 
-        //Function to display books in the table
+        // Function to display books in the table
         function displayBooks() {
             let table = document.getElementById("bookTable");
-            //clear table except header
+            // Clear table except header
             table.innerHTML = `
-                <tr>
-                    <th>Image</th>
-                    <th>Details</th>
-                </tr>`;
+                <thead class="table-primary"><tr><th>Image</th><th>Details</th></tr></thead>
+                <tbody></tbody>
+            `;
+            let tbody = table.querySelector("tbody");
 
-            //loop through books
+            // Loop through books
             for (let i = 0; i < books.length; i++) {
-                let row = table.insertRow();
+                let row = tbody.insertRow();
                 row.innerHTML = `
-                    <td>
-                        <img src="${books[i].image}" class="book-img">
+                    <td style="text-align: center;">
+                        <img src="${books[i].image}" class="book-img" style="width: 100px; height: 140px; object-fit: cover; border-radius: 8px;">
                     </td>
                     <td>
-                        <h2>${books[i].title}</h2>
+                        <h5 class="fw-bold text-primary">${books[i].title}</h5>
                         <p><strong>Author:</strong> ${books[i].author}</p>
                         <p><strong>Category:</strong> ${books[i].category}</p>
                         <p>
                             ${books[i].available > 0 
-                                ? '<span class="available">' + books[i].available + ' Available</span>' 
-                                : '<span class="not-available">Not Available</span>'}
+                                ? '<span class="badge bg-success">' + books[i].available + ' Available</span>' 
+                                : '<span class="badge bg-danger">Not Available</span>'}
                         </p>
-                    </td> `;
+                    </td>
+                `;
             }
         }
-        window.onload = displayBooks; //Running the function
 
-        //This function enables users to add a new element to the array and update the table.
-        // It captures values from the form, creates a new Book object, and pushes it to the 
+        window.onload = displayBooks; // Running the function
+
+        // This function enables users to add a new element to the array and update the table.
+        // It captures values from the form, creates a new Book object, and pushes it to the
         // 'books' array, ensuring the catalog updates in real-time.
         function addBook() {
-            //get values from inputs
             let title = document.getElementById("title").value;
             let author = document.getElementById("author").value;
             let category = document.getElementById("category").value;
             let available = document.getElementById("available").value;
 
-            //Basic validation logic to ensure no empty data enters the array
             if (title.trim() === "" || author.trim() === "") {
                 alert("Please enter at least the Title and Author.");
-                return; 
+                return;
             }
 
-            //create new book object
             let newBook = new Book(title, author, category, available, "default.jpg");
-            books.push(newBook); //add the new book to array
-            displayBooks();  //refresh table
+            books.push(newBook);
+            displayBooks();
 
-            //Clear inputs after adding
             document.getElementById("title").value = "";
             document.getElementById("author").value = "";
+            document.getElementById("category").value = "";
+            document.getElementById("available").value = "";
         }
 
         // This function implements the search/filter feature to update the table view.
-        // It loops through the 'books' array and compares the title of each book to the 
+        // It loops through the 'books' array and compares the title of each book to the
         // user's search keyword, displaying only the matching results.
         function searchBook() {
-
             let keyword = document.getElementById("search").value.toLowerCase();
             let table = document.getElementById("bookTable");
-
-            //clear table
             table.innerHTML = `
-                <tr>
-                    <th>Image</th>
-                    <th>Details</th>
-                </tr>
+                <thead class="table-primary"><tr><th>Image</th><th>Details</th></tr></thead>
+                <tbody></tbody>
             `;
+            let tbody = table.querySelector("tbody");
 
-            //loop and filter 
             for (let i = 0; i < books.length; i++) {
-
                 if (books[i].title.toLowerCase().includes(keyword)) {
-                    let row = table.insertRow();
+                    let row = tbody.insertRow();
                     row.innerHTML = `
-                        <td>
-                            <img src="${books[i].image}" class="book-img">
+                        <td style="text-align: center;">
+                            <img src="${books[i].image}" class="book-img" style="width: 100px; height: 140px; object-fit: cover; border-radius: 8px;">
                         </td>
                         <td>
-                            <h2>${books[i].title}</h2>
+                            <h5 class="fw-bold text-primary">${books[i].title}</h5>
                             <p><strong>Author:</strong> ${books[i].author}</p>
                             <p><strong>Category:</strong> ${books[i].category}</p>
                             <p>
                                 ${books[i].available > 0 
-                                    ? '<span class="available">' + books[i].available + ' Available</span>' 
-                                    : '<span class="not-available">Not Available</span>'}
+                                    ? '<span class="badge bg-success">' + books[i].available + ' Available</span>' 
+                                    : '<span class="badge bg-danger">Not Available</span>'}
                             </p>
                         </td>
                     `;
                 }
             }
         }
-
-
     </script>
-
 </body>
 </html>
