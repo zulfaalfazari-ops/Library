@@ -406,6 +406,7 @@
                 <div class="section-content">
                     <div class="search-box mb-3">
                         <input type="text" id="searchBorrow" placeholder="Search my borrowed books..." onkeyup="searchBorrowed()">
+                        <button class="btn btn-primary" onclick="addBorrowed()">Search</button>
                     </div>
 
                     <div class="form-box mt-3">
@@ -550,7 +551,7 @@
                 //If a match is found, dynamically create and insert a new row
                 if (borrowedBooks[i].title.toLowerCase().includes(keyword)) {
                     let row = table.insertRow();
-                    
+
                     row.innerHTML = `
                         <td>${borrowedBooks[i].title}</td>
                         <td>${borrowedBooks[i].author}</td>
