@@ -3,175 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booksphere</title>
-    <link rel="stylesheet" href="mystyle.css">
-
-    <style>
-        .book-table { width: 100%; border-collapse: separate; 
-                        border-spacing: 0 20px; border: none; }
-        .book-row td {border: none;}
-        .book-row td:first-child{  width: 220px; border: none; }                 
-
-    </style>
-
+    <title>Reservation - BookSphere Library</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
 </head>
-<body>
-        <header>
-    <div class="logo-container">
-        <img src="logo.png" alt="BookSphere Logo" class="logo">
-        <h1>BookSphere Library</h1>
-    </div>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="bookcatalog.html">Catalog</a></li>
-            <li><a href="reservation.html">Reservation</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contactUs.html">Contact</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="register.html">Register</a></li>
-            <li><a href="myaccount.html">My Account</a></li>
-        </ul>
-    </nav>
-</header>
-     <main>
-        <div class="reservation-container">
-            
-            <div class="reservation-header">
-                <h1>📖 Book Reservation</h1>
-                <p>Reserve your favorite books and pick them up from the library</p>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- ============================================== -->
+    <!-- RESPONSIVE NAVIGATION BAR (BOOTSTRAP NAVBAR)   -->
+    <!-- ============================================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img src="logo.png" alt="BookSphere Logo" width="45" height="45" class="rounded-circle me-2">
+                BookSphere Library
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="bookcatalog.html">Catalog</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="reservation.html">Reservation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contactUs.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="myaccount.html">My Account</a></li>
+                </ul>
             </div>
-            
-            <div class="book-details-card">
-                <div class="book-details-header">
-                    <h2>Book Details</h2>
-                </div>
-                <div class="book-details-content">
-                    <div class="book-image-section">
+        </div>
+    </nav>
+
+    <main class="container my-5 flex-grow-1">
+        <!-- Reservation Header -->
+        <div class="bg-primary bg-gradient text-white p-5 rounded-4 shadow mb-5 text-center">
+            <h1 class="display-5 fw-bold">📖 Book Reservation</h1>
+            <p class="lead">Reserve your favorite books and pick them up from the library</p>
+        </div>
+
+        <!-- Book Details Card -->
+        <div class="card shadow-sm border-0 mb-5">
+            <div class="card-header bg-dark text-white">
+                <h3 class="mb-0">📖 Book Details</h3>
+            </div>
+            <div class="card-body p-4">
+                <div class="row g-4">
+                    <!-- Book Image -->
+                    <div class="col-md-4 text-center">
                         <img src="clean.jpg" alt="Clean Code Book" class="book-image">
                     </div>
-                    <div class="book-info-section">
-                        <h1 class="book-title">Clean Code</h1>
-                        <div class="book-detail">
-                            <strong>Author:</strong> Robert C. Martin
+                    <!-- Book Info -->
+                    <div class="col-md-8">
+                        <h1 class="display-6 fw-bold text-primary mb-3">Clean Code</h1>
+                        <div class="row g-2">
+                            <div class="col-sm-6"><strong>Author:</strong> Robert C. Martin</div>
+                            <div class="col-sm-6"><strong>Category:</strong> Programming</div>
+                            <div class="col-sm-6"><strong>ISBN:</strong> 978-0132350884</div>
+                            <div class="col-sm-6"><strong>Publisher:</strong> Prentice Hall</div>
+                            <div class="col-sm-6"><strong>Status:</strong> <span class="status-available">✓ Available</span></div>
+                            <div class="col-sm-6"><strong>Copies Available:</strong> 2 copies</div>
                         </div>
-                        <div class="book-detail">
-                            <strong>Category:</strong> Programming
-                        </div>
-                        <div class="book-detail">
-                            <strong>ISBN:</strong> 978-0132350884
-                        </div>
-                        <div class="book-detail">
-                            <strong>Publisher:</strong> Prentice Hall
-                        </div>
-                        <div class="book-detail">
-                            <strong>Status:</strong> <span class="status-available">✓ Available</span>
-                        </div>
-                        <div class="book-detail">
-                            <strong>Copies Available:</strong> 2 copies
-                        </div>
-                        
-                        <form action="https://httpbin.org/post" method="POST">
+
+                        <!-- Reservation Form -->
+                        <form action="https://httpbin.org/post" method="POST" class="mt-4">
                             <input type="hidden" name="book" value="Clean Code">
                             <input type="hidden" name="book_id" value="103">
                             
-                            <div class="reservation-form">
-                                <h3>Confirm Reservation</h3>
-                                <div class="form-group">
-                                    <label for="student_id">Student ID</label>
-                                    <input type="text" id="student_id" name="student_id" placeholder="Enter your University ID" required>
+                            <div class="bg-light p-4 rounded-4">
+                                <h4 class="mb-3">Confirm Reservation</h4>
+                                <div class="mb-3">
+                                    <label for="student_id" class="form-label fw-bold">Student ID</label>
+                                    <input type="text" class="form-control" id="student_id" name="student_id" placeholder="Enter your University ID" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="pickup_date">Preferred Pickup Date</label>
-                                    <input type="date" id="pickup_date" name="pickup_date">
+                                <div class="mb-3">
+                                    <label for="pickup_date" class="form-label fw-bold">Preferred Pickup Date</label>
+                                    <input type="date" class="form-control" id="pickup_date" name="pickup_date">
                                 </div>
-                                <button type="submit" class="reserve-btn">Confirm Reserve</button>
-                                <div class="info-note">
-                                    ℹ️ Once confirmed, this book will appear in your account under "My Reservations". 
-                                    You will receive an email when the book is ready for pickup.
+                                <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">Confirm Reserve</button>
+                                <div class="alert alert-info mt-3 mb-0">
+                                    ℹ️ Once confirmed, this book will appear in your account under "My Reservations". You will receive an email when the book is ready for pickup.
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            
-            <div class="more-books">
-                <h3>📚 You Might Also Like</h3>
-                <div class="books-grid">
-                    <div class="book-mini">
-                        <img src="hp.jpg" alt="Harry Potter" class="book-mini-img">
-                        <h4>Harry Potter</h4>
-                        <p>J.K. Rowling</p>
-                        <span class="mini-status mini-available">✓ Available</span>
+        </div>
+
+        <!-- You Might Also Like Section -->
+        <div class="card shadow-sm border-0 mb-5">
+            <div class="card-header bg-dark text-white">
+                <h3 class="mb-0">📚 You Might Also Like</h3>
+            </div>
+            <div class="card-body p-4">
+                <div class="row g-4">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="book-card card h-100 text-center p-3 shadow-sm">
+                            <img src="hp.jpg" alt="Harry Potter" class="book-mini-img">
+                            <h5 class="mt-2 mb-0">Harry Potter</h5>
+                            <p class="text-muted small">J.K. Rowling</p>
+                            <span class="mini-available">✓ Available</span>
+                        </div>
                     </div>
-                    <div class="book-mini">
-                        <img src="db.jpg" alt="Database Systems" class="book-mini-img">
-                        <h4>Database Systems</h4>
-                        <p>Elmasri</p>
-                        <span class="mini-status mini-not-available">✗ Not Available</span>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="book-card card h-100 text-center p-3 shadow-sm">
+                            <img src="db.jpg" alt="Database Systems" class="book-mini-img">
+                            <h5 class="mt-2 mb-0">Database Systems</h5>
+                            <p class="text-muted small">Elmasri</p>
+                            <span class="mini-not-available">✗ Not Available</span>
+                        </div>
                     </div>
-                    <div class="book-mini">
-                        <img src="time.jpg" alt="A Brief History of Time" class="book-mini-img">
-                        <h4>A Brief History of Time</h4>
-                        <p>Stephen Hawking</p>
-                        <span class="mini-status mini-available">✓ Available</span>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="book-card card h-100 text-center p-3 shadow-sm">
+                            <img src="time.jpg" alt="A Brief History of Time" class="book-mini-img">
+                            <h5 class="mt-2 mb-0">A Brief History of Time</h5>
+                            <p class="text-muted small">Stephen Hawking</p>
+                            <span class="mini-available">✓ Available</span>
+                        </div>
                     </div>
-                    <div class="book-mini">
-                        <img src="clean.jpg" alt="The Pragmatic Programmer" class="book-mini-img">
-                        <h4>The Pragmatic Programmer</h4>
-                        <p>Andrew Hunt</p>
-                        <span class="mini-status mini-available">✓ Available</span>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="book-card card h-100 text-center p-3 shadow-sm">
+                            <img src="clean.jpg" alt="The Pragmatic Programmer" class="book-mini-img">
+                            <h5 class="mt-2 mb-0">The Pragmatic Programmer</h5>
+                            <p class="text-muted small">Andrew Hunt</p>
+                            <span class="mini-available">✓ Available</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="stats-table-container" style="margin-top: 30px;">
-                <h3>Reservation Policy</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Policy</th>
-                            <th>Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Reservation Duration</td><td>Books are held for 3 days after notification</td></tr>
-                         <tr><td>Maximum Reservations</td><td>5 books per student</td></tr>
-                         <tr><td>Pickup Location</td><td>Main Library Circulation Desk</td></tr>
-                         <tr><td>Cancellation Policy</td><td>Cancel anytime before pickup</td></tr>
-                    </tbody>
-                    <tfoot>
-                         <tr><td colspan="2">Questions? Contact us at reservations@booksphere.edu.om</td></tr>
-                    </tfoot>
-                 </table>
+        </div>
+
+        <!-- Reservation Policy Table -->
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-dark text-white">
+                <h3 class="mb-0">📋 Reservation Policy</h3>
+            </div>
+            <div class="card-body p-4">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-primary">
+                            <tr><th>Policy</th><th>Details</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Reservation Duration</td><td>Books are held for 3 days after notification</td></tr>
+                            <tr><td>Maximum Reservations</td><td>5 books per student</td></tr>
+                            <tr><td>Pickup Location</td><td>Main Library Circulation Desk</td></tr>
+                            <tr><td>Cancellation Policy</td><td>Cancel anytime before pickup</td></tr>
+                        </tbody>
+                        <tfoot class="table-secondary">
+                            <tr><td colspan="2">Questions? Contact us at reservations@booksphere.edu.om</td></tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>BookSphere Library</h4>
-                <p>Your gateway to knowledge</p>
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-3 mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">BookSphere Library</h4>
+                    <p class="text-secondary">Your gateway to knowledge</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-secondary text-decoration-none">About Us</a></li>
+                        <li><a href="contactUs.html" class="text-secondary text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">Contact</h4>
+                    <p class="text-secondary">Email: info@booksphere.edu.om</p>
+                    <p class="text-secondary">Phone: +968 1234 5678</p>
+                </div>
             </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+            <div class="text-center pt-3 border-top border-secondary">
+                <p class="text-secondary">&copy; 2026 BookSphere Library. All rights reserved.</p>
             </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p>Email: info@booksphere.edu.om</p>
-                <p>Phone: +968 1234 5678</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 BookSphere Library. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
