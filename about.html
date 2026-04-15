@@ -4,187 +4,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BookSphere </title>
-    <link rel="stylesheet" href="mystyle.css">
-     <style>
-        .about-content {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 30px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .about-content h2 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #2980b9;
-            display: inline-block;
-            width: auto;
-        }
-        
-        .about-content h3 {
-            color: #2980b9;
-            margin: 25px 0 10px 0;
-        }
-        
-        .about-content p {
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        
-        .email-link {
-            display: inline-block;
-            background: #2980b9;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-top: 10px;
-        }
-        
-        .email-link:hover {
-            background: #1a5276;
-        }
-        
-        .values-list {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0;
-        }
-        
-        .values-list li {
-            padding: 10px;
-            margin: 10px 0;
-            background: #f8f9fa;
-            border-left: 4px solid #2980b9;
-        }
-        
-        hr {
-            margin: 30px 0;
-        }
-    </style>
+     <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
-<body>
-     <header>
-        <div class="logo-container">
-            <img src="logo.png" alt="BookSphere Logo" class="logo">
-            <h1>BookSphere Library</h1>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- ============================================== -->
+    <!-- RESPONSIVE NAVIGATION BAR (BOOTSTRAP NAVBAR)   -->
+    <!-- ============================================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img src="logo.png" alt="BookSphere Logo" width="45" height="45" class="rounded-circle me-2">
+                BookSphere Library
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="bookcatalog.html">Catalog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reservation.html">Reservation</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contactUs.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="myaccount.html">My Account</a></li>
+                </ul>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="bookcatalog.html">Catalog</a></li>
-                <li><a href="reservation.html">Reservation</a></li>
-                <li><a href="about.html" class="active">About Us</a></li>
-                <li><a href="contactUs.html">Contact</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="myaccount.html">My Account</a></li>
-            </ul>
-        </nav>
-    </header>
+    </nav>
 
-    <main>
-        <div class="account-container">
-            <div class="profile-header" style="background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);">
-                <div class="profile-info">
-                    <div class="profile-details">
-                        <h2>About BookSphere Library</h2>
-                        <p>Your gateway to knowledge and learning</p>
-                    </div>
+    <main class="container my-5 flex-grow-1">
+        <!-- Hero Header Section -->
+        <div class="bg-primary bg-gradient text-white p-5 rounded-4 shadow mb-5 text-center">
+            <h1 class="display-4 fw-bold">About BookSphere Library</h1>
+            <p class="lead">Your gateway to knowledge and learning</p>
+        </div>
+
+        <!-- Mission, Vision, Values Section -->
+        <div class="card shadow-sm border-0 mb-5">
+            <div class="card-body p-4">
+                <h2 class="border-start border-primary border-5 ps-3 text-primary mb-4">Our Mission</h2>
+                <p class="text-secondary">To provide students with easy access to books and educational resources, making learning more accessible and efficient for everyone at the university.</p>
+                
+                <h2 class="border-start border-primary border-5 ps-3 text-primary mt-5 mb-4">Our Vision</h2>
+                <p class="text-secondary">To become the leading digital library platform in the university, transforming how students discover, borrow, and engage with educational materials.</p>
+                
+                <h2 class="border-start border-primary border-5 ps-3 text-primary mt-5 mb-4">Our Values</h2>
+                <div class="table-responsive">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr><td style="padding: 10px;"><strong>📚 Accessibility</strong></td><td style="padding: 10px;">Making knowledge available to all students</td></tr>
+                            <tr><td style="padding: 10px;"><strong>🔍 Innovation</strong></td><td style="padding: 10px;">Using technology to improve library services</td></tr>
+                            <tr><td style="padding: 10px;"><strong>🤝 Community</strong></td><td style="padding: 10px;">Building a strong reading community</td></tr>
+                            <tr><td style="padding: 10px;"><strong>⭐ Excellence</strong></td><td style="padding: 10px;">Providing high-quality service and resources</td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-            <div class="login-box" style="margin-top: 30px;">
-                <h2>Our Mission</h2>
-                <p>To provide students with easy access to books and educational resources, making learning more accessible and efficient for everyone at the university.</p>
+        </div>
+<!-- Contact Information Section -->
+        <div class="card shadow-sm border-0 mb-5">
+            <div class="card-body p-4">
+                <h2 class="border-start border-primary border-5 ps-3 text-primary mb-4">Contact Information</h2>
+                <p class="text-secondary">For any inquiries, feedback, or support, please feel free to reach out to us:</p>
                 
-                <h2>Our Vision</h2>
-                <p>To become the leading digital library platform in the university, transforming how students discover, borrow, and engage with educational materials.</p>
-                
-                <h2>Our Values</h2>
-                <table style="margin: 20px 0;">
-                    <tr>
-                        <td style="border: none; padding: 10px;"><strong>📚 Accessibility</strong></td>
-                        <td style="border: none; padding: 10px;">Making knowledge available to all students</td>
-                    </tr>
-                    <tr>
-                        <td style="border: none; padding: 10px;"><strong>🔍 Innovation</strong></td>
-                        <td style="border: none; padding: 10px;">Using technology to improve library services</td>
-                    </tr>
-                    <tr>
-                        <td style="border: none; padding: 10px;"><strong>🤝 Community</strong></td>
-                        <td style="border: none; padding: 10px;">Building a strong reading community</td>
-                    </tr>
-                    <tr>
-                        <td style="border: none; padding: 10px;"><strong>⭐ Excellence</strong></td>
-                        <td style="border: none; padding: 10px;">Providing high-quality service and resources</td>
-                    </tr>
-                </table>
-                
-                <hr>
-                
-                <h2>Contact Information</h2>
-                <p>For any inquiries, feedback, or support, please feel free to reach out to us:</p>
-                
-                <div class="form-box" style="margin-top: 20px;">
-                    <p>📧 <strong>Email:</strong> <a href="mailto:support@booksphere.edu.om" style="color: #2980b9;">info@booksphere.edu.om</a></p>
-                    <p>📞 <strong>Phone:</strong> +968 1234 5678</p>
-                    <p>📍 <strong>Location:</strong> Sultan Qaboos University, Oman</p>
-                    <p>🕒 <strong>Hours:</strong> Sunday - Thursday, 8:00 AM - 8:00 PM</p>
+                <div class="bg-light p-4 rounded-4 mt-3">
+                    <p class="mb-2"><i class="bi bi-envelope-fill text-primary me-2"></i> <strong>Email:</strong> <a href="mailto:info@booksphere.edu.om" class="text-primary">info@booksphere.edu.om</a></p>
+                    <p class="mb-2"><i class="bi bi-telephone-fill text-primary me-2"></i> <strong>Phone:</strong> +968 1234 5678</p>
+                    <p class="mb-2"><i class="bi bi-geo-alt-fill text-primary me-2"></i> <strong>Location:</strong> Sultan Qaboos University, Oman</p>
+                    <p class="mb-0"><i class="bi bi-clock-fill text-primary me-2"></i> <strong>Hours:</strong> Sunday - Thursday, 8:00 AM - 8:00 PM</p>
                 </div>
             </div>
+        </div>
 
-            <div class="stats-table-container" style="margin-top: 30px;">
-                <h3>Library Statistics</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Category</th>
-                            <th>Information</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Total Books</td><td>5,000+</td></tr>
-                        <tr><td>Active Members</td><td>4,454</td></tr>
-                        <tr><td>Books Borrowed Monthly</td><td>1,200+</td></tr>
-                        <tr><td>Staff Members</td><td>15</td></tr>
-                    </tbody>
-                    <tfoot>
-                        <tr><td colspan="2">Established: 2025</td></tr>
-                    </tfoot>
-                </table>
+        <!-- Library Statistics Table -->
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-body p-4">
+                <h3 class="border-start border-primary border-5 ps-3 text-primary mb-4">Library Statistics</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-primary">
+                            <tr><th>Category</th><th>Information</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Total Books</td><td>5,000+</td></tr>
+                            <tr><td>Active Members</td><td>4,454</td></tr>
+                            <tr><td>Books Borrowed Monthly</td><td>1,200+</td></tr>
+                            <tr><td>Staff Members</td><td>15</td></tr>
+                        </tbody>
+                        <tfoot class="table-secondary">
+                            <tr><td colspan="2">Established: 2025</td></tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>BookSphere Library</h4>
-                <p>Your gateway to knowledge</p>
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">BookSphere Library</h4>
+                    <p class="text-secondary">Your gateway to knowledge</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-secondary text-decoration-none">About Us</a></li>
+                        <li><a href="contactUs.html" class="text-secondary text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">Contact</h4>
+                    <p class="text-secondary">Email: info@booksphere.edu.om</p>
+                    <p class="text-secondary">Phone: +968 1234 5678</p>
+                </div>
             </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contactUs.html">Contact</a></li>
-                </ul>
+            <div class="text-center pt-3 border-top border-secondary">
+                <p class="text-secondary">&copy; 2026 BookSphere Library. All rights reserved.</p>
             </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p>Email: info@booksphere.edu.om</p>
-                <p>Phone: +968 1234 5678</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 BookSphere Library. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
