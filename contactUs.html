@@ -8,296 +8,168 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <style>
-        .contact-container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-        
-        .contact-header {
-            background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .contact-header h1 {
-            margin-bottom: 10px;
-            color: white;
-        }
-        
-        .contact-header p {
-            font-size: 16px;
-            opacity: 0.9;
-        }
-        
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-        
-        .contact-info {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .contact-info h3 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #2980b9;
-            display: inline-block;
-        }
-        
-        .info-item {
-            margin: 20px 0;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid #2980b9;
-        }
-        
-        .info-item p {
-            margin: 8px 0;
-            color: #555;
-        }
-        
-        .info-item strong {
-            color: #2c3e50;
-        }
-        
-        .contact-form {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .contact-form h3 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #2980b9;
-            display: inline-block;
-        }
-        
-        .contact-form form {
-            max-width: 100%;
-        }
-        
-        .contact-form label {
-            display: block;
-            margin-top: 15px;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #333;
-        }
-        
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-        
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: #2980b9;
-        }
-        
-        .contact-form textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-        
-        .send-btn {
-            width: 100%;
-            padding: 12px;
-            background: #2980b9;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 20px;
-            font-weight: bold;
-        }
-        
-        .send-btn:hover {
-            background: #1a5276;
-        }
-        
-        .map-section {
-            margin-top: 30px;
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .map-section h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-        
-        .map-placeholder {
-            background: #ecf0f1;
-            padding: 40px;
-            text-align: center;
-            border-radius: 8px;
-            color: #7f8c8d;
-        }
-        
-        @media (max-width: 768px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .contact-container {
-                margin: 20px;
-            }
-        }
-    </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-    <header>
-        <div class="logo-container">
-            <img src="logo.png" alt="BookSphere Logo" class="logo">
-            <h1>BookSphere Library</h1>
+    <!-- ============================================== -->
+    <!-- RESPONSIVE NAVIGATION BAR (BOOTSTRAP NAVBAR)   -->
+    <!-- ============================================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img src="logo.png" alt="BookSphere Logo" width="45" height="45" class="rounded-circle me-2">
+                BookSphere Library
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="bookcatalog.html">Catalog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reservation.html">Reservation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contactUs.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="myaccount.html">My Account</a></li>
+                </ul>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="bookcatalog.html">Catalog</a></li>
-                <li><a href="reservation.html">Reservation</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contactUs.html" class="active">Contact</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="myaccount.html">My Account</a></li>
-            </ul>
-        </nav>
-    </header>
+    </nav>
 
-    <main>
-        <div class="contact-container">
-            
-            <div class="contact-header">
-                <h1>Contact Us</h1>
-                <p>We're here to help! Reach out to us with any questions or feedback.</p>
-            </div>
-            
-            <div class="contact-grid">
-                
-                <div class="contact-info">
-                    <h3>📞 Contact Information</h3>
-                    
-                    <div class="info-item">
-                        <p><strong>📍 Location:</strong> Sultan Qaboos University, Oman</p>
-                        <p><strong>📧 Email:</strong> <a href="mailto:support@booksphere.edu.om" style="color: #2980b9;">info@booksphere.edu.om</a></p>
-                        <p><strong>📞 Phone:</strong> +968 1234 5678</p>
-                        <p><strong>🕒 Hours:</strong> Sunday - Thursday, 8:00 AM - 8:00 PM</p>
-                    </div>
-                    
-                    <div class="info-item">
-                        <p><strong>📚 Library Services:</strong> circulation@booksphere.edu.om</p>
-                        <p><strong>💻 Technical Support:</strong> support@booksphere.edu.om</p>
-                    </div>
-                    
-                    <div class="info-item">
-                        <p><strong>🏛️ Main Library Building</strong></p>
-                        <p>Sultan Qaboos University<br>Al Khoudh, Muscat<br>Oman</p>
+    <main class="container my-5 flex-grow-1">
+        <!-- Contact Header -->
+        <div class="bg-primary bg-gradient text-white p-5 rounded-4 shadow mb-5 text-center">
+            <h1 class="display-5 fw-bold">Contact Us</h1>
+            <p class="lead">We're here to help! Reach out to us with any questions or feedback.</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Contact Information Column -->
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body p-4">
+                        <h3 class="border-start border-primary border-5 ps-3 text-primary mb-4">📞 Contact Information</h3>
+                        
+                        <div class="bg-light p-3 rounded-4 mb-3">
+                            <p class="mb-2"><strong>📍 Location:</strong> Sultan Qaboos University, Oman</p>
+                            <p class="mb-2"><strong>📧 Email:</strong> <a href="mailto:info@booksphere.edu.om" class="text-primary">info@booksphere.edu.om</a></p>
+                            <p class="mb-2"><strong>📞 Phone:</strong> +968 1234 5678</p>
+                            <p class="mb-0"><strong>🕒 Hours:</strong> Sunday - Thursday, 8:00 AM - 8:00 PM</p>
+                        </div>
+                        
+                        <div class="bg-light p-3 rounded-4 mb-3">
+                            <p class="mb-2"><strong>📚 Library Services:</strong> circulation@booksphere.edu.om</p>
+                            <p class="mb-0"><strong>💻 Technical Support:</strong> support@booksphere.edu.om</p>
+                        </div>
+                        
+                        <div class="bg-light p-3 rounded-4">
+                            <p class="mb-2"><strong>🏛️ Main Library Building</strong></p>
+                            <p class="mb-0">Sultan Qaboos University<br>Al Khoudh, Muscat<br>Oman</p>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="contact-form">
-                    <h3>✉️ Send Us a Message</h3>
-                    <p style="color: #666; margin-bottom: 15px;">Fill out the form below and we'll get back to you as soon as possible.</p>
-                    
-                    <form action="https://httpbin.org/post" method="POST">
-                        <label for="name">Full Name <span style="color: red;">*</span></label>
-                        <input type="text" id="name" name="name" required>
+            </div>
+
+            <!-- Contact Form Column -->
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body p-4">
+                        <h3 class="border-start border-primary border-5 ps-3 text-primary mb-4">✉️ Send Us a Message</h3>
+                        <p class="text-secondary mb-4">Fill out the form below and we'll get back to you as soon as possible.</p>
                         
-                        <label for="email">Email Address <span style="color: red;">*</span></label>
-                        <input type="email" id="email" name="email" required>
-                        
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" placeholder="e.g., Book Reservation, Technical Issue, Feedback">
-                        
-                        <label for="message">Message <span style="color: red;">*</span></label>
-                        <textarea id="message" name="message" placeholder="Type your question, request, or feedback here..." required></textarea>
-                        
-                        <button type="submit" class="send-btn">Send Message</button>
-                    </form>
+                        <form action="https://httpbin.org/post" method="POST">
+                            <div class="mb-3">
+                                <label for="name" class="form-label fw-bold">Full Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="email" class="form-label fw-bold">Email Address <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="subject" class="form-label fw-bold">Subject</label>
+                                <input type="text" class="form-control" id="subject" name="subject" placeholder="e.g., Book Reservation, Technical Issue, Feedback">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="message" class="form-label fw-bold">Message <span class="text-danger">*</span></label>
+                                <textarea class="form-control" id="message" name="message" rows="4" placeholder="Type your question, request, or feedback here..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">📤 Send Message</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            
-            <div class="map-section">
-                <h3>📍 Find Us</h3>
-                <div class="map-placeholder">
-                    <p>📍 Sultan Qaboos University Library</p>
-                    <p>Al Khoudh, Muscat, Oman</p>
-                    <p style="margin-top: 10px; font-size: 12px;">[Interactive Map Coming Soon]</p>
+        </div>
+
+        <!-- Map Section -->
+        <div class="card shadow-sm border-0 mt-4">
+            <div class="card-body p-4">
+                <h3 class="border-start border-primary border-5 ps-3 text-primary mb-4">📍 Find Us</h3>
+                <div class="bg-light p-5 rounded-4 text-center">
+                    <p class="mb-1 fw-bold">📍 Sultan Qaboos University Library</p>
+                    <p class="mb-1">Al Khoudh, Muscat, Oman</p>
+                    <p class="text-muted mt-3 small">[Interactive Map Coming Soon]</p>
                 </div>
             </div>
-            
-            <div class="stats-table-container" style="margin-top: 30px;">
-                <h3>Support Hours</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Day</th>
-                            <th>Opening Hours</th>
-                            <th>Support Available</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Sunday - Thursday</td><td>8:00 AM - 8:00 PM</td><td>Full Support</td></tr>
-                        <tr><td>Friday</td><td>Closed</td><td>Email Support Only</td></tr>
-                        <tr><td>Saturday</td><td>10:00 AM - 4:00 PM</td><td>Limited Support</td></tr>
-                    </tbody>
-                    <tfoot>
-                        <tr><td colspan="3">Emergency Contact: +968 9876 5432</td></tr>
-                    </tfoot>
-                </table>
+        </div>
+
+        <!-- Support Hours Table -->
+        <div class="card shadow-sm border-0 mt-4">
+            <div class="card-body p-4">
+                <h3 class="border-start border-primary border-5 ps-3 text-primary mb-4">Support Hours</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-primary">
+                            <tr><th>Day</th><th>Opening Hours</th><th>Support Available</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Sunday - Thursday</td><td>8:00 AM - 8:00 PM</td><td>Full Support</td></tr>
+                            <tr><td>Friday</td><td>Closed</td><td>Email Support Only</td></tr>
+                            <tr><td>Saturday</td><td>10:00 AM - 4:00 PM</td><td>Limited Support</td></tr>
+                        </tbody>
+                        <tfoot class="table-secondary">
+                            <tr><td colspan="3">Emergency Contact: +968 9876 5432</td></tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>BookSphere Library</h4>
-                <p>Your gateway to knowledge</p>
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">BookSphere Library</h4>
+                    <p class="text-secondary">Your gateway to knowledge</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-secondary text-decoration-none">About Us</a></li>
+                        <li><a href="contactUs.html" class="text-secondary text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">Contact</h4>
+                    <p class="text-secondary">Email: info@booksphere.edu.om</p>
+                    <p class="text-secondary">Phone: +968 1234 5678</p>
+                </div>
             </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contactUs.html">Contact</a></li>
-                </ul>
+            <div class="text-center pt-3 border-top border-secondary">
+                <p class="text-secondary">&copy; 2026 BookSphere Library. All rights reserved.</p>
             </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p>Email: info@booksphere.edu.om</p>
-                <p>Phone: +968 1234 5678</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 BookSphere Library. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
