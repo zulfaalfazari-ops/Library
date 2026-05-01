@@ -87,8 +87,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
                                                     <?php if ($book['image']): ?>
                                                         <img src="<?php echo $book['image']; ?>" width="50" height="60">
                                                     <?php else: ?>
-                                                        No image
-                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                             <?php endforeach; ?>
