@@ -3,138 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookshpere</title>
-    <link rel="stylesheet" href="mystyle.css">
-     <style>
-        .account-container {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 20px;
+    <title>My Account - BookSphere Library</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Minimal CSS for status badges and hover effects -->
+    <style>
+        .hover-lift:hover {
+            transform: translateY(-3px);
+            transition: transform 0.2s ease;
         }
-        
-        .profile-header {
-            background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
-            color: white;
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-        }
-        
-        .profile-info {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .profile-avatar {
-            width: 80px;
-            height: 80px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            color: #2980b9;
-        }
-        
-        .profile-details h2 {
-            margin: 0 0 8px 0;
-            font-size: 24px;
-            color: white;
-        }
-        
-        .profile-details p {
-            margin: 5px 0;
-            color: rgba(255,255,255,0.9);
-        }
-        
-        .section-container {
-            background: white;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .section-header {
-            background: #2c3e50;
-            color: white;
-            padding: 15px 20px;
-        }
-        
-        .section-header h3 {
-            margin: 0;
-            font-size: 18px;
-        }
-        
-        .section-content {
-            padding: 20px;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-            background: white;
-        }
-        
-        th {
-            background: #2c3e50;
-            color: white;
-            padding: 12px;
-            text-align: left;
-            font-weight: 600;
-        }
-        
-        td {
-            padding: 12px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        
-        tr:hover {
+        .table-hover tbody tr:hover {
             background-color: #f8f9fa;
         }
-        
-        .status-borrowed {
-            background: #ff9800;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            display: inline-block;
-        }
-        
-        .status-overdue {
-            background: #f44336;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            display: inline-block;
-        }
-        
-        .status-returned {
-            background: #4caf50;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            display: inline-block;
-        }
-        
-        .status-pending {
-            background: #2196f3;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            display: inline-block;
-        }
-        
         .action-btn {
-            background: #2980b9;
+            background-color: #0d6efd;
             color: white;
             border: none;
             padding: 5px 15px;
@@ -142,354 +26,308 @@
             cursor: pointer;
             font-size: 12px;
         }
-        
         .action-btn:hover {
-            background: #1a5276;
+            background-color: #0b5ed7;
         }
-        
-        .form-box {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0 0 0;
-            border-left: 4px solid #2980b9;
-        }
-        
-        .form-box h4 {
-            margin: 0 0 15px 0;
-            color: #2c3e50;
-        }
-        
-        .form-box select {
-            padding: 8px 12px;
-            margin-right: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-        
-        .fine-box {
-            background: #fff3e0;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin-top: 15px;
-            border-left: 4px solid #ff9800;
-        }
-        
-        .fine-box h4 {
-            margin: 0 0 10px 0;
-            color: #ff9800;
-        }
-        
-        .fine-box p {
-            margin: 5px 0;
-        }
-        
-        .summary-table {
-            margin-top: 0;
-        }
-        
-        .summary-table tfoot td {
-            background: #f5f5f5;
-            font-weight: bold;
-            border-top: 2px solid #2980b9;
-        }
-        
-        hr {
-            margin: 20px 0;
-        }
-        
-        .grid-2col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            .profile-info {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .grid-2col {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            table {
-                font-size: 12px;
-                display: block;
-                overflow-x: auto;
-            }
-            
-            th, td {
-                padding: 8px;
-            }
-            
-            .account-container {
-                margin: 15px;
-                padding: 10px;
-            }
-        }
+        .status-borrowed { background: #ff9800; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; display: inline-block; }
+        .status-overdue { background: #f44336; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; display: inline-block; }
+        .status-returned { background: #4caf50; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; display: inline-block; }
+        .status-pending { background: #2196f3; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; display: inline-block; }
+        .fine-box { background: #fff3e0; border-left: 4px solid #ff9800; }
     </style>
 </head>
-<body>
- <header>
-    <div class="logo-container">
-        <img src="logo.png" alt="BookSphere Logo" class="logo">
-        <h1>BookSphere Library</h1>
-    </div>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="bookcatalog.html">Catalog</a></li>
-            <li><a href="reservation.html">Reservation</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contactUs.html">Contact</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="register.html">Register</a></li>
-            <li><a href="myaccount.html">My Account</a></li>
-        </ul>
-    </nav>
-</header>
+<body class="d-flex flex-column min-vh-100">
 
-    <main>
-        <div class="account-container">
-            
-            <div class="profile-header">
-                <div class="profile-info">
-                    <div class="profile-avatar">📚</div>
-                    <div class="profile-details">
-                        <h2>Ahmed Mohammed Al-Busaidi</h2>
-                        <p>📧 ahmed.mohammed@university.edu.om</p>
-                        <p>🆔 Student ID: 202312345</p>
-                        <p>📅 Member since: September 2025 | 🎓 College of Engineering</p>
-                    </div>
+    <!-- ============================================== -->
+    <!-- RESPONSIVE NAVIGATION BAR (BOOTSTRAP NAVBAR)   -->
+    <!-- ============================================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img src="logo.png" alt="BookSphere Logo" width="45" height="45" class="rounded-circle me-2">
+                BookSphere Library
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="bookcatalog.html">Catalog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reservation.html">Reservation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contactUs.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="myaccount.html">My Account</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-4 flex-grow-1">
+        <!-- Profile Header -->
+        <div class="bg-primary bg-gradient text-white p-4 rounded-4 shadow mb-4">
+            <div class="d-flex flex-column flex-md-row align-items-center gap-4">
+                <div class="bg-white text-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 80px; height: 80px; font-size: 40px;">📚</div>
+                <div class="text-center text-md-start">
+                    <h2 class="mb-1">Ahmed Mohammed Al-Busaidi</h2>
+                    <p class="mb-1"><i class="bi bi-envelope-fill me-2"></i> ahmed.mohammed@university.edu.om</p>
+                    <p class="mb-1"><i class="bi bi-person-badge me-2"></i> Student ID: 202312345</p>
+                    <p class="mb-0"><i class="bi bi-calendar me-2"></i> Member since: September 2025 | 🎓 College of Engineering</p>
                 </div>
             </div>
-            
-            <div class="grid-2col">
-                <div class="section-container">
-                    <div class="section-header">
-                        <h3>📖 Currently Borrowed</h3>
+        </div>
+
+        <!-- Two Columns: Currently Borrowed + My Reservations -->
+        <div class="row g-4 mb-4">
+            <!-- Currently Borrowed -->
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">📖 Currently Borrowed</h5>
                     </div>
-                    <div class="section-content">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Book Title</th>
-                                    <th>Author</th>
-                                    <th>Due Date</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Clean Code</td>
-                                    <td>Robert C. Martin</td>
-                                    <td>2026-03-06</td>
-                                    <td><span class="status-borrowed">Borrowed</span></td>
-                                </tr>
-                                <tr style="background-color: #fff5f5;">
-                                    <td>Introduction to Algorithms</td>
-                                    <td>Thomas H. Cormen</td>
-                                    <td><strong style="color:#f44336;">2026-03-01</strong></td>
-                                    <td><span class="status-overdue">Overdue</span></td>
-                                </tr>
-                                <tr>
-                                    <td>The Pragmatic Programmer</td>
-                                    <td>Andrew Hunt</td>
-                                    <td>2026-03-11</td>
-                                    <td><span class="status-borrowed">Borrowed</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
-                        <div class="form-box">
-                            <h4>⟳ Renew a Book</h4>
-                            <form action="https://httpbin.org/post" method="POST">
-                                <select name="book_to_renew">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-secondary">
+                                    <tr><th>Book Title</th><th>Author</th><th>Due Date</th><th>Status</th></tr>
+                                </thead>
+                                <tbody id="borrowTable"></tbody>
+                            </table>
+                        </div>
+                        <div class="bg-light p-3 rounded-4 mt-3">
+                            <h6 class="fw-bold">⟳ Renew a Book</h6>
+                            <form action="https://httpbin.org/post" method="POST" class="d-flex flex-column flex-sm-row gap-2">
+                                <select name="book_to_renew" class="form-select w-auto">
                                     <option value="101">Clean Code</option>
                                     <option value="103">The Pragmatic Programmer</option>
                                 </select>
-                                <button type="submit" class="action-btn">Submit Renewal</button>
+                                <button type="submit" class="btn btn-primary btn-sm">Submit Renewal</button>
                             </form>
                         </div>
                     </div>
                 </div>
-                
-                <div class="section-container">
-                    <div class="section-header">
-                        <h3>⏳ My Reservations</h3>
+            </div>
+
+            <!-- My Reservations -->
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">⏳ My Reservations</h5>
                     </div>
-                    <div class="section-content">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Book Title</th>
-                                    <th>Author</th>
-                                    <th>Reservation Date</th>
-                                    <th>Queue</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Database Systems</td>
-                                    <td>Carlos Coronel</td>
-                                    <td>2026-02-28</td>
-                                    <td><span class="status-pending">#3</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Harry Potter</td>
-                                    <td>J.K. Rowling</td>
-                                    <td>2026-03-01</td>
-                                    <td><span class="status-pending">#1</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
-                        <div class="form-box">
-                            <h4>❌ Cancel Reservation</h4>
-                            <form action="https://httpbin.org/post" method="POST">
-                                <select name="reservation_to_cancel">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-secondary">
+                                    <tr><th>Book Title</th><th>Author</th><th>Reservation Date</th><th>Queue</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Database Systems</td><td>Carlos Coronel</td><td>2026-02-28</td><td><span class="status-pending">#3</span></td></tr>
+                                    <tr><td>Harry Potter</td><td>J.K. Rowling</td><td>2026-03-01</td><td><span class="status-pending">#1</span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="bg-light p-3 rounded-4 mt-3">
+                            <h6 class="fw-bold">❌ Cancel Reservation</h6>
+                            <form action="https://httpbin.org/post" method="POST" class="d-flex flex-column flex-sm-row gap-2">
+                                <select name="reservation_to_cancel" class="form-select w-auto">
                                     <option value="301">Database Systems</option>
                                     <option value="302">Harry Potter</option>
                                 </select>
-                                <button type="submit" class="action-btn">Cancel Reservation</button>
+                                <button type="submit" class="btn btn-danger btn-sm">Cancel Reservation</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="fine-box">
-                <h4>⚠️ Overdue Notice</h4>
-                <p>You have <strong>1 overdue book</strong>: "Introduction to Algorithms" (Overdue by 5 days)</p>
-                <p>Library fine policy: <strong>0.100 OMR per day</strong> per overdue book</p>
-                <p>Total fines accumulated: <strong>2.500 OMR</strong></p>
-                <form action="https://httpbin.org/post" method="POST" style="margin-top: 10px;">
-                    <input type="hidden" name="fine_amount" value="2.500">
-                    <button type="submit" class="action-btn">💰 Pay Fines Online</button>
-                </form>
+        </div>
+
+        <!-- Fine Box -->
+        <div class="fine-box p-3 rounded-4 mb-4">
+            <h5 class="text-warning fw-bold">⚠️ Overdue Notice</h5>
+            <p class="mb-1">You have <strong>1 overdue book</strong>: "Introduction to Algorithms" (Overdue by 5 days)</p>
+            <p class="mb-1">Library fine policy: <strong>0.100 OMR per day</strong> per overdue book</p>
+            <p class="mb-2">Total fines accumulated: <strong>2.500 OMR</strong></p>
+            <form action="https://httpbin.org/post" method="POST">
+                <input type="hidden" name="fine_amount" value="2.500">
+                <button type="submit" class="btn btn-warning">💰 Pay Fines Online</button>
+            </form>
+        </div>
+
+        <!-- Borrowing History Section -->
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0">📜 Borrowing History (Last 6 Months)</h5>
             </div>
-            
-            <div class="section-container" style="margin-top: 20px;">
-                <div class="section-header">
-                    <h3>📜 Borrowing History (Last 6 Months)</h3>
+            <div class="card-body">
+                <div class="d-flex flex-column flex-sm-row gap-2 mb-3">
+                    <input type="text" id="searchBorrow" class="form-control" placeholder="Search my borrowed books...">
+                    <button class="btn btn-outline-primary" onclick="searchBorrowed()">Search</button>
                 </div>
-                <div class="section-content">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Book Title</th>
-                                <th>Author</th>
-                                <th>Borrow Date</th>
-                                <th>Return Date</th>
-                                <th>Status</th>
-                            </tr>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-secondary">
+                            <tr><th>Book Title</th><th>Author</th><th>Borrow Date</th><th>Return Date</th><th>Status</th></tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>You Don't Know JS</td>
-                                <td>Kyle Simpson</td>
-                                <td>2026-01-10</td>
-                                <td>2026-01-25</td>
-                                <td><span class="status-returned">Returned</span></td>
-                            </tr>
-                            <tr>
-                                <td>Design Patterns</td>
-                                <td>Erich Gamma</td>
-                                <td>2025-12-15</td>
-                                <td>2025-12-30</td>
-                                <td><span class="status-returned">Returned</span></td>
-                            </tr>
-                            <tr>
-                                <td>The Art of Computer Programming</td>
-                                <td>Donald Knuth</td>
-                                <td>2025-11-20</td>
-                                <td>2025-12-05</td>
-                                <td><span class="status-returned">Returned</span></td>
-                            </tr>
+                            <tr><td>You Don't Know JS</td><td>Kyle Simpson</td><td>2026-01-10</td><td>2026-01-25</td><td><span class="status-returned">Returned</span></td></tr>
+                            <tr><td>Design Patterns</td><td>Erich Gamma</td><td>2025-12-15</td><td>2025-12-30</td><td><span class="status-returned">Returned</span></td></tr>
+                            <tr><td>The Art of Computer Programming</td><td>Donald Knuth</td><td>2025-11-20</td><td>2025-12-05</td><td><span class="status-returned">Returned</span></td></tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
-            
-            <hr/>
-            
-            <div class="section-container">
-                <div class="section-header">
-                    <h3>📊 Account Summary</h3>
+                <div class="bg-light p-3 rounded-4 mt-3">
+                    <h6 class="fw-bold">➕ Record New Borrowing</h6>
+                    <div class="row g-2">
+                        <div class="col-md-3"><input type="text" id="btitle" class="form-control" placeholder="Book Title"></div>
+                        <div class="col-md-3"><input type="text" id="bauthor" class="form-control" placeholder="Author"></div>
+                        <div class="col-md-2"><input type="date" id="bdate" class="form-control"></div>
+                        <div class="col-md-2"><select id="bstatus" class="form-select"><option>Borrowed</option><option>Overdue</option><option>Returned</option></select></div>
+                        <div class="col-md-2"><button type="button" class="btn btn-success w-100" onclick="addBorrowed()">Add</button></div>
+                    </div>
                 </div>
-                <div class="section-content">
-                    <table class="summary-table">
-                        <thead>
-                            <tr>
-                                <th>Category</th>
-                                <th>Details</th>
-                                <th>Value</th>
-                            </tr>
-                        </thead>
+            </div>
+        </div>
+
+        <!-- Account Summary Table -->
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0">📊 Account Summary</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-secondary"><tr><th>Category</th><th>Details</th><th>Value</th></tr></thead>
                         <tbody>
-                            <tr>
-                                <td>Current Borrowings</td>
-                                <td>Total books borrowed</td>
-                                <td>3 books (2 on time, 1 overdue)</td>
-                            </tr>
-                            <tr>
-                                <td>Active Reservations</td>
-                                <td>Books reserved</td>
-                                <td>2 books waiting</td>
-                            </tr>
-                            <tr>
-                                <td>Unpaid Fines</td>
-                                <td>Total fines</td>
-                                <td><strong style="color:#f44336;">2.500 OMR</strong></td>
-                            </tr>
-                            <tr>
-                                <td>Membership</td>
-                                <td>Member since</td>
-                                <td>September 2025</td>
-                            </tr>
-                            <tr>
-                                <td>Lifetime Statistics</td>
-                                <td>Total books borrowed</td>
-                                <td>24 books</td>
-                            </tr>
+                            <tr><td>Current Borrowings</td><td>Total books borrowed</td><td>3 books (2 on time, 1 overdue)</td></tr>
+                            <tr><td>Active Reservations</td><td>Books reserved</td><td>2 books waiting</td></tr>
+                            <tr><td>Unpaid Fines</td><td>Total fines</td><td><strong class="text-danger">2.500 OMR</strong></td></tr>
+                            <tr><td>Membership</td><td>Member since</td><td>September 2025</td></tr>
+                            <tr><td>Lifetime Statistics</td><td>Total books borrowed</td><td>24 books</td></tr>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="3">Status: Active Member | Account Type: Student | Membership Level: Gold</td>
-                            </tr>
-                        </tfoot>
+                        <tfoot class="table-light"><tr><td colspan="3">Status: Active Member | Account Type: Student | Membership Level: Gold</td></tr></tfoot>
                     </table>
                 </div>
             </div>
-            
         </div>
     </main>
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>BookSphere Library</h4>
-                <p>Your gateway to knowledge</p>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-3 mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">BookSphere Library</h4>
+                    <p class="text-secondary">Your gateway to knowledge</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-secondary text-decoration-none">About Us</a></li>
+                        <li><a href="contactUs.html" class="text-secondary text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">Contact</h4>
+                    <p class="text-secondary">Email: info@booksphere.edu.om</p>
+                    <p class="text-secondary">Phone: +968 1234 5678</p>
+                </div>
             </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contactUs.html">Contact</a></li>
-                </ul>
+            <div class="text-center pt-3 border-top border-secondary">
+                <p class="text-secondary">&copy; 2026 BookSphere Library. All rights reserved.</p>
             </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p>Email: info@booksphere.edu.om</p>
-                <p>Phone: +968 1234 5678</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 BookSphere Library. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        //Object for borrowed books
+        function BorrowedBook(title, author, date, status) {
+            this.title = title;
+            this.author = author;
+            this.date = date;
+            this.status = status;
+        }
+
+        //Array
+        let borrowedBooks = [
+            new BorrowedBook("Clean Code", "Robert Martin", "2026-03-06", "Borrowed"),
+            new BorrowedBook("Introduction to Algorithms", "Cormen", "2026-03-01", "Overdue"),
+            new BorrowedBook("The Pragmatic Programmer", "Andrew Hunt", "2026-03-11", "Borrowed")
+        ];
+
+        //This function dynamically updates the XHTML table by reading the borrowedBooks array.
+        // It first clears the existing table body to prevent duplicate entries, then loops 
+        // through the array to insert a new row for every object found
+        function displayBorrowed() {
+            let table = document.getElementById("borrowTable");
+            table.innerHTML = "";
+            for (let i = 0; i < borrowedBooks.length; i++) {
+                let row = table.insertRow();
+                let statusClass = borrowedBooks[i].status === "Borrowed" ? "status-borrowed" : (borrowedBooks[i].status === "Overdue" ? "status-overdue" : "status-returned");
+                row.innerHTML = `
+                    <td>${borrowedBooks[i].title}</td>
+                    <td>${borrowedBooks[i].author}</td>
+                    <td>${borrowedBooks[i].date}</td>
+                    <td><span class="${statusClass}">${borrowedBooks[i].status}</span></td>
+                `;
+            }
+        }
+        window.onload = displayBorrowed;  //Calling the function
+
+        //Add borrowed book
+        function addBorrowed() {
+            //get values from inputs
+            let title = document.getElementById("btitle").value;
+            let author = document.getElementById("bauthor").value;
+            let date = document.getElementById("bdate").value;
+            let status = document.getElementById("bstatus").value;
+            //Basic validation logic to ensure no empty data enters the array
+            if (title.trim() === "" || author.trim() === "") {
+                alert("Please enter at least Title and Author.");
+                return;
+            }
+            //create new book object
+            let newBook = new BorrowedBook(title, author, date, status);
+            borrowedBooks.push(newBook);  //Add the book to the list
+            displayBorrowed();  //refresh table
+
+            //Clear inputs after adding
+            document.getElementById("btitle").value = "";
+            document.getElementById("bauthor").value = "";
+            document.getElementById("bdate").value = "";
+        }
+
+        //Implement a search/filter feature to update the table view in real-time.
+        // It captures the user's input, converts it to lowercase for case-insensitivity, 
+        // and re-renders the table only with objects whose titles match the keyword.
+        function searchBorrowed() {
+            let keyword = document.getElementById("searchBorrow").value.toLowerCase();
+            let table = document.getElementById("borrowTable");
+            //Clear the current table rows to prepare for filtered results
+            table.innerHTML = "";
+            //Loop through the borrowedBooks array to find matches
+            for (let i = 0; i < borrowedBooks.length; i++) {
+                //If a match is found, dynamically create and insert a new row
+                if (borrowedBooks[i].title.toLowerCase().includes(keyword)) {
+                    let row = table.insertRow();
+                    let statusClass = borrowedBooks[i].status === "Borrowed" ? "status-borrowed" : (borrowedBooks[i].status === "Overdue" ? "status-overdue" : "status-returned");
+                    row.innerHTML = `
+                        <td>${borrowedBooks[i].title}</td>
+                        <td>${borrowedBooks[i].author}</td>
+                        <td>${borrowedBooks[i].date}</td>
+                        <td><span class="${statusClass}">${borrowedBooks[i].status}</span></td>
+                    `;
+                }
+            }
+            // if empty show all again
+            if (keyword === "") {
+                displayBorrowed();
+            }
+        }
+    </script>
 </body>
 </html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fine Calculator - BookSphere Library</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        .book-item {
+            background-color: #f8f9fa;
+            border-left: 4px solid #0d6efd;
+            transition: transform 0.2s ease;
+        }
+        .book-item:hover {
+            transform: translateX(5px);
+        }
+        .result-box {
+            background: linear-gradient(135deg, #1a2a3a 0%, #0d6efd 100%);
+        }
+        .remove-book-btn {
+            font-size: 12px;
+            padding: 2px 8px;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- ============================================== -->
+    <!-- RESPONSIVE NAVIGATION BAR (BOOTSTRAP NAVBAR)   -->
+    <!-- ============================================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img src="logo.png" alt="BookSphere Logo" width="45" height="45" class="rounded-circle me-2">
+                BookSphere Library
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="catalog.html">Catalog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reservation.html">Reservation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="myaccount.html">My Account</a></li>
+                    <li class="nav-item"><a class="nav-link" href="questionnaire.html">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="calculate.html">Fine Calculator</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5 flex-grow-1">
+        <!-- Calculator Header -->
+        <div class="bg-primary bg-gradient text-white p-5 rounded-4 shadow mb-5 text-center">
+            <h1 class="display-5 fw-bold">💰 Library Fine Calculator</h1>
+            <p class="lead">Calculate late return fines and lost book fees based on library policies</p>
+        </div>
+
+        <!-- Calculator Card -->
+        <div class="card shadow-lg border-0 mb-5">
+            <div class="card-body p-4 p-md-5">
+                <!-- Member Type -->
+                <div class="mb-4">
+                    <label for="memberType" class="form-label fw-bold">Member Type</label>
+                    <select id="memberType" class="form-select">
+                        <option value="student">Student</option>
+                        <option value="faculty">Faculty Member</option>
+                        <option value="staff">University Staff</option>
+                        <option value="external">External Member</option>
+                    </select>
+                </div>
+                
+                <!-- Age -->
+                <div class="mb-4">
+                    <label for="age" class="form-label fw-bold">Age (Years)</label>
+                    <input type="number" id="age" class="form-control" placeholder="Enter your age" min="0" max="120">
+                </div>
+                
+                <!-- Membership Duration -->
+                <div class="mb-4">
+                    <label for="memberDuration" class="form-label fw-bold">Membership Duration (Years)</label>
+                    <input type="number" id="memberDuration" class="form-control" placeholder="How many years have you been a member?" min="0" step="0.5">
+                </div>
+                
+                <!-- Overdue Books Section -->
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Overdue Books</label>
+                    <div id="booksContainer">
+                        <div class="book-item p-3 rounded-3 mb-3" id="book1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="mb-0">Book 1</h5>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small">Book Title</label>
+                                    <input type="text" class="form-control book-title" placeholder="Book title">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small">Days Overdue</label>
+                                    <input type="number" class="form-control book-days" placeholder="Days overdue" min="0" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-success" onclick="addBook()">+ Add Another Book</button>
+                </div>
+                
+                <!-- Lost/Damaged Books Section -->
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Lost or Damaged Books</label>
+                    <div id="lostBooksContainer">
+                        <div class="book-item p-3 rounded-3 mb-3" id="lostBook1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="mb-0">Lost Book 1</h5>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small">Book Title</label>
+                                    <input type="text" class="form-control lost-book-title" placeholder="Book title">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small">Book Price (OMR)</label>
+                                    <input type="number" class="form-control lost-book-price" placeholder="Price in OMR" min="0" step="0.5" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-warning" onclick="addLostBook()">+ Add Lost/Damaged Book</button>
+                </div>
+                
+                <!-- Hardship Case -->
+                <div class="mb-4">
+                    <label for="hardship" class="form-label fw-bold">Apply for Fine Reduction (Hardship Case)</label>
+                    <select id="hardship" class="form-select">
+                        <option value="no">No</option>
+                        <option value="yes">Yes - I have a valid hardship reason</option>
+                    </select>
+                </div>
+                
+                <!-- Calculate Button -->
+                <button type="button" class="btn btn-primary btn-lg w-100 py-3 fw-bold" onclick="calculateFine()">Calculate Total Fine</button>
+                
+                <!-- Results Box -->
+                <div id="resultBox" class="result-box text-white p-4 rounded-4 mt-4" style="display: none;">
+                    <h3 class="mb-3">Fine Calculation Summary</h3>
+                    <div class="d-flex justify-content-between py-2 border-bottom border-white border-opacity-25">
+                        <span>Overdue Fine:</span>
+                        <span id="overdueFine" class="fw-bold">0.000 OMR</span>
+                    </div>
+                    <div class="d-flex justify-content-between py-2 border-bottom border-white border-opacity-25">
+                        <span>Lost Book Fee:</span>
+                        <span id="lostFine" class="fw-bold">0.000 OMR</span>
+                    </div>
+                    <div class="d-flex justify-content-between py-2 border-bottom border-white border-opacity-25">
+                        <span>Subtotal:</span>
+                        <span id="subtotal" class="fw-bold">0.000 OMR</span>
+                    </div>
+                    <div class="d-flex justify-content-between py-2 border-bottom border-white border-opacity-25">
+                        <span>Discount Applied:</span>
+                        <span id="discountAmount" class="fw-bold">0.000 OMR</span>
+                    </div>
+                    <div class="d-flex justify-content-between py-2 border-bottom border-white border-opacity-50 mb-2">
+                        <span class="fs-5 fw-bold">Total Fine:</span>
+                        <span id="totalFine" class="fs-4 fw-bold text-warning">0.000 OMR</span>
+                    </div>
+                    <div id="discountReason" class="small mt-2 text-white-50"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fine Policy Table -->
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-dark text-white">
+                <h3 class="mb-0">📋 Library Fine Policy</h3>
+            </div>
+            <div class="card-body p-4">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-primary">
+                            <tr><th>Fine Type</th><th>Rate</th><th>Maximum Fine</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Overdue Fine (Student)</td><td>0.100 OMR/day</td><td>5.000 OMR</td></tr>
+                            <tr><td>Overdue Fine (Faculty)</td><td>0.050 OMR/day</td><td>3.000 OMR</td></tr>
+                            <tr><td>Lost Book Fee</td><td>Book Price + 2.000 OMR processing</td><td>No maximum</td></tr>
+                        </tbody>
+                        <tfoot class="table-secondary">
+                            <tr><td colspan="3">Senior Discount (60+ years): 25% off | Long-term Member (5+ years): 15% off | Hardship Case: Additional 20% off</td></tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-3 mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">BookSphere Library</h4>
+                    <p class="text-secondary">Your gateway to knowledge</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-secondary text-decoration-none">About Us</a></li>
+                        <li><a href="contact.html" class="text-secondary text-decoration-none">Contact</a></li>
+                        <li><a href="questionnaire.html" class="text-secondary text-decoration-none">Give Feedback</a></li>
+                        <li><a href="calculate.html" class="text-secondary text-decoration-none">Fine Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="text-warning">Contact</h4>
+                    <p class="text-secondary">Email: info@booksphere.edu.om</p>
+                    <p class="text-secondary">Phone: +968 1234 5678</p>
+                </div>
+            </div>
+            <div class="text-center pt-3 border-top border-secondary">
+                <p class="text-secondary">&copy; 2026 BookSphere Library. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        /**
+         * ============================================================
+         * LIBRARY FINE CALCULATOR - JAVASCRIPT EXPLANATION
+         * ============================================================
+         * 
+         * PAGE RATIONALE:
+         * This calculator helps library members estimate their late return fines
+         * and lost book fees based on library policies. It promotes transparency
+         * and helps users understand potential charges before returning books.
+         * 
+         * CALCULATION FORMULA:
+         * Total Fine = (Overdue Fine + Lost Book Fee) - Discounts
+         * 
+         * WHERE:
+         * - Overdue Fine = Days Overdue × Rate per day (based on member type)
+         * - Lost Book Fee = Book Price + 2.000 OMR processing fee
+         * 
+         * DISCOUNT RULES (Using IF-ELSE and Logical Operators):
+         * 1. Senior Discount (Age >= 60): 25% off
+         * 2. Long-term Member (Membership >= 5 years): 15% off
+         * 3. Hardship Case: Additional 20% off
+         * 
+         * MULTIPLE MATHEMATICAL OPERATORS USED:
+         * - Multiplication (*): days × rate, price × 0.XX for discounts
+         * - Addition (+): summing fines, adding processing fee
+         * - Subtraction (-): subtracting discounts from total
+         * - Division (/): calculating percentages
+         * 
+         * RELATIONAL & LOGICAL OPERATORS:
+         * - Comparison (>=, <, ==): age >= 60, years >= 5
+         * - Logical AND (&&): checking multiple conditions
+         * - Logical OR (||): alternative discount conditions
+         * ============================================================
+         */
+        
+        let bookCounter = 1;
+        let lostBookCounter = 1;
+        
+        // Rate per day based on member type
+        function getRatePerDay(memberType) {
+            if (memberType === 'student') return 0.100;
+            else if (memberType === 'faculty') return 0.050;
+            else if (memberType === 'staff') return 0.075;
+            else return 0.150; // external member
+        }
+        
+        // Add new overdue book input field
+        function addBook() {
+            bookCounter++;
+            const booksContainer = document.getElementById('booksContainer');
+            const newBook = document.createElement('div');
+            newBook.className = 'book-item p-3 rounded-3 mb-3';
+            newBook.id = 'book' + bookCounter;
+            newBook.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="mb-0">Book ${bookCounter}</h5>
+                    <button type="button" class="btn btn-sm btn-danger remove-book-btn" onclick="removeBook('${newBook.id}')">Remove</button>
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label small">Book Title</label>
+                        <input type="text" class="form-control book-title" placeholder="Book title">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small">Days Overdue</label>
+                        <input type="number" class="form-control book-days" placeholder="Days overdue" min="0" value="0">
+                    </div>
+                </div>
+            `;
+            booksContainer.appendChild(newBook);
+        }
+        
+        // Remove overdue book
+        function removeBook(bookId) {
+            const book = document.getElementById(bookId);
+            if (book) {
+                book.remove();
+            }
+        }
+        
+        // Add new lost book input field
+        function addLostBook() {
+            lostBookCounter++;
+            const lostBooksContainer = document.getElementById('lostBooksContainer');
+            const newLostBook = document.createElement('div');
+            newLostBook.className = 'book-item p-3 rounded-3 mb-3';
+            newLostBook.id = 'lostBook' + lostBookCounter;
+            newLostBook.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="mb-0">Lost Book ${lostBookCounter}</h5>
+                    <button type="button" class="btn btn-sm btn-danger remove-book-btn" onclick="removeLostBook('${newLostBook.id}')">Remove</button>
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label small">Book Title</label>
+                        <input type="text" class="form-control lost-book-title" placeholder="Book title">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small">Book Price (OMR)</label>
+                        <input type="number" class="form-control lost-book-price" placeholder="Price in OMR" min="0" step="0.5" value="0">
+                    </div>
+                </div>
+            `;
+            lostBooksContainer.appendChild(newLostBook);
+        }
+        
+        // Remove lost book
+        function removeLostBook(bookId) {
+            const book = document.getElementById(bookId);
+            if (book) {
+                book.remove();
+            }
+        }
+        
+        // Main calculation function
+        function calculateFine() {
+            // Get input values
+            const memberType = document.getElementById('memberType').value;
+            const age = parseInt(document.getElementById('age').value) || 0;
+            const memberDuration = parseFloat(document.getElementById('memberDuration').value) || 0;
+            const hardship = document.getElementById('hardship').value === 'yes';
+            
+            // ============================================================
+            // PART 1: Calculate Overdue Fine
+            // Formula: Sum of (Days Overdue × Rate per Day)
+            // ============================================================
+            const ratePerDay = getRatePerDay(memberType);
+            let totalOverdueDays = 0;
+            
+            // Get all overdue book inputs and sum the days
+            const overdueDaysInputs = document.querySelectorAll('.book-days');
+            for (let i = 0; i < overdueDaysInputs.length; i++) {
+                const days = parseInt(overdueDaysInputs[i].value) || 0;
+                totalOverdueDays += days;
+            }
+            
+            // Mathematical operator: Multiplication (*)
+            let overdueFine = totalOverdueDays * ratePerDay;
+            
+            // Apply maximum fine cap (using relational operator >)
+            let maxFine = (memberType === 'student') ? 5.000 : (memberType === 'faculty') ? 3.000 : 7.000;
+            if (overdueFine > maxFine) {
+                overdueFine = maxFine;
+            }
+            
+            // ============================================================
+            // PART 2: Calculate Lost Book Fee
+            // Formula: Sum of (Book Price + 2.000 OMR processing fee)
+            // ============================================================
+            const processingFee = 2.000;
+            let totalLostFine = 0;
+            
+            // Get all lost book price inputs
+            const lostBookPrices = document.querySelectorAll('.lost-book-price');
+            for (let i = 0; i < lostBookPrices.length; i++) {
+                const price = parseFloat(lostBookPrices[i].value) || 0;
+                // Mathematical operator: Addition (+)
+                totalLostFine += (price + processingFee);
+            }
+            
+            // ============================================================
+            // PART 3: Calculate Subtotal
+            // Mathematical operator: Addition (+)
+            // ============================================================
+            let subtotal = overdueFine + totalLostFine;
+            
+            // ============================================================
+            // PART 4: Calculate Discounts (Using IF-ELSE and Logical Operators)
+            // ============================================================
+            let discountPercentage = 0;
+            let discountReasonText = '';
+            
+            // Condition 1: Senior Citizen Discount (Age >= 60)
+            // Using relational operator (>=) and logical operator (&& with OR)
+            if (age >= 60 && subtotal > 0) {
+                discountPercentage += 25;
+                discountReasonText += 'Senior Citizen Discount (60+ years): 25% - ';
+            }
+            
+            // Condition 2: Long-term Member Discount (Membership >= 5 years)
+            // Using relational operator (>=)
+            if (memberDuration >= 5 && subtotal > 0) {
+                discountPercentage += 15;
+                discountReasonText += 'Long-term Member (5+ years): 15% - ';
+            }
+            
+            // Condition 3: Hardship Case Discount
+            // Using logical operator (&&) with hardship flag
+            if (hardship === true && subtotal > 0) {
+                discountPercentage += 20;
+                discountReasonText += 'Hardship Case: 20% - ';
+            }
+            
+            // Cap discount at maximum 50% (using relational operator < and mathematical operator >)
+            if (discountPercentage > 50) {
+                discountPercentage = 50;
+                discountReasonText = 'Maximum discount of 50% applied. ';
+            }
+            
+            // Mathematical operator: Multiplication (*) and Division (/)
+            let discountAmount = subtotal * (discountPercentage / 100);
+            
+            // ============================================================
+            // PART 5: Calculate Total Fine
+            // Mathematical operator: Subtraction (-)
+            // ============================================================
+            let totalFine = subtotal - discountAmount;
+            
+            // Round to 3 decimal places
+            overdueFine = Math.round(overdueFine * 1000) / 1000;
+            totalLostFine = Math.round(totalLostFine * 1000) / 1000;
+            subtotal = Math.round(subtotal * 1000) / 1000;
+            discountAmount = Math.round(discountAmount * 1000) / 1000;
+            totalFine = Math.round(totalFine * 1000) / 1000;
+            
+            // ============================================================
+            // PART 6: Display Results
+            // ============================================================
+            document.getElementById('overdueFine').innerHTML = overdueFine.toFixed(3) + ' OMR';
+            document.getElementById('lostFine').innerHTML = totalLostFine.toFixed(3) + ' OMR';
+            document.getElementById('subtotal').innerHTML = subtotal.toFixed(3) + ' OMR';
+            document.getElementById('discountAmount').innerHTML = discountAmount.toFixed(3) + ' OMR';
+            document.getElementById('totalFine').innerHTML = totalFine.toFixed(3) + ' OMR';
+            
+            // Show discount reason if any discount applied
+            if (discountPercentage > 0) {
+                document.getElementById('discountReason').innerHTML = '✓ ' + discountReasonText + discountPercentage + '% discount applied.';
+            } else {
+                document.getElementById('discountReason').innerHTML = 'No discounts applied to this calculation.';
+            }
+            
+            // Show result box
+            document.getElementById('resultBox').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
