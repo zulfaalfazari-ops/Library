@@ -58,7 +58,7 @@ $books_list = mysqli_fetch_all($result, MYSQLI_ASSOC);
         <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="search.php">Search</a></li>
             <li class="nav-item"><a class="nav-link" href="insert.php">Insert</a></li>
-            <li class="nav-item"><a class="nav-link" href="delete_update.php">Delete/Update</a></li>
+            <li class="nav-item"><a class="nav-link active" href="delete_update.php">Delete/Update</a></li>
         </ul>
     </div>
 </nav>
