@@ -60,17 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
                                 <div class="table-responsive mt-3">
                                     <table class="table table-bordered table-striped">
                                         <thead class="table-dark">
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Title</th>
-                                                <th>Author</th>
-                                                <th>Category</th>
-                                                <th>Available</th>
-                                                <th>Image</th>
-                                            <tr>
+                                            <tr><th>ID</th><th>Title</th><th>Author</th><th>Category</th><th>Available</th><th>Image</th></tr>
                                         </thead>
                                         <tbody>
-                                        <?php foreach ($search_results as $book) { ?>
+                                            <?php foreach ($search_results as $book) { ?>
                                             <tr>
                                                 <td><?php echo $book['book_id']; ?></td>
                                                 <td><?php echo htmlspecialchars($book['title']); ?></td>
@@ -91,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
                                                     <?php endif; ?>
                                                 </td>
                                             </tr>
-                                        <?php } ?>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
