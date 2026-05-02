@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['insert'])) {
         <a class="navbar-brand" href="#">📚 BookSphere</a>
         <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="search.php">Search</a></li>
-            <li class="nav-item"><a class="nav-link" href="insert.php">Insert</a></li>
+            <li class="nav-item"><a class="nav-link active" href="insert.php">Insert</a></li>
             <li class="nav-item"><a class="nav-link" href="delete_update.php">Delete/Update</a></li>
         </ul>
     </div>
