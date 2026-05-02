@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
                                             <tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($search_results as $book) { ?>
+                                        <?php foreach ($search_results as $book) { ?>
                                             <tr>
                                                 <td><?php echo $book['book_id']; ?></td>
                                                 <td><?php echo htmlspecialchars($book['title']); ?></td>
@@ -87,9 +87,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
                                                     <?php if ($book['image']): ?>
                                                         <img src="<?php echo $book['image']; ?>" width="50" height="60">
                                                     <?php else: ?>
+                                                        No image
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
-                                            <?php } ?>
+                                        <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
