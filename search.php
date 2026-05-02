@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
                                             <tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($search_results as $book): ?>
+                                            <?php foreach ($search_results as $book) { ?>
                                             <tr>
                                                 <td><?php echo $book['book_id']; ?></td>
                                                 <td><?php echo htmlspecialchars($book['title']); ?></td>
@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
                                                     <?php else: ?>
                                                 </td>
                                             </tr>
-                                            <?php endforeach; ?>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
