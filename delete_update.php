@@ -49,17 +49,38 @@ $books_list = mysqli_fetch_all($result, MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <title>Delete/Update - BookSphere</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar-nav .nav-link.active {
+            font-weight: bold;
+            color: #f39c12 !important;
+            border-bottom: 2px solid #f39c12;
+        }
+    </style>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-        <a class="navbar-brand" href="#">📚 BookSphere</a>
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="search.php">Search</a></li>
-            <li class="nav-item"><a class="nav-link" href="insert.php">Insert</a></li>
-            <li class="nav-item"><a class="nav-link" href="delete_update.php">Delete/Update</a></li>
-        </ul>
+        <a class="navbar-brand fw-bold" href="index.html">
+            <img src="logo.png" alt="BookSphere Logo" width="45" height="45" class="rounded-circle me-2">
+            BookSphere
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="catalog.html">Catalog</a></li>
+                <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                <li class="nav-item"><a class="nav-link" href="myaccount.html">My Account</a></li>
+                <li class="nav-item"><a class="nav-link" href="search.php">Search</a></li>
+                <li class="nav-item"><a class="nav-link" href="insert.php">Insert</a></li>
+                <li class="nav-item"><a class="nav-link active" href="delete_update.php">Delete/Update</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
 
@@ -80,14 +101,7 @@ $books_list = mysqli_fetch_all($result, MYSQLI_ASSOC);
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped">
                                 <thead class="table-dark">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Title</th>
-                                        <th>Author</th>
-                                        <th>Category</th>
-                                        <th>Available</th>
-                                        <th>Actions</th>
-                                    </tr>
+                                    <tr><th>ID</th><th>Title</th><th>Author</th><th>Category</th><th>Available</th><th>Actions</th></tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($books_list as $book): ?>
@@ -98,18 +112,14 @@ $books_list = mysqli_fetch_all($result, MYSQLI_ASSOC);
                                         <td><?php echo htmlspecialchars($book['category']); ?></td>
                                         <td><?php echo $book['available']; ?></td>
                                         <td>
-                                            <!-- Edit Button (opens modal) -->
                                             <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $book['book_id']; ?>">
                                                 ✏️ Edit
                                             </button>
-                                            
-                                            <!-- Delete Form -->
                                             <form method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete this book?')">
                                                 <input type="hidden" name="delete_id" value="<?php echo $book['book_id']; ?>">
                                                 <button type="submit" class="btn btn-danger btn-sm">🗑️ Delete</button>
                                             </form>
                                             
-                                            <!-- Edit Modal for each book -->
                                             <div class="modal fade" id="editModal<?php echo $book['book_id']; ?>" tabindex="-1">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
@@ -120,26 +130,11 @@ $books_list = mysqli_fetch_all($result, MYSQLI_ASSOC);
                                                             </div>
                                                             <div class="modal-body">
                                                                 <input type="hidden" name="update_id" value="<?php echo $book['book_id']; ?>">
-                                                                <div class="mb-2">
-                                                                    <label>Title</label>
-                                                                    <input type="text" name="title" class="form-control" value="<?php echo htmlspecialchars($book['title']); ?>" required>
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label>Author</label>
-                                                                    <input type="text" name="author" class="form-control" value="<?php echo htmlspecialchars($book['author']); ?>" required>
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label>Category</label>
-                                                                    <input type="text" name="category" class="form-control" value="<?php echo htmlspecialchars($book['category']); ?>">
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label>Available Copies</label>
-                                                                    <input type="number" name="available" class="form-control" value="<?php echo $book['available']; ?>">
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label>Image filename</label>
-                                                                    <input type="text" name="image" class="form-control" value="<?php echo htmlspecialchars($book['image']); ?>">
-                                                                </div>
+                                                                <div class="mb-2"><label>Title</label><input type="text" name="title" class="form-control" value="<?php echo htmlspecialchars($book['title']); ?>" required></div>
+                                                                <div class="mb-2"><label>Author</label><input type="text" name="author" class="form-control" value="<?php echo htmlspecialchars($book['author']); ?>" required></div>
+                                                                <div class="mb-2"><label>Category</label><input type="text" name="category" class="form-control" value="<?php echo htmlspecialchars($book['category']); ?>"></div>
+                                                                <div class="mb-2"><label>Available Copies</label><input type="number" name="available" class="form-control" value="<?php echo $book['available']; ?>"></div>
+                                                                <div class="mb-2"><label>Image filename</label><input type="text" name="image" class="form-control" value="<?php echo htmlspecialchars($book['image']); ?>"></div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -149,8 +144,8 @@ $books_list = mysqli_fetch_all($result, MYSQLI_ASSOC);
                                                     </div>
                                                 </div>
                                             </div>
-                                         </td>
-                                     </tr>
+                                        </td>
+                                    </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
@@ -168,7 +163,6 @@ $books_list = mysqli_fetch_all($result, MYSQLI_ASSOC);
     <p>&copy; 2026 BookSphere Library. All rights reserved.</p>
 </footer>
 
-<!-- Bootstrap JS (required for modal) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
