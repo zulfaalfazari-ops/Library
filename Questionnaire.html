@@ -90,33 +90,33 @@
                 <!-- Form Card -->
                 <div class="card shadow-lg border-0 mb-5">
                     <div class="card-body p-4 p-md-5">
-                        <form id="feedbackForm" action="https://httpbin.org/post" method="POST">
+                        <form id="questionnaireForm" action="https://httpbin.org/post" method="POST" onsubmit="return validateQuestionnaireForm()">
                             
                             <!-- Control 1: Text Input - Full Name -->
                             <div class="mb-4">
-                                <label for="fullname" class="form-label fw-bold">Full Name *</label>
-                                <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Enter your full name">
+                                <label for="q_fullname" class="form-label fw-bold">Full Name *</label>
+                                <input type="text" id="q_fullname" name="fullname" class="form-control" placeholder="Enter your full name">
                                 <div class="error-message" id="nameError">Please enter a valid name (letters and spaces only, minimum 3 characters)</div>
                             </div>
                             
                             <!-- Control 2: Email Input -->
                             <div class="mb-4">
-                                <label for="email" class="form-label fw-bold">Email Address *</label>
-                                <input type="email" id="email" name="email" class="form-control" placeholder="yourname@university.edu.om">
+                                <label for="q_email" class="form-label fw-bold">Email Address *</label>
+                                <input type="email" id="q_email" name="email" class="form-control" placeholder="yourname@university.edu.om">
                                 <div class="error-message" id="emailError">Please enter a valid university email address (must contain @university.edu.om)</div>
                             </div>
                             
                             <!-- Control 3: Number Input - Age -->
                             <div class="mb-4">
-                                <label for="age" class="form-label fw-bold">Age *</label>
-                                <input type="number" id="age" name="age" class="form-control" placeholder="Enter your age" min="16" max="100">
+                                <label for="q_age" class="form-label fw-bold">Age *</label>
+                                <input type="number" id="q_age" name="age" class="form-control" placeholder="Enter your age" min="16" max="100">
                                 <div class="error-message" id="ageError">Age must be between 16 and 100 years</div>
                             </div>
                             
                             <!-- Control 4: Select Dropdown - Member Type -->
                             <div class="mb-4">
-                                <label for="memberType" class="form-label fw-bold">Member Type *</label>
-                                <select id="memberType" name="memberType" class="form-select">
+                                <label for="q_memberType" class="form-label fw-bold">Member Type *</label>
+                                <select id="q_memberType" name="memberType" class="form-select">
                                     <option value="">Select your member type</option>
                                     <option value="student">Student</option>
                                     <option value="faculty">Faculty Member</option>
@@ -264,241 +264,207 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
+<!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-        /**
-         * QUESTIONNAIRE PAGE VALIDATION - EXPLANATION
-         * 
-         * This script validates user input before form submission using three different validation patterns:
-         * 
-         * VALIDATION 1 - NAME VALIDATION (Pattern Matching):
-         * Uses regular expression /^[A-Za-z\s]{3,}$/ to ensure:
-         * - Only letters (A-Z, a-z) and spaces are allowed
-         * - Minimum 3 characters
-         * - No numbers or special characters
-         * 
-         * VALIDATION 2 - EMAIL VALIDATION (Pattern + Domain Check):
-         * Uses regular expression /^[^\s@]+@([^\s@.,]+\.)*university\.edu\.om$/ to ensure:
-         * - Valid email format with @ symbol
-         * - Must end with @university.edu.om domain
-         * - No spaces or invalid characters
-         * 
-         * VALIDATION 3 - AGE VALIDATION (Range Check):
-         * Checks numeric value to ensure:
-         * - Age is between 16 and 100 years
-         * - Value is not empty
-         * - Value is a valid number
-         * 
-         * ADDITIONAL VALIDATIONS:
-         * - Member type must be selected from dropdown
-         * - Satisfaction level must be selected
-         * - Website rating must be selected
-         * 
-         * Each validation provides real-time feedback and prevents form submission if errors exist.
-         */
+    <<!-- Custom Validation Script -->
+<script src="validation.js"></script>
+
+<!-- Questionnaire-specific real-time validation -->
+<script>
+    // Get form and input elements
+    const form = document.getElementById('questionnaireForm');
+    const fullnameInput = document.getElementById('q_fullname');
+    const emailInput = document.getElementById('q_email');
+    const ageInput = document.getElementById('q_age');
+    const memberSelect = document.getElementById('q_memberType');
+    const satisfactionRadios = document.querySelectorAll('input[name="satisfaction"]');
+    const ratingRadios = document.querySelectorAll('input[name="website_rating"]');
+    
+    // Get error message elements
+    const nameError = document.getElementById('nameError');
+    const emailError = document.getElementById('emailError');
+    const ageError = document.getElementById('ageError');
+    const memberError = document.getElementById('memberError');
+    const satisfactionError = document.getElementById('satisfactionError');
+    const ratingError = document.getElementById('ratingError');
+    
+    const successMessage = document.getElementById('successMessage');
+    
+    // VALIDATION 1: Name validation - Letters and spaces only, minimum 3 characters
+    function validateName() {
+        const name = fullnameInput.value.trim();
+        const namePattern = /^[A-Za-z\s]{3,}$/;
         
-        // Get form and input elements
-        const form = document.getElementById('feedbackForm');
-        const fullnameInput = document.getElementById('fullname');
-        const emailInput = document.getElementById('email');
-        const ageInput = document.getElementById('age');
-        const memberSelect = document.getElementById('memberType');
-        const satisfactionRadios = document.querySelectorAll('input[name="satisfaction"]');
-        const ratingRadios = document.querySelectorAll('input[name="website_rating"]');
-        
-        // Get error message elements
-        const nameError = document.getElementById('nameError');
-        const emailError = document.getElementById('emailError');
-        const ageError = document.getElementById('ageError');
-        const memberError = document.getElementById('memberError');
-        const satisfactionError = document.getElementById('satisfactionError');
-        const ratingError = document.getElementById('ratingError');
-        
-        const successMessage = document.getElementById('successMessage');
-        
-        // VALIDATION 1: Name validation - Letters and spaces only, minimum 3 characters
-        function validateName() {
-            const name = fullnameInput.value.trim();
-            // Regular expression: Only letters (A-Z, a-z) and spaces, minimum 3 characters
-            const namePattern = /^[A-Za-z\s]{3,}$/;
-            
-            if (name === '') {
-                nameError.textContent = 'Please enter your full name';
-                nameError.classList.add('show');
-                fullnameInput.classList.add('input-error');
-                fullnameInput.classList.remove('input-success');
-                return false;
-            } else if (!namePattern.test(name)) {
-                nameError.textContent = 'Name must contain only letters and spaces (minimum 3 characters)';
-                nameError.classList.add('show');
-                fullnameInput.classList.add('input-error');
-                fullnameInput.classList.remove('input-success');
-                return false;
-            } else {
-                nameError.classList.remove('show');
-                fullnameInput.classList.remove('input-error');
-                fullnameInput.classList.add('input-success');
-                return true;
-            }
+        if (name === '') {
+            nameError.textContent = 'Please enter your full name';
+            nameError.classList.add('show');
+            fullnameInput.classList.add('input-error');
+            fullnameInput.classList.remove('input-success');
+            return false;
+        } else if (!namePattern.test(name)) {
+            nameError.textContent = 'Name must contain only letters and spaces (minimum 3 characters)';
+            nameError.classList.add('show');
+            fullnameInput.classList.add('input-error');
+            fullnameInput.classList.remove('input-success');
+            return false;
+        } else {
+            nameError.classList.remove('show');
+            fullnameInput.classList.remove('input-error');
+            fullnameInput.classList.add('input-success');
+            return true;
         }
+    }
+    
+    // VALIDATION 2: Email validation - Must be university email
+    function validateEmail() {
+        const email = emailInput.value.trim();
+        const emailPattern = /^[^\s@]+@([^\s@.,]+\.)*university\.edu\.om$/;
         
-        // VALIDATION 2: Email validation - Must be university email (@university.edu.om)
-        function validateEmail() {
-            const email = emailInput.value.trim();
-            // Regular expression: Valid email format ending with @university.edu.om
-            const emailPattern = /^[^\s@]+@([^\s@.,]+\.)*university\.edu\.om$/;
-            
-            if (email === '') {
-                emailError.textContent = 'Please enter your email address';
-                emailError.classList.add('show');
-                emailInput.classList.add('input-error');
-                emailInput.classList.remove('input-success');
-                return false;
-            } else if (!emailPattern.test(email)) {
-                emailError.textContent = 'Email must be a valid university email (e.g., name@university.edu.om)';
-                emailError.classList.add('show');
-                emailInput.classList.add('input-error');
-                emailInput.classList.remove('input-success');
-                return false;
-            } else {
-                emailError.classList.remove('show');
-                emailInput.classList.remove('input-error');
-                emailInput.classList.add('input-success');
-                return true;
-            }
+        if (email === '') {
+            emailError.textContent = 'Please enter your email address';
+            emailError.classList.add('show');
+            emailInput.classList.add('input-error');
+            emailInput.classList.remove('input-success');
+            return false;
+        } else if (!emailPattern.test(email)) {
+            emailError.textContent = 'Email must be a valid university email (e.g., name@university.edu.om)';
+            emailError.classList.add('show');
+            emailInput.classList.add('input-error');
+            emailInput.classList.remove('input-success');
+            return false;
+        } else {
+            emailError.classList.remove('show');
+            emailInput.classList.remove('input-error');
+            emailInput.classList.add('input-success');
+            return true;
         }
+    }
+    
+    // VALIDATION 3: Age validation - Must be between 16 and 100
+    function validateAge() {
+        const age = parseInt(ageInput.value);
         
-        // VALIDATION 3: Age validation - Must be between 16 and 100
-        function validateAge() {
-            const age = parseInt(ageInput.value);
-            
-            if (ageInput.value === '') {
-                ageError.textContent = 'Please enter your age';
-                ageError.classList.add('show');
-                ageInput.classList.add('input-error');
-                ageInput.classList.remove('input-success');
-                return false;
-            } else if (isNaN(age) || age < 16 || age > 100) {
-                ageError.textContent = 'Age must be between 16 and 100 years';
-                ageError.classList.add('show');
-                ageInput.classList.add('input-error');
-                ageInput.classList.remove('input-success');
-                return false;
-            } else {
-                ageError.classList.remove('show');
-                ageInput.classList.remove('input-error');
-                ageInput.classList.add('input-success');
-                return true;
-            }
+        if (ageInput.value === '') {
+            ageError.textContent = 'Please enter your age';
+            ageError.classList.add('show');
+            ageInput.classList.add('input-error');
+            ageInput.classList.remove('input-success');
+            return false;
+        } else if (isNaN(age) || age < 16 || age > 100) {
+            ageError.textContent = 'Age must be between 16 and 100 years';
+            ageError.classList.add('show');
+            ageInput.classList.add('input-error');
+            ageInput.classList.remove('input-success');
+            return false;
+        } else {
+            ageError.classList.remove('show');
+            ageInput.classList.remove('input-error');
+            ageInput.classList.add('input-success');
+            return true;
         }
+    }
+    
+    // Validation 4: Member type selection
+    function validateMemberType() {
+        const memberType = memberSelect.value;
         
-        // Validation 4: Member type selection
-        function validateMemberType() {
-            const memberType = memberSelect.value;
-            
-            if (memberType === '') {
-                memberError.classList.add('show');
-                memberSelect.classList.add('input-error');
-                memberSelect.classList.remove('input-success');
-                return false;
-            } else {
-                memberError.classList.remove('show');
-                memberSelect.classList.remove('input-error');
-                memberSelect.classList.add('input-success');
-                return true;
-            }
+        if (memberType === '') {
+            memberError.classList.add('show');
+            memberSelect.classList.add('input-error');
+            memberSelect.classList.remove('input-success');
+            return false;
+        } else {
+            memberError.classList.remove('show');
+            memberSelect.classList.remove('input-error');
+            memberSelect.classList.add('input-success');
+            return true;
         }
-        
-        // Validation 5: Satisfaction level selection
-        function validateSatisfaction() {
-            let selected = false;
-            for (let radio of satisfactionRadios) {
-                if (radio.checked) {
-                    selected = true;
-                    break;
-                }
-            }
-            
-            if (!selected) {
-                satisfactionError.classList.add('show');
-                return false;
-            } else {
-                satisfactionError.classList.remove('show');
-                return true;
-            }
-        }
-        
-        // Validation 6: Website rating selection
-        function validateRating() {
-            let selected = false;
-            for (let radio of ratingRadios) {
-                if (radio.checked) {
-                    selected = true;
-                    break;
-                }
-            }
-            
-            if (!selected) {
-                ratingError.classList.add('show');
-                return false;
-            } else {
-                ratingError.classList.remove('show');
-                return true;
-            }
-        }
-        
-        // Real-time validation events (user gets feedback as they type)
-        fullnameInput.addEventListener('input', validateName);
-        fullnameInput.addEventListener('blur', validateName);
-        
-        emailInput.addEventListener('input', validateEmail);
-        emailInput.addEventListener('blur', validateEmail);
-        
-        ageInput.addEventListener('input', validateAge);
-        ageInput.addEventListener('blur', validateAge);
-        
-        memberSelect.addEventListener('change', validateMemberType);
-        
+    }
+    
+    // Validation 5: Satisfaction level selection
+    function validateSatisfaction() {
+        let selected = false;
         for (let radio of satisfactionRadios) {
-            radio.addEventListener('change', validateSatisfaction);
-        }
-        
-        for (let radio of ratingRadios) {
-            radio.addEventListener('change', validateRating);
-        }
-        
-        // Form submission validation - prevents submission if any validation fails
-        form.addEventListener('submit', function(event) {
-            // Run all validations
-            const isNameValid = validateName();
-            const isEmailValid = validateEmail();
-            const isAgeValid = validateAge();
-            const isMemberValid = validateMemberType();
-            const isSatisfactionValid = validateSatisfaction();
-            const isRatingValid = validateRating();
-            
-            // Check if all validations passed
-            if (!isNameValid || !isEmailValid || !isAgeValid || !isMemberValid || !isSatisfactionValid || !isRatingValid) {
-                event.preventDefault(); // Stop form submission
-                
-                // Scroll to first error
-                const firstError = document.querySelector('.input-error');
-                if (firstError) {
-                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            } else {
-                // All validations passed - show success message
-                event.preventDefault(); // Prevent actual submission for demo
-                successMessage.classList.add('show');
-                
-                // Optional: Submit form after 2 seconds
-                setTimeout(function() {
-                    form.submit();
-                }, 2000);
+            if (radio.checked) {
+                selected = true;
+                break;
             }
-        });
-    </script>
+        }
+        
+        if (!selected) {
+            satisfactionError.classList.add('show');
+            return false;
+        } else {
+            satisfactionError.classList.remove('show');
+            return true;
+        }
+    }
+    
+    // Validation 6: Website rating selection
+    function validateRating() {
+        let selected = false;
+        for (let radio of ratingRadios) {
+            if (radio.checked) {
+                selected = true;
+                break;
+            }
+        }
+        
+        if (!selected) {
+            ratingError.classList.add('show');
+            return false;
+        } else {
+            ratingError.classList.remove('show');
+            return true;
+        }
+    }
+    
+    // Real-time validation events
+    fullnameInput.addEventListener('input', validateName);
+    fullnameInput.addEventListener('blur', validateName);
+    
+    emailInput.addEventListener('input', validateEmail);
+    emailInput.addEventListener('blur', validateEmail);
+    
+    ageInput.addEventListener('input', validateAge);
+    ageInput.addEventListener('blur', validateAge);
+    
+    memberSelect.addEventListener('change', validateMemberType);
+    
+    for (let radio of satisfactionRadios) {
+        radio.addEventListener('change', validateSatisfaction);
+    }
+    
+    for (let radio of ratingRadios) {
+        radio.addEventListener('change', validateRating);
+    }
+    
+    // Form submission validation
+    form.addEventListener('submit', function(event) {
+        const isNameValid = validateName();
+        const isEmailValid = validateEmail();
+        const isAgeValid = validateAge();
+        const isMemberValid = validateMemberType();
+        const isSatisfactionValid = validateSatisfaction();
+        const isRatingValid = validateRating();
+        
+        if (!isNameValid || !isEmailValid || !isAgeValid || !isMemberValid || !isSatisfactionValid || !isRatingValid) {
+            event.preventDefault();
+            
+            const firstError = document.querySelector('.input-error');
+            if (firstError) {
+                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        } else {
+            event.preventDefault();
+            successMessage.classList.add('show');
+            
+            setTimeout(function() {
+                form.submit();
+            }, 2000);
+        }
+    });
+</script>
 </body>
 </html>
