@@ -1,3 +1,4 @@
+
 // ========== REGISTRATION FORM VALIDATION ==========
 function validateRegistrationForm() {
     var isValid = true;
@@ -69,54 +70,8 @@ function validateLoginForm() {
     // Password length check
     var password = document.getElementById('loginPassword');
     if (password && password.value !== '' && password.value.length < 6) {
-        document.getElementById('loginPasswordError').innerHTML = 'Password must be at least 6 characters';
+        showError('loginPasswordError', 'Password must be at least 6 characters');
         isValid = false;
-    }
-    
-    return isValid;
-}
-
-// ========== CONTACT FORM VALIDATION ==========
-function validateContactForm() {
-    var isValid = true;
-    clearErrors(['contactNameError', 'contactEmailError', 'contactMessageError']);
-    
-    isValid = checkRequired('contactName', 'contactNameError', 'Name is required') && isValid;
-    isValid = checkRequired('contactEmail', 'contactEmailError', 'Email is required') && isValid;
-    isValid = checkRequired('contactMessage', 'contactMessageError', 'Message is required') && isValid;
-    
-    var email = document.getElementById('contactEmail');
-    if (email && email.value.trim() !== '') {
-        isValid = validateEmailFormat('contactEmail', 'contactEmailError') && isValid;
-    }
-    
-    var message = document.getElementById('contactMessage');
-    if (message && message.value.trim() !== '') {
-        isValid = validateTextLength('contactMessage', 'contactMessageError', 10, 500, 'Message') && isValid;
-    }
-    
-    return isValid;
-}
-
-// ========== RESERVATION FORM VALIDATION ==========
-function validateReservationForm() {
-    var isValid = true;
-    clearErrors(['bookTitleError', 'reservationDateError']);
-    
-    isValid = checkRequired('bookTitle', 'bookTitleError', 'Book title is required') && isValid;
-    isValid = checkRequired('reservationDate', 'reservationDateError', 'Reservation date is required') && isValid;
-    
-    // Date validation (cannot be in past)
-    var dateField = document.getElementById('reservationDate');
-    if (dateField && dateField.value !== '') {
-        var selectedDate = new Date(dateField.value);
-        var today = new Date();
-        today.setHours(0, 0, 0, 0);
-        
-        if (selectedDate < today) {
-            document.getElementById('reservationDateError').innerHTML = 'Reservation date cannot be in the past';
-            isValid = false;
-        }
     }
     
     return isValid;
@@ -125,39 +80,89 @@ function validateReservationForm() {
 // ========== QUESTIONNAIRE FORM VALIDATION ==========
 function validateQuestionnaireForm() {
     var isValid = true;
-    clearErrors(['q1Error', 'q2Error', 'q3Error']);
     
-    // Radio button validation (must select one option)
-    var q1Selected = false;
-    var q1Options = document.getElementsByName('q1');
-    for (var i = 0; i < q1Options.length; i++) {
-        if (q1Options[i].checked) {
-            q1Selected = true;
-            break;
+    clearErrors(['nameError', 'emailError', 'ageError', 'memberError', 
+                 'satisfactionError', 'ratingError']);
+    
+    var fullname = document.getElementById('q_fullname');
+    var email = document.getElementById('q_email');
+    var age = document.getElementById('q_age');
+    var memberType = document.getElementById('q_memberType');
+    
+    // 1. NAME VALIDATION (Required + Pattern: letters/spaces only, min 3 chars)
+    if (fullname) {
+        var namePattern = /^[A-Za-z\s]{3,}$/;
+        if (!fullname.value || fullname.value.trim() === '') {
+            showError('nameError', 'Please enter your full name');
+            isValid = false;
+        } else if (!namePattern.test(fullname.value.trim())) {
+            showError('nameError', 'Name must contain only letters and spaces (minimum 3 characters)');
+            isValid = false;
         }
     }
-    if (!q1Selected) {
-        document.getElementById('q1Error').innerHTML = 'Please select an answer for Question 1';
+    
+    // 2. EMAIL VALIDATION (Required + Pattern: university email)
+    if (email) {
+        var emailPattern = /^[^\s@]+@([^\s@.,]+\.)*university\.edu\.om$/;
+        if (!email.value || email.value.trim() === '') {
+            showError('emailError', 'Please enter your email address');
+            isValid = false;
+        } else if (!emailPattern.test(email.value.trim())) {
+            showError('emailError', 'Email must be a valid university email (e.g., name@university.edu.om)');
+            isValid = false;
+        }
+    }
+    
+    // 3. AGE VALIDATION (Required + Range: 16-100)
+    if (age) {
+        var ageValue = parseInt(age.value);
+        if (!age.value || age.value === '') {
+            showError('ageError', 'Please enter your age');
+            isValid = false;
+        } else if (isNaN(ageValue) || ageValue < 16 || ageValue > 100) {
+            showError('ageError', 'Age must be between 16 and 100 years');
+            isValid = false;
+        }
+    }
+    
+    // 4. MEMBER TYPE VALIDATION (Required select)
+    if (memberType && (!memberType.value || memberType.value === '')) {
+        showError('memberError', 'Please select your member type');
         isValid = false;
     }
     
-    var q2Selected = false;
-    var q2Options = document.getElementsByName('q2');
-    for (var i = 0; i < q2Options.length; i++) {
-        if (q2Options[i].checked) {
-            q2Selected = true;
+    // 5. SATISFACTION RADIO VALIDATION (Must select one)
+    var satisfactionSelected = false;
+    var satisfactionRadios = document.getElementsByName('satisfaction');
+    for (var i = 0; i < satisfactionRadios.length; i++) {
+        if (satisfactionRadios[i].checked) {
+            satisfactionSelected = true;
             break;
         }
     }
-    if (!q2Selected) {
-        document.getElementById('q2Error').innerHTML = 'Please select an answer for Question 2';
+    if (!satisfactionSelected) {
+        showError('satisfactionError', 'Please select your satisfaction level');
+        isValid = false;
+    }
+    
+    // 6. WEBSITE RATING VALIDATION (Must select 1-5 stars)
+    var ratingSelected = false;
+    var ratingRadios = document.getElementsByName('website_rating');
+    for (var i = 0; i < ratingRadios.length; i++) {
+        if (ratingRadios[i].checked) {
+            ratingSelected = true;
+            break;
+        }
+    }
+    if (!ratingSelected) {
+        showError('ratingError', 'Please rate your website experience');
         isValid = false;
     }
     
     return isValid;
 }
 
-// ========== HELPER FUNCTIONS (Reusable across ALL forms) ==========
+// ========== HELPER FUNCTIONS (Shared by all forms) ==========
 
 // Required field check (works for text, checkbox, select, textarea)
 function checkRequired(fieldId, errorId, message) {
@@ -220,21 +225,6 @@ function validateUniversityId(uniId, errorId) {
     return true;
 }
 
-// Phone number validation
-function validatePhoneNumber(phoneId, errorId) {
-    var phone = document.getElementById(phoneId);
-    if (!phone) return true;
-    
-    var phonePattern = /^(\+?968)?[0-9]{8}$/; // Oman phone format
-    var simplePattern = /^[0-9]{8,10}$/;
-    
-    if (!phonePattern.test(phone.value.trim()) && !simplePattern.test(phone.value.trim())) {
-        showError(errorId, 'Invalid phone number (8-10 digits required)');
-        return false;
-    }
-    return true;
-}
-
 // Text length validation
 function validateTextLength(fieldId, errorId, minLen, maxLen, fieldName) {
     var field = document.getElementById(fieldId);
@@ -289,16 +279,6 @@ function showError(errorId, message) {
 function clearErrors(errorIds) {
     for (var i = 0; i < errorIds.length; i++) {
         var errorSpan = document.getElementById(errorIds[i]);
-        if (errorSpan) {
-            errorSpan.innerHTML = '';
-        }
-    }
-}
-
-// Clear all errors on a page (pass array of error IDs)
-function clearAllErrorsOnPage(errorIdsArray) {
-    for (var i = 0; i < errorIdsArray.length; i++) {
-        var errorSpan = document.getElementById(errorIdsArray[i]);
         if (errorSpan) {
             errorSpan.innerHTML = '';
         }
@@ -367,10 +347,10 @@ window.onload = function() {
     }
     
     if (document.getElementById('loginForm')) {
-        // Add login real-time validation here if needed
+        // Login real-time validation can be added here if needed
     }
     
-    if (document.getElementById('contactForm')) {
-        // Add contact real-time validation here if needed
+    if (document.getElementById('questionnaireForm')) {
+        // Questionnaire real-time validation is handled inside questionnaire.html
     }
 };
