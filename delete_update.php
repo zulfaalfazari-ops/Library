@@ -58,11 +58,11 @@ $books_list = mysqli_fetch_all($result, MYSQLI_ASSOC);
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-<!-- ===== NAVBAR (مطابق لـ index.html مع إضافة روابط صفحاتك) ===== -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
     <div class="container">
         <a class="navbar-brand fw-bold" href="index.html">
-            <img src="logo.png" alt="BookSphere Logo" width="45" height="45" class="rounded-circle me-2">
+            <img src="logo.png" alt="BookSphere Logo" width="45" height="45" class="rounded-circle me-2>
             BookSphere Library
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">

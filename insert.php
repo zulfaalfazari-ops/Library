@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['insert'])) {
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-<!-- ===== NAVBAR (مطابق لـ index.html مع إضافة روابط صفحاتك) ===== -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
     <div class="container">
         <a class="navbar-brand fw-bold" href="index.html">
